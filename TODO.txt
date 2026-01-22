@@ -1,0 +1,14 @@
+# TODO
+## Study Card System
+	- ...
+	
+## Manage Deck System
+	- Remove Deck
+	- Add Deck
+
+## Edit Deck System
+	- Sort Cards
+	- Remove Card
+	- Edit Card
+	- Add Card
+		- On duplicate edit card

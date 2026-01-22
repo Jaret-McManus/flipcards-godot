@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://btwpetmgpvl62"]
+
+[ext_resource type="Script" uid="uid://ccndyyi2rmshp" path="res://scripts/states/ui_states/ui_state_manager.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://m7k1uqdxshd8" path="res://scripts/states/ui_states/select_deck_state.gd" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://bdnfbfy1v6ema" path="res://scripts/states/ui_states/new_deck_state.gd" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cqwiikutpqv0t" path="res://scripts/states/ui_states/edit_deck_state.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://bjx1y3pbtj7qj" path="res://scripts/states/ui_states/new_card_state.gd" id="5_tbgi4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
+bg_color = Color(0.75, 0.6525, 0.36, 1)
+
+[node name="Root" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
+
+[node name="ContentContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIStateManager" type="Node" parent="." node_paths=PackedStringArray("INIT_STATE")]
+script = ExtResource("1_sugp2")
+INIT_STATE = NodePath("SelectDeckState")
+
+[node name="SelectDeckState" type="Node" parent="UIStateManager"]
+script = ExtResource("2_jyhfs")
+
+[node name="NewDeckState" type="Node" parent="UIStateManager"]
+script = ExtResource("3_sugp2")
+metadata/_custom_type_script = "uid://bbxt52jmcmuu1"
+
+[node name="EditDeckState" type="Node" parent="UIStateManager"]
+script = ExtResource("4_jyhfs")
+metadata/_custom_type_script = "uid://bbxt52jmcmuu1"
+
+[node name="NewCardState" type="Node" parent="UIStateManager"]
+script = ExtResource("5_tbgi4")
+metadata/_custom_type_script = "uid://bbxt52jmcmuu1"

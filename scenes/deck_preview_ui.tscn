@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://dovuxy8ecetx8"]
+
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_dgf22"]
+[ext_resource type="Script" uid="uid://bc0abd0r2rjk6" path="res://scripts/types/node_types/deck_preview_ui.gd" id="1_ia8tx"]
+
+[node name="DeckPreviewUI" type="MarginContainer" node_paths=PackedStringArray("name_label", "num_cards_label", "button")]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = -1431.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_dgf22")
+script = ExtResource("1_ia8tx")
+name_label = NodePath("MarginContainer/VBoxContainer/DeckName")
+num_cards_label = NodePath("MarginContainer/VBoxContainer/NumCards")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="DeckName" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+text = "Chinese"
+
+[node name="NumCards" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "26 cards"

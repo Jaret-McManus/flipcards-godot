@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://pqaf4xurytos"]
+
+[ext_resource type="FontFile" uid="uid://b50r1oy7scji0" path="res://resources/fonts/Google_Sans_Code,Open_Sans/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf" id="1_7ld5p"]
+
+[sub_resource type="FontVariation" id="FontVariation_dovmt"]
+base_font = ExtResource("1_7ld5p")
+variation_embolden = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3aab"]
+bg_color = Color(0.39496186, 0.18687704, 0.13917819, 1)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0.39496186, 0.18687704, 0.13917819, 1)
+
+[resource]
+Label/font_sizes/font_size = 40
+Label/fonts/font = SubResource("FontVariation_dovmt")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_b3aab")
+VBoxContainer/constants/separation = 0

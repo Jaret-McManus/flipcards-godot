@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://csiuyhfawn1yq"]
+
+[resource]
+CardContentMargin/base_type = &"MarginContainer"
+CardContentMargin/constants/margin_bottom = 20
+CardContentMargin/constants/margin_left = 20
+CardContentMargin/constants/margin_right = 20
+CardContentMargin/constants/margin_top = 20
+VBoxContainer/constants/separation = 0

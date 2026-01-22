@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://ios7ddtnwga5"]
+
+[ext_resource type="Theme" uid="uid://b64ojf72y4vnp" path="res://resources/themes/popup.tres" id="1_s6dic"]
+[ext_resource type="Script" uid="uid://c6tndfe2t50la" path="res://scripts/types/node_types/new_card_ui.gd" id="2_y22f4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sb5fc"]
+font_size = 35
+
+[sub_resource type="DPITexture" id="DPITexture_s6dic"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
+
+[sub_resource type="SystemFont" id="SystemFont_y22f4"]
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_10rl0"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tc6u"]
+bg_color = Color(0.27697518, 0.6332155, 0.37326664, 1)
+
+[node name="NewCardUI" type="PanelContainer" node_paths=PackedStringArray("exit_btn", "side_a_input", "side_a_error", "side_b_input", "side_b_error", "submit_btn")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_s6dic")
+theme_type_variation = &"PopupBackground"
+script = ExtResource("2_y22f4")
+exit_btn = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/TopRowHbox/ExitButton")
+side_a_input = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideAForm/SideAInput")
+side_a_error = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideAForm/SideAErrorLbl")
+side_b_input = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideBForm/SideBInput")
+side_b_error = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideBForm/SideBErrorLbl")
+submit_btn = NodePath("CenterContainer/PopupPanel/MarginContainer/VBoxContainer/MarginContainer/SubmitButton")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="PopupPanel" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PopupPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PopupPanel/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="TopRowHbox" type="HBoxContainer" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PopupTitle" type="Label" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/TopRowHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Create New Card"
+label_settings = SubResource("LabelSettings_sb5fc")
+
+[node name="ExitButton" type="TextureButton" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/TopRowHbox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("DPITexture_s6dic")
+stretch_mode = 3
+
+[node name="FormVbox" type="VBoxContainer" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SideAForm" type="VBoxContainer" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox"]
+layout_mode = 2
+
+[node name="SideALbl" type="Label" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideAForm"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_y22f4")
+theme_override_font_sizes/font_size = 20
+text = "Side A text"
+label_settings = SubResource("LabelSettings_10rl0")
+
+[node name="SideAInput" type="LineEdit" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideAForm"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.8
+focus_next = NodePath("../../SideBForm/SideBInput")
+focus_previous = NodePath("../../../MarginContainer/SubmitButton")
+placeholder_text = "Text"
+clear_button_enabled = true
+
+[node name="SideAErrorLbl" type="RichTextLabel" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideAForm"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]error in creation[/color]
+"
+fit_content = true
+
+[node name="SideBForm" type="VBoxContainer" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox"]
+layout_mode = 2
+
+[node name="SideBLbl" type="Label" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideBForm"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = SubResource("SystemFont_y22f4")
+theme_override_font_sizes/font_size = 20
+text = "Side B text"
+label_settings = SubResource("LabelSettings_10rl0")
+
+[node name="SideBInput" type="TextEdit" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideBForm"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.8
+focus_next = NodePath("../../../MarginContainer/SubmitButton")
+focus_previous = NodePath("../../SideAForm/SideAInput")
+placeholder_text = "Text"
+tab_input_mode = false
+
+[node name="SideBErrorLbl" type="RichTextLabel" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/FormVbox/SideBForm"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]error in creation[/color]
+"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/PopupPanel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+focus_next = NodePath("../../FormVbox/SideAForm/SideAInput")
+focus_previous = NodePath("../../FormVbox/SideBForm/SideBInput")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_3tc6u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3tc6u")
+text = "Submit"

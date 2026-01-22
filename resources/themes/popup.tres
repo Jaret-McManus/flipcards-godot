@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b64ojf72y4vnp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it7da"]
+bg_color = Color(0.5983088, 0.59830886, 0.5983088, 0.43137255)
+
+[resource]
+LineEdit/font_sizes/font_size = 20
+PopupBackground/base_type = &"PanelContainer"
+PopupBackground/styles/panel = SubResource("StyleBoxFlat_it7da")
+TextEdit/font_sizes/font_size = 20
