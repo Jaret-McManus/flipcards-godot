@@ -1,10 +1,71 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b64ojf72y4vnp"]
+[gd_resource type="Theme" format=3 uid="uid://b64ojf72y4vnp"]
+
+[ext_resource type="FontFile" uid="uid://brgynho4qymrb" path="res://resources/fonts/Google_Sans_Code,Open_Sans/Open_Sans/static/OpenSans-SemiBold.ttf" id="1_07uwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc5oc"]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.27697518, 0.6332155, 0.37326664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3neho"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3291585, 0.32915837, 0.32915837, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.43529412)
+shadow_offset = Vector2(-5, -5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akpip"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it7da"]
-bg_color = Color(0.5983088, 0.59830886, 0.5983088, 0.43137255)
+bg_color = Color(0.41598046, 0.41598046, 0.41598028, 0.43137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07uwl"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="FontVariation" id="FontVariation_3neho"]
+base_font = ExtResource("1_07uwl")
 
 [resource]
-LineEdit/font_sizes/font_size = 20
+Button/styles/normal = SubResource("StyleBoxFlat_rc5oc")
+Label/font_sizes/font_size = 18
+LineEdit/font_sizes/font_size = 16
+LineEdit/styles/focus = SubResource("StyleBoxFlat_3neho")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_akpip")
 PopupBackground/base_type = &"PanelContainer"
 PopupBackground/styles/panel = SubResource("StyleBoxFlat_it7da")
-TextEdit/font_sizes/font_size = 20
+PopupPanelContainer/base_type = &"PanelContainer"
+PopupPanelContainer/styles/panel = SubResource("StyleBoxFlat_07uwl")
+PopupTitle/base_type = &"Label"
+PopupTitle/font_sizes/font_size = 22
+PopupTitle/fonts/font = SubResource("FontVariation_3neho")
+TextEdit/font_sizes/font_size = 16
+TextEdit/styles/focus = SubResource("StyleBoxFlat_3neho")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_akpip")

@@ -15,12 +15,12 @@ func on_enter(prev_state: StringName) -> void:
 		edit_deck_ui.toggle_button_interactions()
 	
 	# init ui
-	edit_deck_ui.populate()
+	edit_deck_ui.populate(_transition_to_card_edit)
 	
 	
 func on_exit(next_state: StringName) -> void:
 	#depopulate ui
-	if next_state == UIStates.new_card:
+	if next_state in [UIStates.new_card, UIStates.edit_card]:
 		edit_deck_ui.toggle_button_interactions()
 		return
 	
@@ -36,3 +36,6 @@ func _connect_signals() -> void:
 	edit_deck_ui.back_btn.pressed.connect(
 		self.transition.emit.bind(UIStates.select_deck)
 	)
+	
+func _transition_to_card_edit() -> void:
+	self.transition.emit(UIStates.edit_card)

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d86fwpwsq1i0"]
+
+[ext_resource type="Theme" uid="uid://b64ojf72y4vnp" path="res://resources/themes/popup.tres" id="1_1om7i"]
+[ext_resource type="Script" uid="uid://dp3xixl1jeks7" path="res://scripts/types/node_types/new_deck_ui.gd" id="2_7ojy2"]
+
+[sub_resource type="DPITexture" id="DPITexture_4dlk6"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
+
+[node name="NewDeckUI" type="PanelContainer" unique_id=1261804663 node_paths=PackedStringArray("input", "exit_btn", "create_deck_btn", "error_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_1om7i")
+theme_type_variation = &"PopupBackground"
+script = ExtResource("2_7ojy2")
+input = NodePath("CenterContainer/PopupPanel/VBoxContainer/Vbox/Input")
+exit_btn = NodePath("CenterContainer/PopupPanel/VBoxContainer/HBox/ExitButton")
+create_deck_btn = NodePath("CenterContainer/PopupPanel/VBoxContainer/Button")
+error_label = NodePath("CenterContainer/PopupPanel/VBoxContainer/Vbox/ErrorLabel")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=707004008]
+layout_mode = 2
+
+[node name="PopupPanel" type="PanelContainer" parent="CenterContainer" unique_id=129081019]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_type_variation = &"PopupPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PopupPanel" unique_id=1253608162]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=1476579899]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PopupTitle" type="Label" parent="CenterContainer/PopupPanel/VBoxContainer/HBox" unique_id=1452639113]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PopupTitle"
+text = "Create New Deck"
+
+[node name="ExitButton" type="TextureButton" parent="CenterContainer/PopupPanel/VBoxContainer/HBox" unique_id=477867115]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("DPITexture_4dlk6")
+stretch_mode = 3
+
+[node name="Vbox" type="VBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=453014502]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="DeckNameLabel" type="Label" parent="CenterContainer/PopupPanel/VBoxContainer/Vbox" unique_id=91818285]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "Deck Name"
+
+[node name="Input" type="LineEdit" parent="CenterContainer/PopupPanel/VBoxContainer/Vbox" unique_id=1901763544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.8
+focus_next = NodePath("../../Button")
+focus_previous = NodePath("../../Button")
+placeholder_text = "Name"
+clear_button_enabled = true
+
+[node name="ErrorLabel" type="RichTextLabel" parent="CenterContainer/PopupPanel/VBoxContainer/Vbox" unique_id=251589074]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]error in creation[/color]
+"
+fit_content = true
+
+[node name="Button" type="Button" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=883962259]
+layout_mode = 2
+focus_next = NodePath("../Vbox/Input")
+focus_previous = NodePath("../Vbox/Input")
+text = "Submit"

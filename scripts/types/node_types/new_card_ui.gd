@@ -1,8 +1,9 @@
 class_name NewCardUI extends PanelContainer
 
 @export_group("Nodes")
+@export var popup_title_lbl: Label
 @export var exit_btn: TextureButton
-@export var side_a_input: LineEdit
+@export var side_a_input: TextEdit
 @export var side_a_error: RichTextLabel
 @export var side_b_input: TextEdit
 @export var side_b_error: RichTextLabel
@@ -11,9 +12,11 @@ class_name NewCardUI extends PanelContainer
 
 var side_a_text: String:
 	get(): return side_a_input.text
+	set(s): side_a_input.text = s
 	
 var side_b_text: String:
 	get(): return side_b_input.text
+	set(s): side_b_input.text = s
 
 var side_a_error_text: String:
 	set(s):
@@ -24,3 +27,6 @@ var side_b_error_text: String:
 	set(s):
 		side_b_error.text = s
 		side_b_error.visible = true
+
+var popup_title: String:
+	set(s): popup_title_lbl.text = s

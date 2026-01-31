@@ -1,0 +1,24 @@
+[gd_resource type="Shortcut" format=3 uid="uid://dqnoh75eocdqe"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_sv6qy"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="InputEventKey" id="InputEventKey_tkma8"]
+device = -1
+keycode = 4194308
+
+[sub_resource type="InputEventKey" id="InputEventKey_tafrw"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_mtuko"]
+button_mask = 128
+position = Vector2(210, 14)
+global_position = Vector2(219, 62)
+button_index = 8
+pressed = true
+
+[resource]
+events = [SubResource("InputEventKey_sv6qy"), SubResource("InputEventKey_tkma8"), SubResource("InputEventKey_tafrw"), SubResource("InputEventMouseButton_mtuko")]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bg52a8bdx0bi6"]
+
+[ext_resource type="Script" uid="uid://bkgtfjjy36jt2" path="res://scripts/globals/theme_manager.gd" id="1_8qlxl"]
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="2_kbu4f"]
+[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="3_vv8i3"]
+
+[node name="ThemeManagerScene" type="Node" unique_id=102427977]
+script = ExtResource("1_8qlxl")
+header_color = Color(0.41, 0.43733332, 0.82, 1)
+main_theme = ExtResource("2_kbu4f")
+header_theme = ExtResource("3_vv8i3")
+metadata/_custom_type_script = "uid://bkgtfjjy36jt2"

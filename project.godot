@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Flipcards"
 run/main_scene="uid://btwpetmgpvl62"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
@@ -35,12 +39,14 @@ enabled=PackedStringArray("res://addons/UDWG/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://scenes/": "blue",
+"res://scenes/": "purple",
 "res://scripts/": "yellow"
 }
 
 [gui]
 
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
 theme/custom_font="uid://b50r1oy7scji0"
 
 [input]

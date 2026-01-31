@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ru6w58hkqqeu"]
+[gd_resource type="Theme" format=3 uid="uid://ru6w58hkqqeu"]
+
+[ext_resource type="StyleBox" uid="uid://cdurmtwbaos7m" path="res://resources/themes/theme_resources/primary_stylebox.tres" id="1_x2ak3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjgu6"]
 content_margin_left = 4.0
@@ -16,6 +18,11 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc5oc"]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.27697518, 0.6332155, 0.37326664, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwtt"]
 content_margin_left = 4.0
@@ -35,10 +42,18 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
+Background/base_type = &"PanelContainer"
+Background/styles/panel = ExtResource("1_x2ak3")
 Button/fonts/font = null
 Button/styles/focus = SubResource("StyleBoxFlat_rjgu6")
+Button/styles/normal = SubResource("StyleBoxFlat_rc5oc")
 CenteredGridContainer/base_type = &"VBoxContainer"
 CenteredGridContainer/constants/separation = 10
+ContentMargin/base_type = &"MarginContainer"
+ContentMargin/constants/margin_bottom = 10
+ContentMargin/constants/margin_left = 10
+ContentMargin/constants/margin_right = 10
+ContentMargin/constants/margin_top = 10
 HBoxContainer/constants/separation = 10
 LineEdit/font_sizes/font_size = 25
 LineEdit/styles/focus = SubResource("StyleBoxFlat_vxwtt")

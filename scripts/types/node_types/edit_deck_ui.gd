@@ -14,7 +14,7 @@ var deck_card_count: String:
 	set(s): deck_card_count_lbl.text = s
 	
 	
-func populate() -> void:
+func populate(transition_to_card_edit: Callable) -> void:
 	deck_title = Decks.current_deck.name
 	
 	var cards: Array[Card] = Decks.current_deck.load_get_cards()
@@ -22,7 +22,7 @@ func populate() -> void:
 	deck_card_count = Utils.conditional_plural(cards.size(), "card")
 	grid.clear()
 	for card: Card in cards:
-		var preview: CardPreview = CardPreview.create(card)
+		var preview: CardPreview = CardPreview.create(card, transition_to_card_edit)
 		grid.add_node(preview)
 		
 

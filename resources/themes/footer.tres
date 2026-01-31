@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://4c270ljjjw6"]
+[gd_resource type="Theme" format=3 uid="uid://4c270ljjjw6"]
+
+[ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="1_81o4w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81o4w"]
 bg_color = Color(0.20622554, 0.18257457, 0.2022531, 1)
@@ -6,9 +8,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fihx"]
-bg_color = Color(0.27752772, 0.27752775, 0.27752757, 1)
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_81o4w")
@@ -23,5 +22,5 @@ ButtonTextMargin/constants/margin_bottom = 6
 ButtonTextMargin/constants/margin_left = 20
 ButtonTextMargin/constants/margin_right = 20
 ButtonTextMargin/constants/margin_top = 5
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_7fihx")
-RichTextLabel/font_sizes/normal_font_size = 23
+PanelContainer/styles/panel = ExtResource("1_81o4w")
+RichTextLabel/font_sizes/normal_font_size = 16

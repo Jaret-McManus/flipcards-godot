@@ -1,6 +1,7 @@
-class_name SelectDeckUI extends Panel
+class_name SelectDeckUI extends PanelContainer
 
 
+@export_group("Nodes")
 @export var grid: CenteredGridContainer
 @export var scroll_container: ScrollContainer
 @export var new_deck_btn: Button

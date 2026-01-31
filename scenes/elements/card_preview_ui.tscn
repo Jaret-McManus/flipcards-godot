@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://eaqmt7iqnlnt"]
+
+[ext_resource type="Theme" uid="uid://csiuyhfawn1yq" path="res://resources/themes/card_preview.tres" id="1_neqy6"]
+[ext_resource type="Script" uid="uid://fjqo1v053btu" path="res://scripts/types/node_types/card_preview_ui.gd" id="2_av8ax"]
+[ext_resource type="Texture2D" uid="uid://dkm6yp24cpnlr" path="res://resources/images/pencil.svg" id="3_0ifjs"]
+[ext_resource type="Shader" uid="uid://8b3fcjmaja6g" path="res://shaders/white_icon.gdshader" id="3_u7mc3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pbx7"]
+shader = ExtResource("3_u7mc3")
+
+[node name="CardPreviewUI" type="MarginContainer" unique_id=1118761830 node_paths=PackedStringArray("side_a_lbl", "side_b_lbl", "edit_texture")]
+custom_minimum_size = Vector2(0, 150)
+offset_right = 87.0
+offset_bottom = 88.0
+size_flags_horizontal = 3
+theme = ExtResource("1_neqy6")
+script = ExtResource("2_av8ax")
+side_a_lbl = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SideA")
+side_b_lbl = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SideB")
+edit_texture = NodePath("Control/Control/EditButton")
+
+[node name="Button" type="Button" parent="." unique_id=785234788]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=420956696]
+layout_mode = 2
+theme_type_variation = &"CardContentMargin"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1135942984]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1359189389]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="SideA" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1160247046]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Side A"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1700367904]
+layout_mode = 2
+
+[node name="SideB" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=87113989]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Side B"
+horizontal_alignment = 1
+
+[node name="Control" type="MarginContainer" parent="." unique_id=1576734593]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="Control" unique_id=1103179277]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EditButton" type="TextureButton" parent="Control/Control" unique_id=1941679190]
+visible = false
+material = SubResource("ShaderMaterial_3pbx7")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 120.0
+grow_horizontal = 0
+scale = Vector2(0.25, 0.25)
+pivot_offset_ratio = Vector2(1, 0)
+mouse_filter = 1
+texture_normal = ExtResource("3_0ifjs")

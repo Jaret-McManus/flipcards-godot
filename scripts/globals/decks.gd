@@ -1,9 +1,9 @@
 extends Node
 
 
+const DATA_FOLDER_PATH: String = "user://data"
 var current_deck: Deck
-
-var DATA_FOLDER_PATH: String = "user://data"
+var current_card: Card
 
 
 func add_deck(deck: Deck) -> void:

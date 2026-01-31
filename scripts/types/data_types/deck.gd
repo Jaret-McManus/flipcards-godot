@@ -17,7 +17,6 @@ func load_get_cards() -> Array[Card]:
 	cards.clear()
 	
 	var card_filenames: Array[String] = _get_sorted_card_filenames()
-	print(card_filenames)
 	for card_filename: String in card_filenames:
 		var card: Card = load(card_filename)
 		cards.append(card)

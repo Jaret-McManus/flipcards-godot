@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://ios7ddtnwga5"]
+
+[ext_resource type="Theme" uid="uid://b64ojf72y4vnp" path="res://resources/themes/popup.tres" id="1_lemg7"]
+[ext_resource type="Script" uid="uid://c6tndfe2t50la" path="res://scripts/types/node_types/new_card_ui.gd" id="2_q2p54"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_lemg7"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_q2p54"]
+events = [SubResource("InputEventKey_lemg7")]
+
+[sub_resource type="DPITexture" id="DPITexture_s6dic"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
+
+[node name="NewCardUI" type="PanelContainer" unique_id=157876418 node_paths=PackedStringArray("popup_title_lbl", "exit_btn", "side_a_input", "side_a_error", "side_b_input", "side_b_error", "submit_btn")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_lemg7")
+theme_type_variation = &"PopupBackground"
+script = ExtResource("2_q2p54")
+popup_title_lbl = NodePath("CenterContainer/PopupPanel/VBoxContainer/TopRowHbox/PopupTitle")
+exit_btn = NodePath("CenterContainer/PopupPanel/VBoxContainer/TopRowHbox/ExitButton")
+side_a_input = NodePath("CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideAForm/SideAInput")
+side_a_error = NodePath("CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideAForm/SideAErrorLbl")
+side_b_input = NodePath("CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideBForm/SideBInput")
+side_b_error = NodePath("CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideBForm/SideBErrorLbl")
+submit_btn = NodePath("CenterContainer/PopupPanel/VBoxContainer/MarginContainer/SubmitButton")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=864744766]
+layout_mode = 2
+
+[node name="PopupPanel" type="PanelContainer" parent="CenterContainer" unique_id=1516502111]
+layout_mode = 2
+theme_type_variation = &"PopupPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PopupPanel" unique_id=933851571]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="TopRowHbox" type="HBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=1655361371]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PopupTitle" type="Label" parent="CenterContainer/PopupPanel/VBoxContainer/TopRowHbox" unique_id=1726892985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PopupTitle"
+text = "Create New Card"
+
+[node name="ExitButton" type="TextureButton" parent="CenterContainer/PopupPanel/VBoxContainer/TopRowHbox" unique_id=1816958787]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_q2p54")
+texture_normal = SubResource("DPITexture_s6dic")
+stretch_mode = 3
+
+[node name="FormVbox" type="VBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=228555972]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SideAForm" type="VBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox" unique_id=1523344940]
+layout_mode = 2
+
+[node name="SideALbl" type="Label" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideAForm" unique_id=1628553594]
+layout_mode = 2
+text = "Side A text"
+
+[node name="SideAInput" type="TextEdit" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideAForm" unique_id=1759976600]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.8
+focus_next = NodePath("../../SideBForm/SideBInput")
+focus_previous = NodePath("../../../MarginContainer/SubmitButton")
+placeholder_text = "Text"
+tab_input_mode = false
+
+[node name="SideAErrorLbl" type="RichTextLabel" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideAForm" unique_id=1253551788]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]error in creation[/color]
+"
+fit_content = true
+
+[node name="SideBForm" type="VBoxContainer" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox" unique_id=1271455444]
+layout_mode = 2
+
+[node name="SideBLbl" type="Label" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideBForm" unique_id=1190783436]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "Side B text"
+
+[node name="SideBInput" type="TextEdit" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideBForm" unique_id=1369393127]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.8
+focus_next = NodePath("../../../MarginContainer/SubmitButton")
+placeholder_text = "Text"
+tab_input_mode = false
+
+[node name="SideBErrorLbl" type="RichTextLabel" parent="CenterContainer/PopupPanel/VBoxContainer/FormVbox/SideBForm" unique_id=1969586809]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]error in creation[/color]
+"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PopupPanel/VBoxContainer" unique_id=685312351]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/PopupPanel/VBoxContainer/MarginContainer" unique_id=1449382520]
+layout_mode = 2
+focus_next = NodePath("../../FormVbox/SideAForm/SideAInput")
+focus_previous = NodePath("../../FormVbox/SideBForm/SideBInput")
+text = "Submit"

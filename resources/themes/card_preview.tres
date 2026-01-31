@@ -1,6 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://csiuyhfawn1yq"]
 
+[ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="1_af6bi"]
+
 [resource]
+Button/styles/normal = ExtResource("1_af6bi")
 CardContentMargin/base_type = &"MarginContainer"
 CardContentMargin/constants/margin_bottom = 20
 CardContentMargin/constants/margin_left = 20

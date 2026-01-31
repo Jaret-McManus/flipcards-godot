@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://ccbalvbiqkqch"]
+
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_llhrx"]
+[ext_resource type="Script" uid="uid://bd5kewd71dnc1" path="res://scripts/types/node_types/select_deck_ui.gd" id="2_gyutm"]
+[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="3_vimy0"]
+[ext_resource type="Script" uid="uid://dxc4hnp6k72y8" path="res://scripts/types/control_types/CenteredGridContainer.gd" id="4_5kuo1"]
+[ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="5_keuuy"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3v5pu"]
+device = -1
+keycode = 78
+unicode = 110
+
+[sub_resource type="Shortcut" id="Shortcut_n2lwj"]
+events = [SubResource("InputEventKey_3v5pu")]
+
+[node name="SelectDeckUI" type="PanelContainer" unique_id=1012525841 node_paths=PackedStringArray("grid", "scroll_container", "new_deck_btn")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_llhrx")
+theme_type_variation = &"Background"
+script = ExtResource("2_gyutm")
+grid = NodePath("VBoxContainer/ScrollContainer/MarginContainer/CenteredGridContainer")
+scroll_container = NodePath("VBoxContainer/ScrollContainer")
+new_deck_btn = NodePath("VBoxContainer/Footer/HBoxContainer/ButtonMargin/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=13358211]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer" unique_id=876425404]
+layout_mode = 2
+theme = ExtResource("3_vimy0")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header" unique_id=1918821590]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/MarginContainer" unique_id=829610960]
+layout_mode = 2
+text = "Choose a deck to study"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1871935885]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" unique_id=41586864]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"ContentMargin"
+
+[node name="CenteredGridContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=1441102244]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CenteredGridContainer"
+script = ExtResource("4_5kuo1")
+metadata/_custom_type_script = "uid://dxc4hnp6k72y8"
+
+[node name="Footer" type="PanelContainer" parent="VBoxContainer" unique_id=768613981]
+layout_mode = 2
+theme = ExtResource("5_keuuy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Footer" unique_id=264247872]
+layout_mode = 2
+
+[node name="Dummy" type="Control" parent="VBoxContainer/Footer/HBoxContainer" unique_id=1804529063]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer" unique_id=737824512]
+layout_mode = 2
+theme_type_variation = &"ButtonMargin"
+
+[node name="Button" type="Button" parent="VBoxContainer/Footer/HBoxContainer/ButtonMargin" unique_id=755350604]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_n2lwj")
+shortcut_in_tooltip = false
+
+[node name="TextMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer/ButtonMargin" unique_id=1765071316]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"ButtonTextMargin"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Footer/HBoxContainer/ButtonMargin/TextMargin" unique_id=1002467518]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "+ Create [u]N[/u]ew Deck"
+fit_content = true
+autowrap_mode = 0

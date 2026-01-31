@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://wcttx08l2xic"]
+
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_fblwl"]
+[ext_resource type="Script" uid="uid://3xk17itu1y76" path="res://scripts/types/node_types/edit_deck_ui.gd" id="2_yoyte"]
+[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="3_ks10u"]
+[ext_resource type="Script" uid="uid://dxc4hnp6k72y8" path="res://scripts/types/control_types/CenteredGridContainer.gd" id="4_dofsb"]
+[ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="5_0kd48"]
+[ext_resource type="Shortcut" uid="uid://dqnoh75eocdqe" path="res://resources/shortcuts/back_button_shortcuts.tres" id="6_yoyte"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_edd4s"]
+device = -1
+keycode = 78
+unicode = 110
+
+[sub_resource type="InputEventKey" id="InputEventKey_ig6is"]
+device = -1
+shift_pressed = true
+keycode = 61
+unicode = 43
+
+[sub_resource type="Shortcut" id="Shortcut_lhd81"]
+events = [SubResource("InputEventKey_edd4s"), SubResource("InputEventKey_ig6is")]
+
+[node name="EditDeckUi" type="PanelContainer" unique_id=1019050944 node_paths=PackedStringArray("deck_title_lbl", "deck_card_count_lbl", "back_btn", "new_card_btn", "grid")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_fblwl")
+theme_type_variation = &"Background"
+script = ExtResource("2_yoyte")
+deck_title_lbl = NodePath("VBoxContainer/Header/VBoxContainer/DeckNameLabel")
+deck_card_count_lbl = NodePath("VBoxContainer/Header/VBoxContainer/DeckCardCountLabel")
+back_btn = NodePath("VBoxContainer/Footer/HBoxContainer/BackButtonMargin/Button")
+new_card_btn = NodePath("VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin/Button")
+grid = NodePath("VBoxContainer/Control/MarginContainer/CenteredGridContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1071029842]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer" unique_id=377485449]
+layout_mode = 2
+theme = ExtResource("3_ks10u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header" unique_id=42039652]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="DeckNameLabel" type="Label" parent="VBoxContainer/Header/VBoxContainer" unique_id=1028600162]
+layout_mode = 2
+text = "Your Deck"
+horizontal_alignment = 1
+
+[node name="DeckCardCountLabel" type="Label" parent="VBoxContainer/Header/VBoxContainer" unique_id=993220802]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "100 cards"
+horizontal_alignment = 1
+
+[node name="Control" type="ScrollContainer" parent="VBoxContainer" unique_id=746676579]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control" unique_id=5870249]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"ContentMargin"
+
+[node name="CenteredGridContainer" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer" unique_id=975203966]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CenteredGridContainer"
+script = ExtResource("4_dofsb")
+metadata/_custom_type_script = "uid://dxc4hnp6k72y8"
+
+[node name="Footer" type="PanelContainer" parent="VBoxContainer" unique_id=1641541205]
+layout_mode = 2
+theme = ExtResource("5_0kd48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Footer" unique_id=1714545826]
+layout_mode = 2
+
+[node name="BackButtonMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer" unique_id=824023818]
+layout_mode = 2
+theme_type_variation = &"ButtonMargin"
+
+[node name="Button" type="Button" parent="VBoxContainer/Footer/HBoxContainer/BackButtonMargin" unique_id=1421255222]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+shortcut = ExtResource("6_yoyte")
+
+[node name="TextMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer/BackButtonMargin" unique_id=830425624]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+mouse_default_cursor_shape = 2
+theme_type_variation = &"ButtonTextMargin"
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Footer/HBoxContainer/BackButtonMargin/TextMargin" unique_id=1223863685]
+layout_mode = 2
+bbcode_enabled = true
+text = "< [u]B[/u]ack"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Control" type="Control" parent="VBoxContainer/Footer/HBoxContainer" unique_id=1155495258]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewCardButtonMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer" unique_id=1517185541]
+layout_mode = 2
+theme_type_variation = &"ButtonMargin"
+
+[node name="Button" type="Button" parent="VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin" unique_id=889860705]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_lhd81")
+shortcut_in_tooltip = false
+
+[node name="TextMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin" unique_id=1407756712]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_type_variation = &"ButtonTextMargin"
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin/TextMargin" unique_id=397846956]
+layout_mode = 2
+bbcode_enabled = true
+text = "+ Add [u]N[/u]ew Card"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
