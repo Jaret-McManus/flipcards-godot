@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://blnuxha10ajag"]
+
+[ext_resource type="Script" uid="uid://yr0vc6c1clfk" path="res://scenes/elements/rich_button.gd" id="1_857qw"]
+
+[node name="RichButton" type="MarginContainer" unique_id=1862761863 node_paths=PackedStringArray("label", "padding", "button")]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_857qw")
+label = NodePath("Padding/Label")
+padding = NodePath("Padding")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=1016813656]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+shortcut_in_tooltip = false
+
+[node name="Padding" type="MarginContainer" parent="." unique_id=1219644937]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_type_variation = &"ButtonTextMargin"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="RichTextLabel" parent="Padding" unique_id=377416328]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

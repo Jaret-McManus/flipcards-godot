@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://bj8vvr2ukkr7q"]
+
+[resource]
+CardPadding/base_type = &"MarginContainer"
+CardPadding/constants/margin_bottom = 10
+CardPadding/constants/margin_left = 40
+CardPadding/constants/margin_right = 40
+CardPadding/constants/margin_top = 10

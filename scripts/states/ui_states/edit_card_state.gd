@@ -54,7 +54,7 @@ func _edit_card() -> void:
 		ProjectSettings.globalize_path(file_path)
 	)
 	
-	var new_card: Card = Card.create(ui_instance.side_a_text, ui_instance.side_b_text)
+	var new_card: Card = Card.create(ui_instance.side_a_text, ui_instance.side_b_text, true)
 	ResourceSaver.save(new_card, new_file_path)
 	
 	

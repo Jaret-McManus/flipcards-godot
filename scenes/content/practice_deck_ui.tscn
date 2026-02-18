@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://cinudrjx4h45v"]
+
+[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="1_gkkpg"]
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_nifpq"]
+[ext_resource type="Theme" uid="uid://bj8vvr2ukkr7q" path="res://resources/themes/practice_theme.tres" id="2_jgffp"]
+[ext_resource type="StyleBox" uid="uid://cdurmtwbaos7m" path="res://resources/themes/theme_resources/primary_stylebox.tres" id="3_gkkpg"]
+[ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="4_jgffp"]
+[ext_resource type="PackedScene" uid="uid://blnuxha10ajag" path="res://scenes/elements/RichButton.tscn" id="5_nifpq"]
+[ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="5_vwk1e"]
+[ext_resource type="Shortcut" uid="uid://dqnoh75eocdqe" path="res://resources/shortcuts/back_button_shortcuts.tres" id="8_vwk1e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgffp"]
+font_size = 20
+font_color = Color(1, 0.1882353, 0.19607843, 1)
+
+[node name="PracticeDeckUi" type="MarginContainer" unique_id=1205653166]
+offset_right = 1536.0
+offset_bottom = 864.0
+theme = ExtResource("1_nifpq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1837375888]
+layout_mode = 2
+theme = ExtResource("2_jgffp")
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer" unique_id=749772657]
+layout_mode = 2
+theme = ExtResource("1_gkkpg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header" unique_id=716811699]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="DeckNameLabel" type="Label" parent="VBoxContainer/Header/VBoxContainer" unique_id=977706664]
+layout_mode = 2
+text = "Practicing DECK"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="VBoxContainer/Header/VBoxContainer" unique_id=355810370]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "0:03"
+label_settings = SubResource("LabelSettings_jgffp")
+horizontal_alignment = 1
+
+[node name="ContentPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1876070887]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_gkkpg")
+
+[node name="Content" type="VBoxContainer" parent="VBoxContainer/ContentPanel" unique_id=365876012]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/ContentPanel/Content" unique_id=1639616550]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Card" type="PanelContainer" parent="VBoxContainer/ContentPanel/Content/CenterContainer" unique_id=687134014]
+custom_minimum_size = Vector2(650, 390)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("4_jgffp")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentPanel/Content/CenterContainer/Card" unique_id=926908891]
+layout_mode = 2
+theme_type_variation = &"CardPadding"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentPanel/Content/CenterContainer/Card/MarginContainer" unique_id=1973459828]
+layout_mode = 2
+
+[node name="SideALabel" type="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer/Card/MarginContainer/VBoxContainer" unique_id=642935679]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Hello"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ContentPanel/Content/CenterContainer/Card/MarginContainer/VBoxContainer" unique_id=1347765344]
+layout_mode = 2
+
+[node name="SideBLabel" type="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer/Card/MarginContainer/VBoxContainer" unique_id=450567934]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Hello"
+horizontal_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/ContentPanel/Content" unique_id=1432999696]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentPanel/Content/CenterContainer2" unique_id=220920073]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer" unique_id=144684830]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="RichButton" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer" unique_id=1862761863 instance=ExtResource("5_nifpq")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Don't Know"
+
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton/Padding" parent_id_path=PackedInt32Array(1862761863, 1219644937) index="0" unique_id=377416328]
+text = "Don't Know"
+horizontal_alignment = 1
+
+[node name="RichButton2" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer" unique_id=1396339431 instance=ExtResource("5_nifpq")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hard"
+
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton2/Padding" parent_id_path=PackedInt32Array(1396339431, 1219644937) index="0" unique_id=377416328]
+text = "Hard"
+horizontal_alignment = 1
+
+[node name="RichButton3" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer" unique_id=1399764307 instance=ExtResource("5_nifpq")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Moderate"
+
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton3/Padding" parent_id_path=PackedInt32Array(1399764307, 1219644937) index="0" unique_id=377416328]
+text = "Moderate"
+horizontal_alignment = 1
+
+[node name="RichButton4" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer" unique_id=1584896110 instance=ExtResource("5_nifpq")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Easy"
+
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton4/Padding" parent_id_path=PackedInt32Array(1584896110, 1219644937) index="0" unique_id=377416328]
+text = "Easy"
+horizontal_alignment = 1
+
+[node name="Footer" type="PanelContainer" parent="VBoxContainer" unique_id=1026721787]
+layout_mode = 2
+theme = ExtResource("5_vwk1e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Footer" unique_id=276995295]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Footer/HBoxContainer" unique_id=164029269]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuitButton" parent="VBoxContainer/Footer/HBoxContainer" unique_id=232117402 instance=ExtResource("5_nifpq")]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+text = "x Quit"
+top_margin = 10
+right_margin = 10
+bottom_margin = 10
+left_margin = 10
+top_padding = 5
+right_padding = 15
+bottom_padding = 5
+left_padding = 15
+
+[node name="Button" parent="VBoxContainer/Footer/HBoxContainer/QuitButton" index="0" unique_id=1016813656]
+shortcut = ExtResource("8_vwk1e")
+
+[node name="Padding" parent="VBoxContainer/Footer/HBoxContainer/QuitButton" index="1" unique_id=1219644937]
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" parent="VBoxContainer/Footer/HBoxContainer/QuitButton/Padding" index="0" unique_id=377416328]
+text = "x Quit"
+
+[editable path="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton"]
+[editable path="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton2"]
+[editable path="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton3"]
+[editable path="VBoxContainer/ContentPanel/Content/CenterContainer2/MarginContainer/HBoxContainer/RichButton4"]
+[editable path="VBoxContainer/Footer/HBoxContainer/QuitButton"]

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://wcttx08l2xic"]
 
-[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_fblwl"]
-[ext_resource type="Script" uid="uid://3xk17itu1y76" path="res://scripts/types/node_types/edit_deck_ui.gd" id="2_yoyte"]
-[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="3_ks10u"]
-[ext_resource type="Script" uid="uid://dxc4hnp6k72y8" path="res://scripts/types/control_types/CenteredGridContainer.gd" id="4_dofsb"]
-[ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="5_0kd48"]
-[ext_resource type="Shortcut" uid="uid://dqnoh75eocdqe" path="res://resources/shortcuts/back_button_shortcuts.tres" id="6_yoyte"]
+[ext_resource type="Theme" uid="uid://ru6w58hkqqeu" path="res://resources/themes/main_theme.tres" id="1_3ierp"]
+[ext_resource type="Script" uid="uid://3xk17itu1y76" path="res://scripts/types/node_types/edit_deck_ui.gd" id="2_n2m58"]
+[ext_resource type="Theme" uid="uid://pqaf4xurytos" path="res://resources/themes/header.tres" id="3_4amkq"]
+[ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="4_yen84"]
+[ext_resource type="PackedScene" uid="uid://gopfiyxbleb8" path="res://scenes/content/edit_deck/grading_breakdown.tscn" id="5_mojy3"]
+[ext_resource type="Script" uid="uid://dxc4hnp6k72y8" path="res://scripts/types/control_types/CenteredGridContainer.gd" id="6_4sfbx"]
+[ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="7_6lln0"]
+[ext_resource type="Shortcut" uid="uid://dqnoh75eocdqe" path="res://resources/shortcuts/back_button_shortcuts.tres" id="8_nwurf"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_edd4s"]
 device = -1
@@ -29,21 +31,21 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_fblwl")
+theme = ExtResource("1_3ierp")
 theme_type_variation = &"Background"
-script = ExtResource("2_yoyte")
+script = ExtResource("2_n2m58")
 deck_title_lbl = NodePath("VBoxContainer/Header/VBoxContainer/DeckNameLabel")
 deck_card_count_lbl = NodePath("VBoxContainer/Header/VBoxContainer/DeckCardCountLabel")
 back_btn = NodePath("VBoxContainer/Footer/HBoxContainer/BackButtonMargin/Button")
 new_card_btn = NodePath("VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin/Button")
-grid = NodePath("VBoxContainer/Control/MarginContainer/CenteredGridContainer")
+grid = NodePath("VBoxContainer/Content/Control/MarginContainer/CenteredGridContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1071029842]
 layout_mode = 2
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer" unique_id=377485449]
 layout_mode = 2
-theme = ExtResource("3_ks10u")
+theme = ExtResource("3_4amkq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header" unique_id=42039652]
 layout_mode = 2
@@ -60,29 +62,53 @@ theme_type_variation = &"HeaderSmall"
 text = "100 cards"
 horizontal_alignment = 1
 
-[node name="Control" type="ScrollContainer" parent="VBoxContainer" unique_id=746676579]
+[node name="Content" type="VBoxContainer" parent="VBoxContainer" unique_id=1958126130]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Content" unique_id=361375721]
+custom_minimum_size = Vector2(0, 225)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_yen84")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content/PanelContainer" unique_id=1291253175]
+layout_mode = 2
+
+[node name="GradingBreakdown" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=436564281 instance=ExtResource("5_mojy3")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=9951445]
+layout_mode = 2
+size_flags_vertical = 6
+text = "                                                 Start practice"
+
+[node name="Button" type="Button" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=1741458324]
+layout_mode = 2
+text = "Start"
+
+[node name="Control" type="ScrollContainer" parent="VBoxContainer/Content" unique_id=746676579]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control" unique_id=5870249]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Content/Control" unique_id=5870249]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"ContentMargin"
 
-[node name="CenteredGridContainer" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer" unique_id=975203966]
+[node name="CenteredGridContainer" type="VBoxContainer" parent="VBoxContainer/Content/Control/MarginContainer" unique_id=975203966]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CenteredGridContainer"
-script = ExtResource("4_dofsb")
+script = ExtResource("6_4sfbx")
 metadata/_custom_type_script = "uid://dxc4hnp6k72y8"
 
 [node name="Footer" type="PanelContainer" parent="VBoxContainer" unique_id=1641541205]
 layout_mode = 2
-theme = ExtResource("5_0kd48")
+theme = ExtResource("7_6lln0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Footer" unique_id=1714545826]
 layout_mode = 2
@@ -94,7 +120,7 @@ theme_type_variation = &"ButtonMargin"
 [node name="Button" type="Button" parent="VBoxContainer/Footer/HBoxContainer/BackButtonMargin" unique_id=1421255222]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-shortcut = ExtResource("6_yoyte")
+shortcut = ExtResource("8_nwurf")
 
 [node name="TextMargin" type="MarginContainer" parent="VBoxContainer/Footer/HBoxContainer/BackButtonMargin" unique_id=830425624]
 layout_mode = 2
