@@ -1,4 +1,4 @@
-extends UIState
+class_name EditDeckState extends UIState
 
 
 var edit_deck_scene: PackedScene = preload("uid://wcttx08l2xic")
@@ -25,7 +25,9 @@ func on_exit(next_state: StringName) -> void:
 		return
 	
 	if edit_deck_ui: edit_deck_ui = null
-	Decks.current_deck = null
+	if next_state != UIStates.practice_deck:
+		Decks.current_deck = null
+		
 	Utils.remove_children_free(content_container)
 	
 
@@ -36,6 +38,10 @@ func _connect_signals() -> void:
 	edit_deck_ui.back_btn.pressed.connect(
 		self.transition.emit.bind(UIStates.select_deck)
 	)
+	edit_deck_ui.start_practice_btn.pressed.connect(
+		self.transition.emit.bind(UIStates.practice_deck)
+	)
+	
 	
 func _transition_to_card_edit() -> void:
 	self.transition.emit(UIStates.edit_card)

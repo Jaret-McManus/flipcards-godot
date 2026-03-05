@@ -1,10 +1,11 @@
 # TODO
 ## Study Card System
-	- ...
+	- Configure study settings
+	- Load batch of cards for session
+	- Implement grading + visualization
 	
 ## Manage Deck System
 	- Remove Deck
-	- Add Deck
 
 ## Edit Deck System
 	- Sort Cards

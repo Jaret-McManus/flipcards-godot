@@ -1,5 +1,5 @@
 class_name EditDeckUI extends Control
-
+#state class is EditDeckState
 
 @export_group("Nodes")
 @export var deck_title_lbl: Label
@@ -7,6 +7,7 @@ class_name EditDeckUI extends Control
 @export var back_btn: Button
 @export var new_card_btn: Button
 @export var grid: CenteredGridContainer
+@export var start_practice_btn: Button
 
 var deck_title: String: 
 	set(s): deck_title_lbl.text = s

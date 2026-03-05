@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://pxl0luayqovc"]
+
+[ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="1_xvapu"]
+[ext_resource type="Script" uid="uid://ctklvu0ugl15r" path="res://scenes/elements/practice_card.gd" id="2_ay1tq"]
+
+[node name="PracticeCard" type="PanelContainer" unique_id=1355092250 node_paths=PackedStringArray("_side_a_label", "_side_b_label", "_separator")]
+custom_minimum_size = Vector2(650, 390)
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("1_xvapu")
+script = ExtResource("2_ay1tq")
+_side_a_label = NodePath("MarginContainer/VBoxContainer/SideALabel")
+_side_b_label = NodePath("MarginContainer/VBoxContainer/SideBLabel")
+_separator = NodePath("MarginContainer/VBoxContainer/HSeparator")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=358726565]
+layout_mode = 2
+theme_type_variation = &"CardPadding"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=428596517]
+layout_mode = 2
+
+[node name="SideALabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1283720513]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"CardLabel"
+text = "Hello"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=769441947]
+visible = false
+layout_mode = 2
+
+[node name="SideBLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=260588522]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"CardLabel"
+text = "Hello"
+horizontal_alignment = 1

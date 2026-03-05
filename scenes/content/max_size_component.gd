@@ -21,7 +21,11 @@ func _ready() -> void:
 	
 
 func _clamp_size() -> void:
+	if not _parent: _parent = get_parent() as Control
+	print("clamp, mw: %s" % max_width)
 	if max_width >= 0:
+		print("changing size!")
+		_parent.size.x = max_width
 		_parent.size.x = min(_parent.size.x, max_width)
 	if max_height >= 0:
 		_parent.size.y = min(_parent.size.y, max_height)

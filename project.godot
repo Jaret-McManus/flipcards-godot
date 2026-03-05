@@ -26,6 +26,7 @@ Error="*res://scripts/globals/error.gd"
 Utils="*res://scripts/globals/utils.gd"
 UIStates="*res://scripts/globals/ui_states.gd"
 Decks="*res://scripts/globals/decks.gd"
+PracticeDeckStates="*uid://danppdj4wole2"
 
 [display]
 

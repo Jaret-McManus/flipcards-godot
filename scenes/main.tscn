@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bjx1y3pbtj7qj" path="res://scripts/states/ui_states/new_card_state.gd" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://qnihlrvah40g" path="res://scripts/states/ui_states/edit_card_state.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ios7ddtnwga5" path="res://scenes/popups/new_card_ui.tscn" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://da7xs3pugc38g" path="res://scripts/states/ui_states/practice_deck_state.gd" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://cinudrjx4h45v" path="res://scenes/content/practice_deck_ui.tscn" id="9_85g3d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.75, 0.6525, 0.36, 1)
@@ -50,4 +52,9 @@ metadata/_custom_type_script = "uid://bbxt52jmcmuu1"
 [node name="EditCardState" type="Node" parent="UIStateManager" unique_id=1273300581]
 script = ExtResource("6_tefeu")
 edit_card_ui = ExtResource("7_o6xl0")
+metadata/_custom_type_script = "uid://bbxt52jmcmuu1"
+
+[node name="PracticeDeckState" type="Node" parent="UIStateManager" unique_id=2143948024]
+script = ExtResource("8_tipki")
+scene = ExtResource("9_85g3d")
 metadata/_custom_type_script = "uid://bbxt52jmcmuu1"

@@ -58,4 +58,10 @@ class_name RichButton extends MarginContainer
 @export var label: RichTextLabel
 @export var padding: MarginContainer
 @export var button: Button
-		
+
+@warning_ignore("unused_signal")
+signal pressed
+
+func _ready() -> void:
+	# Button's pressed signal propagates up to RichButton Wrapper
+	button.pressed.connect(pressed.emit)
