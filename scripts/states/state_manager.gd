@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	curr_state.process(delta)
 
 
-func _state_transition(next_state_name: StringName) -> void:
+func _state_transition(next_state_name: StringName, _data: Variant = null) -> void:
 	if not next_state_name: 
 		Error.quit("%s attempted to transition to a null state!" % self.name)
 		

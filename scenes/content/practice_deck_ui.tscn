@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://djuwskeduft75" path="res://scripts/states/practice_deck_states/practice_deck_state_manager.gd" id="9_8qaxt"]
 [ext_resource type="Script" uid="uid://b0e0rk585v20k" path="res://scripts/states/practice_deck_states/present_card_state.gd" id="10_j0qdb"]
 [ext_resource type="Script" uid="uid://goobx8bmwty1" path="res://scripts/states/practice_deck_states/transition_card_state.gd" id="11_j0qdb"]
+[ext_resource type="Script" uid="uid://b75lg4jrwkkud" path="res://scenes/content/reveal_card_state.gd" id="11_nodt1"]
 [ext_resource type="Script" uid="uid://cik8yxmklwgpu" path="res://scripts/states/practice_deck_states/end_practice_state.gd" id="12_nodt1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgffp"]
@@ -56,7 +57,7 @@ keycode = 4194308
 [sub_resource type="Shortcut" id="Shortcut_8qaxt"]
 events = [SubResource("InputEventKey_vwk1e")]
 
-[node name="PracticeDeckUi" type="MarginContainer" unique_id=1205653166 node_paths=PackedStringArray("header_title", "timer_label", "card", "quit_btn", "dont_know_button", "hard_button", "moderate_button", "easy_button")]
+[node name="PracticeDeckUi" type="MarginContainer" unique_id=1205653166 node_paths=PackedStringArray("header_title", "timer_label", "card", "quit_btn", "dont_know_button", "hard_button", "moderate_button", "easy_button", "state_manager")]
 offset_right = 1536.0
 offset_bottom = 864.0
 theme = ExtResource("1_nifpq")
@@ -69,6 +70,7 @@ dont_know_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxCont
 hard_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton")
 moderate_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton")
 easy_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton")
+state_manager = NodePath("PracticeDeckStateManager")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1837375888]
 layout_mode = 2
@@ -274,6 +276,10 @@ INIT_STATE = NodePath("PresentCardState")
 [node name="PresentCardState" type="Node" parent="PracticeDeckStateManager" unique_id=1882836500]
 script = ExtResource("10_j0qdb")
 metadata/_custom_type_script = "uid://bi4pcha4eu6wi"
+
+[node name="RevealCardState" type="Node" parent="PracticeDeckStateManager" unique_id=184486082]
+script = ExtResource("11_nodt1")
+metadata/_custom_type_script = "uid://da7xs3pugc38g"
 
 [node name="TransitionCardState" type="Node" parent="PracticeDeckStateManager" unique_id=1781152532]
 script = ExtResource("11_j0qdb")

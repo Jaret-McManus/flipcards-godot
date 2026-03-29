@@ -10,3 +10,7 @@ func _ready() -> void:
 		child.practice_ui = practice_ui
 	super()
 	
+
+func _state_transition(next_state_name: StringName, data: Variant = null) -> void:
+	print("omg data is: %s" % data)
+	super(next_state_name)
