@@ -6,7 +6,7 @@ class_name State extends Node
 signal transition(new_state_name: StringName)
 
 
-func on_enter(_prev_state: StringName) -> void:
+func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
 	pass
 
 

@@ -5,7 +5,7 @@ var edit_deck_scene: PackedScene = preload("uid://wcttx08l2xic")
 var edit_deck_ui: EditDeckUI = null
 
 
-func on_enter(prev_state: StringName) -> void:
+func on_enter(prev_state: StringName, _data: Variant = null) -> void:
 	# full initialization of ui
 	if prev_state != UIStates.new_card:
 		edit_deck_ui = edit_deck_scene.instantiate()

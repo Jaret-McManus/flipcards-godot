@@ -5,7 +5,7 @@ var new_card_scene: PackedScene = preload("uid://ios7ddtnwga5")
 var new_card_ui: NewCardUI
 
 
-func on_enter(_prev_state: StringName) -> void:
+func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
 	# populate ui
 	new_card_ui = new_card_scene.instantiate()
 	content_container.add_child(new_card_ui)

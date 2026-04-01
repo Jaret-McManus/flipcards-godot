@@ -5,7 +5,7 @@ var select_deck_scene: PackedScene = preload("uid://ccbalvbiqkqch")
 var select_deck_ui: SelectDeckUI = null
 
 
-func on_enter(prev_state: StringName) -> void:
+func on_enter(prev_state: StringName, _data: Variant = null) -> void:
 	# populate UI
 	if prev_state != UIStates.new_deck:
 		select_deck_ui = select_deck_scene.instantiate()

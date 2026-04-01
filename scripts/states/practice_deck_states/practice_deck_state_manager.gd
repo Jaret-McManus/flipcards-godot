@@ -11,6 +11,5 @@ func _ready() -> void:
 	super()
 	
 
-func _state_transition(next_state_name: StringName, data: Variant = null) -> void:
-	print("omg data is: %s" % data)
+func _state_transition(next_state_name: StringName, _data: Variant = null) -> void:
 	super(next_state_name)

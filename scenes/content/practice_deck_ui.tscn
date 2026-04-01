@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://djuwskeduft75" path="res://scripts/states/practice_deck_states/practice_deck_state_manager.gd" id="9_8qaxt"]
 [ext_resource type="Script" uid="uid://b0e0rk585v20k" path="res://scripts/states/practice_deck_states/present_card_state.gd" id="10_j0qdb"]
 [ext_resource type="Script" uid="uid://goobx8bmwty1" path="res://scripts/states/practice_deck_states/transition_card_state.gd" id="11_j0qdb"]
-[ext_resource type="Script" uid="uid://b75lg4jrwkkud" path="res://scenes/content/reveal_card_state.gd" id="11_nodt1"]
+[ext_resource type="Script" uid="uid://b75lg4jrwkkud" path="res://scripts/states/practice_deck_states/reveal_card_state.gd" id="11_nodt1"]
 [ext_resource type="Script" uid="uid://cik8yxmklwgpu" path="res://scripts/states/practice_deck_states/end_practice_state.gd" id="12_nodt1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgffp"]
@@ -50,6 +50,14 @@ unicode = 52
 [sub_resource type="Shortcut" id="Shortcut_iaxg6"]
 events = [SubResource("InputEventKey_nodt1")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_iaxg6"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_bg144"]
+events = [SubResource("InputEventKey_iaxg6")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_vwk1e"]
 device = -1
 keycode = 4194308
@@ -57,7 +65,7 @@ keycode = 4194308
 [sub_resource type="Shortcut" id="Shortcut_8qaxt"]
 events = [SubResource("InputEventKey_vwk1e")]
 
-[node name="PracticeDeckUi" type="MarginContainer" unique_id=1205653166 node_paths=PackedStringArray("header_title", "timer_label", "card", "quit_btn", "dont_know_button", "hard_button", "moderate_button", "easy_button", "state_manager")]
+[node name="PracticeDeckUi" type="MarginContainer" unique_id=1205653166 node_paths=PackedStringArray("header_title", "timer_label", "card", "quit_btn", "dont_know_button", "hard_button", "moderate_button", "easy_button", "continue_button", "state_manager")]
 offset_right = 1536.0
 offset_bottom = 864.0
 theme = ExtResource("1_nifpq")
@@ -66,10 +74,11 @@ header_title = NodePath("VBoxContainer/Header/VBoxContainer/DeckNameLabel")
 timer_label = NodePath("VBoxContainer/Header/VBoxContainer/TimerLabel")
 card = NodePath("VBoxContainer/ContentPanel/Content/CenterContainer/PracticeCard")
 quit_btn = NodePath("VBoxContainer/Footer/HBoxContainer/QuitButton/Button")
-dont_know_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/DontKnowButton")
-hard_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton")
-moderate_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton")
-easy_button = NodePath("VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton")
+dont_know_button = NodePath("VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/DontKnowButton")
+hard_button = NodePath("VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/HardButton")
+moderate_button = NodePath("VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ModerateButton")
+easy_button = NodePath("VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/EasyButton")
+continue_button = NodePath("VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ContinueButton")
 state_manager = NodePath("PracticeDeckStateManager")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1837375888]
@@ -113,121 +122,142 @@ size_flags_vertical = 3
 [node name="PracticeCard" parent="VBoxContainer/ContentPanel/Content/CenterContainer" unique_id=1355092250 instance=ExtResource("6_jgffp")]
 layout_mode = 2
 
-[node name="Buttons" type="CenterContainer" parent="VBoxContainer/ContentPanel/Content" unique_id=1432999696]
+[node name="ButtonsMargin" type="MarginContainer" parent="VBoxContainer/ContentPanel/Content" unique_id=576291304]
+layout_mode = 2
+theme_override_constants/margin_bottom = 40
+
+[node name="Buttons" type="CenterContainer" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin" unique_id=1432999696]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ContentPanel/Content/Buttons" unique_id=2053483352]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons" unique_id=2053483352]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="DontKnowButton" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2" unique_id=1862761863 instance=ExtResource("5_nifpq")]
+[node name="DontKnowButton" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer" unique_id=1862761863 instance=ExtResource("5_nifpq")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"AnswerMargin"
-theme_override_constants/margin_bottom = 40
 text = "Don't Know"
 shortcuts = SubResource("Shortcut_0pn6j")
-bottom_margin = 40
 top_padding = 5
 right_padding = 10
 bottom_padding = 5
 left_padding = 10
 
-[node name="Button" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/DontKnowButton" index="0" unique_id=1016813656]
+[node name="Button" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/DontKnowButton" index="0" unique_id=1016813656]
 theme_type_variation = &"DontKnowButton"
 shortcut = SubResource("Shortcut_0pn6j")
 
-[node name="Padding" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/DontKnowButton" index="1" unique_id=1219644937]
+[node name="Padding" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/DontKnowButton" index="1" unique_id=1219644937]
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/DontKnowButton/Padding" index="0" unique_id=377416328]
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/DontKnowButton/Padding" index="0" unique_id=377416328]
 theme_type_variation = &"AnswerLabel"
 text = "Don't Know"
 horizontal_alignment = 1
 
-[node name="HardButton" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2" unique_id=1396339431 instance=ExtResource("5_nifpq")]
+[node name="HardButton" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer" unique_id=1396339431 instance=ExtResource("5_nifpq")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_bottom = 40
 text = "Hard"
 shortcuts = SubResource("Shortcut_vwk1e")
-bottom_margin = 40
 top_padding = 5
 right_padding = 10
 bottom_padding = 5
 left_padding = 10
 
-[node name="Button" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton" index="0" unique_id=1016813656]
+[node name="Button" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/HardButton" index="0" unique_id=1016813656]
 theme_type_variation = &"HardButton"
 shortcut = SubResource("Shortcut_vwk1e")
 
-[node name="Padding" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton" index="1" unique_id=1219644937]
+[node name="Padding" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/HardButton" index="1" unique_id=1219644937]
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton/Padding" index="0" unique_id=377416328]
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/HardButton/Padding" index="0" unique_id=377416328]
 theme_type_variation = &"AnswerLabel"
 text = "Hard"
 horizontal_alignment = 1
 
-[node name="ModerateButton" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2" unique_id=1399764307 instance=ExtResource("5_nifpq")]
+[node name="ModerateButton" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer" unique_id=1399764307 instance=ExtResource("5_nifpq")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_bottom = 40
 text = "Moderate"
 shortcuts = SubResource("Shortcut_j0qdb")
-bottom_margin = 40
 top_padding = 5
 right_padding = 10
 bottom_padding = 5
 left_padding = 10
 
-[node name="Button" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton" index="0" unique_id=1016813656]
+[node name="Button" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ModerateButton" index="0" unique_id=1016813656]
 theme_type_variation = &"ModerateButton"
 shortcut = SubResource("Shortcut_j0qdb")
 
-[node name="Padding" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton" index="1" unique_id=1219644937]
+[node name="Padding" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ModerateButton" index="1" unique_id=1219644937]
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton/Padding" index="0" unique_id=377416328]
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ModerateButton/Padding" index="0" unique_id=377416328]
 theme_type_variation = &"AnswerLabel"
 text = "Moderate"
 horizontal_alignment = 1
 
-[node name="EasyButton" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2" unique_id=1584896110 instance=ExtResource("5_nifpq")]
+[node name="EasyButton" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer" unique_id=1584896110 instance=ExtResource("5_nifpq")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_bottom = 40
 text = "Easy"
 shortcuts = SubResource("Shortcut_iaxg6")
-bottom_margin = 40
 top_padding = 5
 right_padding = 10
 bottom_padding = 5
 left_padding = 10
 
-[node name="Button" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton" index="0" unique_id=1016813656]
+[node name="Button" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/EasyButton" index="0" unique_id=1016813656]
 theme_type_variation = &"EasyButton"
 shortcut = SubResource("Shortcut_iaxg6")
 
-[node name="Padding" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton" index="1" unique_id=1219644937]
+[node name="Padding" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/EasyButton" index="1" unique_id=1219644937]
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" parent="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton/Padding" index="0" unique_id=377416328]
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/EasyButton/Padding" index="0" unique_id=377416328]
 theme_type_variation = &"AnswerLabel"
 text = "Easy"
+horizontal_alignment = 1
+
+[node name="ContinueButton" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer" unique_id=650233228 instance=ExtResource("5_nifpq")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next Card"
+shortcuts = SubResource("Shortcut_bg144")
+top_padding = 5
+right_padding = 10
+bottom_padding = 5
+left_padding = 10
+
+[node name="Button" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ContinueButton" index="0" unique_id=1016813656]
+shortcut = SubResource("Shortcut_bg144")
+
+[node name="Padding" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ContinueButton" index="1" unique_id=1219644937]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" parent="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ContinueButton/Padding" index="0" unique_id=377416328]
+theme_type_variation = &"AnswerLabel"
+text = "Next Card"
 horizontal_alignment = 1
 
 [node name="Footer" type="PanelContainer" parent="VBoxContainer" unique_id=1026721787]
@@ -268,6 +298,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Label" parent="VBoxContainer/Footer/HBoxContainer/QuitButton/Padding" index="0" unique_id=377416328]
 text = "x Quit"
+horizontal_alignment = 1
 
 [node name="PracticeDeckStateManager" type="Node" parent="." unique_id=809835222 node_paths=PackedStringArray("INIT_STATE")]
 script = ExtResource("9_8qaxt")
@@ -289,8 +320,9 @@ metadata/_custom_type_script = "uid://bi4pcha4eu6wi"
 script = ExtResource("12_nodt1")
 metadata/_custom_type_script = "uid://bi4pcha4eu6wi"
 
-[editable path="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/DontKnowButton"]
-[editable path="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/HardButton"]
-[editable path="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/ModerateButton"]
-[editable path="VBoxContainer/ContentPanel/Content/Buttons/HBoxContainer2/EasyButton"]
+[editable path="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/DontKnowButton"]
+[editable path="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/HardButton"]
+[editable path="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ModerateButton"]
+[editable path="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/EasyButton"]
+[editable path="VBoxContainer/ContentPanel/Content/ButtonsMargin/Buttons/HBoxContainer/ContinueButton"]
 [editable path="VBoxContainer/Footer/HBoxContainer/QuitButton"]

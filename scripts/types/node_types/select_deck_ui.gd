@@ -1,5 +1,5 @@
 class_name SelectDeckUI extends PanelContainer
-
+#SelectDeckState
 
 @export_group("Nodes")
 @export var grid: CenteredGridContainer

@@ -6,7 +6,8 @@ var curr_card_time: float = 0.0
 var timer_label: Label
 @export var scene: PackedScene
 
-func on_enter(_prev_state: StringName) -> void:
+
+func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
 	ui_instance = scene.instantiate()
 	timer_label = ui_instance.timer_label
 	_connect_signals()

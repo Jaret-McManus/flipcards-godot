@@ -7,7 +7,7 @@ const POPUP_TITLE: String = "Edit Card"
 var ui_instance: NewCardUI
 
 
-func on_enter(_prev_state: StringName) -> void:
+func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
 	ui_instance = edit_card_ui.instantiate()
 	# Hijack NewCardUI to be an EditCardUI
 	_edit_card_init()
