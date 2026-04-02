@@ -5,7 +5,7 @@ var new_deck_scene: PackedScene = preload("uid://d86fwpwsq1i0")
 var new_deck_ui: NewDeckUI = null
 
 
-func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
+func on_enter(_prev_state: StringName) -> void:
 	# populate popup
 	new_deck_ui = new_deck_scene.instantiate()
 	content_container.add_child(new_deck_ui)

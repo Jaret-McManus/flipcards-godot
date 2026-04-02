@@ -7,5 +7,5 @@ var transition_card: StringName = &"TransitionCardState"
 var end_practice: StringName = &"EndPracticeState"
 
 enum CardStatus {
-	DONT_KNOW, HARD, MODERATE, EASY
+	DONT_KNOW, HARD, MODERATE, EASY, NULL
 }

@@ -4,6 +4,7 @@ extends Node
 const DATA_FOLDER_PATH: String = "user://data"
 var current_deck: Deck
 var current_card: Card
+var current_answer_status: PracticeDeckStates.CardStatus = PracticeDeckStates.CardStatus.NULL
 
 
 func add_deck(deck: Deck) -> void:

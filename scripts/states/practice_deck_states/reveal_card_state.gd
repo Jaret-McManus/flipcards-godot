@@ -3,7 +3,7 @@ extends PracticeState
 var signals_connected: bool = false	
 	
 	
-func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
+func on_enter(_prev_state: StringName) -> void:
 	if not signals_connected: _connect_signals()
 	
 	practice_ui.practice_button_mode = false

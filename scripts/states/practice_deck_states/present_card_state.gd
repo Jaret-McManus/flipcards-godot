@@ -4,7 +4,7 @@ class_name PresentCardState extends PracticeState
 var _signals_connected: bool = false
 
 
-func on_enter(_prev_state: StringName, _data: Variant = null) -> void:
+func on_enter(_prev_state: StringName) -> void:
 	if not _signals_connected: _connect_signals()
 	
 	# show practice buttons, hide continue button
@@ -35,8 +35,7 @@ func _connect_signals() -> void:
 
 func _connect_status_button(button: RichButton, state: PracticeDeckStates.CardStatus) -> void:
 	button.pressed.connect(
-		self.transition.emit.bind(
-			PracticeDeckStates.reveal_card, 
-			state
-		)
+		func():
+			Decks.current_answer_status = state
+			self.transition.emit( PracticeDeckStates.reveal_card )
 	)
