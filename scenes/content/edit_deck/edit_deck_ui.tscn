@@ -6,8 +6,22 @@
 [ext_resource type="StyleBox" uid="uid://vdukjvubusl1" path="res://resources/themes/theme_resources/secondary_stylebox.tres" id="4_yen84"]
 [ext_resource type="PackedScene" uid="uid://gopfiyxbleb8" path="res://scenes/content/edit_deck/grading_breakdown.tscn" id="5_mojy3"]
 [ext_resource type="Script" uid="uid://dxc4hnp6k72y8" path="res://scripts/types/control_types/CenteredGridContainer.gd" id="6_4sfbx"]
+[ext_resource type="PackedScene" uid="uid://blnuxha10ajag" path="res://scenes/elements/RichButton.tscn" id="6_n2m58"]
 [ext_resource type="Theme" uid="uid://4c270ljjjw6" path="res://resources/themes/footer.tres" id="7_6lln0"]
+[ext_resource type="Shader" uid="uid://8b3fcjmaja6g" path="res://shaders/white_icon.gdshader" id="7_yen84"]
+[ext_resource type="Texture2D" uid="uid://del2ywqj3c723" path="res://resources/images/gear.png" id="8_mojy3"]
 [ext_resource type="Shortcut" uid="uid://dqnoh75eocdqe" path="res://resources/shortcuts/back_button_shortcuts.tres" id="8_nwurf"]
+[ext_resource type="Script" uid="uid://buluv8g4uqo6j" path="res://scenes/content/edit_deck/texture_button.gd" id="9_mojy3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sfbx"]
+shader = ExtResource("7_yen84")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3ierp"]
+color = Color(0.19076243, 0.19076231, 0.19076225, 1)
+thickness = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2m58"]
+font_size = 22
 
 [sub_resource type="InputEventKey" id="InputEventKey_edd4s"]
 device = -1
@@ -39,7 +53,7 @@ deck_card_count_lbl = NodePath("VBoxContainer/Header/VBoxContainer/DeckCardCount
 back_btn = NodePath("VBoxContainer/Footer/HBoxContainer/BackButtonMargin/Button")
 new_card_btn = NodePath("VBoxContainer/Footer/HBoxContainer/NewCardButtonMargin/Button")
 grid = NodePath("VBoxContainer/Content/Control/MarginContainer/CenteredGridContainer")
-start_practice_btn = NodePath("VBoxContainer/Content/PanelContainer/VBoxContainer/Button")
+start_practice_btn = NodePath("VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/HBoxContainer/StartPractice")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1071029842]
 layout_mode = 2
@@ -75,17 +89,86 @@ theme_override_styles/panel = ExtResource("4_yen84")
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content/PanelContainer" unique_id=1291253175]
 layout_mode = 2
 
-[node name="GradingBreakdown" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=436564281 instance=ExtResource("5_mojy3")]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=1872922217]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2" unique_id=480163979]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="GradingBreakdown" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=436564281 instance=ExtResource("5_mojy3")]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=629168318]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=769214493]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=9951445]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1000216358]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="Label" type="Label" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=9951445]
 layout_mode = 2
 size_flags_vertical = 6
-text = "                                                 Start practice"
+text = "Average Grade: "
 
-[node name="Button" type="Button" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=1741458324]
+[node name="Label2" type="Label" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1198742695]
 layout_mode = 2
-text = "Start"
+text = "Total cards reviewed: "
+
+[node name="Control" type="Control" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=497291407]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=1640543480]
+layout_mode = 2
+
+[node name="StartPractice" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1862761863 instance=ExtResource("6_n2m58")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[u]S[/u]tart Practice"
+horizontal_text_alignment = 1
+vertical_text_alignment = 0
+top_padding = 2
+bottom_padding = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1494344220]
+material = SubResource("ShaderMaterial_4sfbx")
+instance_shader_parameters/hover = false
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("8_mojy3")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("9_mojy3")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=1424858770]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxLine_3ierp")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Content/PanelContainer/VBoxContainer" unique_id=1724661739]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="CardsLabel" type="Label" parent="VBoxContainer/Content/PanelContainer/VBoxContainer/MarginContainer" unique_id=113318849]
+layout_mode = 2
+text = "Cards"
+label_settings = SubResource("LabelSettings_n2m58")
 
 [node name="Control" type="ScrollContainer" parent="VBoxContainer/Content" unique_id=746676579]
 layout_mode = 2

@@ -15,7 +15,7 @@ enum ShuffleType {  MIX, RANDOM, LEAST_RATED }
 @export var back_btn: Button
 @export var new_card_btn: Button
 @export var grid: CenteredGridContainer
-@export var start_practice_btn: Button
+@export var start_practice_btn: RichButton
 #endregion
 
 

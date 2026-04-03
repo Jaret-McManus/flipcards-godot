@@ -12,7 +12,16 @@ class_name RichButton extends MarginContainer
 	set(s):
 		shortcuts = s
 		button.shortcut = s
+@export_group("Text Alignment")
+@export var horizontal_text_alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT:
+	set(h):
+		horizontal_text_alignment = h
+		label.horizontal_alignment = h
 		
+@export var vertical_text_alignment: VerticalAlignment = VERTICAL_ALIGNMENT_TOP:
+	set(v):
+		vertical_text_alignment = v
+		label.vertical_alignment = v
 
 #region margin exports
 @export_group("Margin")
