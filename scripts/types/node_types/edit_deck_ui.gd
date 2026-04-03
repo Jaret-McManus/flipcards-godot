@@ -1,13 +1,23 @@
 class_name EditDeckUI extends Control
 #state class is EditDeckState
 
-@export_group("Nodes")
+
+enum ShuffleType {  MIX, RANDOM, LEAST_RATED }
+
+@export_group("Practice Configs")
+@export var num_cards: int = 10
+@export var shuffle_type: ShuffleType
+
+#region Internal Nodes
+@export_group("Internal Nodes")
 @export var deck_title_lbl: Label
 @export var deck_card_count_lbl: Label
 @export var back_btn: Button
 @export var new_card_btn: Button
 @export var grid: CenteredGridContainer
 @export var start_practice_btn: Button
+#endregion
+
 
 var deck_title: String: 
 	set(s): deck_title_lbl.text = s

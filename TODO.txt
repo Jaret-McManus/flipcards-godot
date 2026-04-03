@@ -1,4 +1,10 @@
 # TODO
+
+## Next Priority:
+	- Design Practice Configurations UI in EditDeckUI
+	- Connect UI to config vars
+	- connect vars to practice system
+
 ## Study Card System
 	- Configure study settings
 	- Load batch of cards for session

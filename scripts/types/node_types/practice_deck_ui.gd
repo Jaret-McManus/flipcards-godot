@@ -19,6 +19,7 @@ var cards: Array[Card]
 		continue_button.visible = b
 		card.answer_visible = b
 
+#region Internal Nodes
 @export_group("Internal Nodes")
 @export var header_title: Label
 @export var timer_label: Label
@@ -30,3 +31,4 @@ var cards: Array[Card]
 @export var easy_button: RichButton
 @export var continue_button: RichButton
 @export var state_manager: PracticeDeckStateManager
+#endregion
