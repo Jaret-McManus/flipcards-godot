@@ -1,3 +1,27 @@
 [gd_scene format=3 uid="uid://c82giurngorkg"]
 
-[node name="DeckHome" type="Node2D" unique_id=1195265064]
+[ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_h3nt6"]
+
+[node name="DeckHome" type="Control" unique_id=900742187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h3nt6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1722364207]
+layout_mode = 2
+text = "Deck Home"
+horizontal_alignment = 1

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://411mif5t8adc" path="res://root/root_view.gd" id="1_1xv2g"]
 [ext_resource type="Script" uid="uid://cocbhdq6ijae6" path="res://root/root_controller.gd" id="2_j4b2l"]
+[ext_resource type="PackedScene" uid="uid://c82giurngorkg" path="res://root/deck_home/deck_home.tscn" id="2_js5vo"]
 
-[node name="RootView" type="Control" unique_id=1615447250]
+[node name="RootView" type="Control" unique_id=1615447250 node_paths=PackedStringArray("subview_control", "controller")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +12,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xv2g")
+initial_subview = ExtResource("2_js5vo")
+subview_control = NodePath("SubView")
+controller = NodePath("RootController")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2003995542]
+[node name="SubView" type="Control" parent="." unique_id=1416269713]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
