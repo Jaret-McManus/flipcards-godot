@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://chm68lwtn6n7o"]
+
+[ext_resource type="Script" uid="uid://8qdamio44dby" path="res://scripts/tools/tools.gd" id="1_punck"]
+
+[node name="Tools" type="Node" unique_id=2022149253]
+script = ExtResource("1_punck")
+path = "res://root/deck_home"

@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://bjisl0ntnpcec"]
 
-[node name="Root" type="Control" unique_id=1615447250]
+[ext_resource type="Script" uid="uid://411mif5t8adc" path="res://root/root_view.gd" id="1_1xv2g"]
+[ext_resource type="Script" uid="uid://cocbhdq6ijae6" path="res://root/root_controller.gd" id="2_j4b2l"]
+
+[node name="RootView" type="Control" unique_id=1615447250]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1xv2g")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2003995542]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RootController" type="Node" parent="." unique_id=500928488]
+script = ExtResource("2_j4b2l")
