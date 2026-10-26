@@ -1,7 +1,25 @@
 [gd_resource type="Theme" format=3 uid="uid://dorijhc0j4432"]
 
+[ext_resource type="StyleBox" uid="uid://g1ie5pq23l2j" path="res://resources/themes/root/button/hover.tres" id="1_q1fri"]
+[ext_resource type="StyleBox" uid="uid://cf6ddgnxyolay" path="res://resources/themes/root/button/pressed.tres" id="2_p8hip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7xk2"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.3932988, 0.5744671, 0.25886378, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6rbi"]
 bg_color = Color(0.65, 0.556075, 0.31849998, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f428"]
+bg_color = Color(0, 0, 0.007843138, 0.3882353)
+
 [resource]
+Button/styles/hover = ExtResource("1_q1fri")
+Button/styles/normal = SubResource("StyleBoxFlat_o7xk2")
+Button/styles/pressed = ExtResource("2_p8hip")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_r6rbi")
+SecondaryPanel/base_type = &"PanelContainer"
+SecondaryPanel/styles/panel = SubResource("StyleBoxFlat_2f428")

@@ -1,6 +1,6 @@
 class_name RootModel extends RefCounted
 
-var view: View
+var view: RootView
 
 var current_subview: View:
 	set(v):
