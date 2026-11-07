@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://swocgtls4iyx" path="res://resources/scenes/padded_button/padded_button.gd" id="1_bg772"]
 
-[node name="PaddedButton" type="MarginContainer" unique_id=1816726834 node_paths=PackedStringArray("padding_container", "inner_button")]
+[node name="PaddedButton" type="MarginContainer" unique_id=1816726834 node_paths=PackedStringArray("inner_button", "padding_container", "label")]
 offset_right = 20.0
 offset_bottom = 10.0
 mouse_filter = 2
@@ -11,8 +11,9 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_bg772")
-padding_container = NodePath("MarginContainer")
 inner_button = NodePath("Button")
+padding_container = NodePath("MarginContainer")
+label = NodePath("MarginContainer/RichTextLabel")
 
 [node name="Button" type="Button" parent="." unique_id=828522269]
 propagate_maximum_size = true
@@ -29,6 +30,7 @@ theme_override_constants/margin_bottom = 0
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1555916363]
 layout_mode = 2
 mouse_filter = 2
-text = "Test Textsadf"
+bbcode_enabled = true
+text = "Example Text"
 fit_content = true
 autowrap_mode = 0

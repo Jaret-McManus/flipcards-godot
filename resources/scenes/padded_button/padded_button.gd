@@ -2,7 +2,11 @@
 class_name PaddedButton extends MarginContainer
 
 signal pressed
-
+@export var text: String:
+	set(s):
+		text = s
+		label.text = s
+		
 @export_group("Margin")
 @export var top_margin: int = 0:
 	set(i):
@@ -46,12 +50,13 @@ signal pressed
 @export var all_padding: int = 0
 
 @export_group("Internal Nodes")
-@export var padding_container: MarginContainer
 @export var inner_button: Button
+@export var padding_container: MarginContainer
+@export var label: RichTextLabel
 
 
 func _ready() -> void:
-	pressed.connect(inner_button.pressed.emit)
+	inner_button.pressed.connect(pressed.emit)
 
 
 func _set_all_padding() -> void:
@@ -62,7 +67,7 @@ func _set_all_padding() -> void:
 
 
 func _set_all_margin() -> void:
-	top_padding = all_margin
-	right_padding = all_margin
-	bottom_padding = all_margin
-	left_padding = all_margin
+	top_margin = all_margin
+	right_margin = all_margin
+	bottom_margin = all_margin
+	left_margin = all_margin
