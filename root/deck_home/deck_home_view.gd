@@ -3,9 +3,12 @@ class_name DeckHomeView extends View
 
 @export var model: DeckHomeModel
 
+@export var card_scene: PackedScene
 @export_group("Internal Nodes")
 @export var top_section: Control
 @export var button: PaddedButton
+@export var centered_grid: CenteredGridContainer
+@export var add_card: PaddedButton
 
 
 static func create() -> DeckHomeView:
@@ -15,6 +18,11 @@ static func create() -> DeckHomeView:
 
 func _ready() -> void:
 	_connect_model_signals()
+	add_card.pressed.connect(
+		func()->void:
+			print("pressed add card!")
+			centered_grid.add_node(card_scene.instantiate())
+	)
 
 
 func _connect_model_signals() -> void:

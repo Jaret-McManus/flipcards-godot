@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_h3nt6"]
 [ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_2bvo1"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_6bg5l"]
+[ext_resource type="PackedScene" uid="uid://dg7cio7p6lin5" path="res://root/deck_home/card/card.tscn" id="3_quxiq"]
+[ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_i8p5q"]
 
 [sub_resource type="Resource" id="Resource_h3nt6"]
 script = ExtResource("2_2bvo1")
 top_screen_percentage = 30.0
 metadata/_custom_type_script = "uid://d163tgwkshqcy"
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("top_section", "button")]
+[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("top_section", "button", "centered_grid", "add_card")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,8 +22,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_h3nt6")
 model = SubResource("Resource_h3nt6")
+card_scene = ExtResource("3_quxiq")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
 button = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/PaddedButton")
+centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
+add_card = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
 layout_mode = 1
@@ -54,6 +59,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 22
+text = "Start a Practice Session"
 bottom_margin = 22
 top_padding = 8
 right_padding = 150
@@ -61,9 +67,50 @@ bottom_padding = 8
 left_padding = 150
 all_padding = 8
 
-[node name="Control" type="Control" parent="PanelContainer/ContentVBox" unique_id=620016514]
+[node name="Control" type="ScrollContainer" parent="PanelContainer/ContentVBox" unique_id=648168032]
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="GridMargin" type="MarginContainer" parent="PanelContainer/ContentVBox/Control" unique_id=1872961489]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenteredGrid" parent="PanelContainer/ContentVBox/Control/GridMargin" unique_id=1867737459 instance=ExtResource("4_i8p5q")]
+layout_mode = 2
+
 [node name="DeckBottom" type="PanelContainer" parent="PanelContainer/ContentVBox" unique_id=1320962938]
 layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="AddCard" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=90549514 instance=ExtResource("3_6bg5l")]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+text = "[u]A[/u]dd Card"
+top_margin = 10
+right_margin = 30
+bottom_margin = 10
+top_padding = 5
+right_padding = 16
+bottom_padding = 5
+left_padding = 16
+all_padding = 5
+
+[node name="BackDeckSelect" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=333922747 instance=ExtResource("3_6bg5l")]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+text = "[u]B[/u]ack to Deck Select"
+top_margin = 10
+bottom_margin = 10
+left_margin = 30
+top_padding = 5
+right_padding = 16
+bottom_padding = 5
+left_padding = 16
+all_padding = 5

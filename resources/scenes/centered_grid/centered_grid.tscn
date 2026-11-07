@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cyi07c5bg2ccs"]
+
+[ext_resource type="Script" uid="uid://x56vrdv0lgrr" path="res://resources/scenes/centered_grid/centered_grid.gd" id="1_47s3h"]
+
+[node name="CenteredGrid" type="VBoxContainer" unique_id=1867737459]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_47s3h")
