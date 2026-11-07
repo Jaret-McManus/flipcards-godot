@@ -1,7 +1,7 @@
 @tool
 extends EditorScript
 
-static var type = "DeckHomeController"
+static var type: String = "DeckHomeController"
 
 const create_template = \
 "class_name {type}{super_type}

@@ -3,7 +3,7 @@
 @export_group("Make MVC files")
 @export_dir var path: String
 @export var scene_name: String
-@export_tool_button("Create MVC files") var function = _create_mvc_files
+@export_tool_button("Create MVC files") var function: Callable = _create_mvc_files
 
 
 func _create_mvc_files() -> void:
