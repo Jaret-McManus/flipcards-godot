@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cm1i3cl5ydhe8"]
+
+[ext_resource type="Script" uid="uid://swocgtls4iyx" path="res://resources/scenes/padded_button/padded_button.gd" id="1_bg772"]
+
+[node name="PaddedButton" type="MarginContainer" unique_id=1816726834 node_paths=PackedStringArray("padding_container", "inner_button")]
+offset_right = 20.0
+offset_bottom = 10.0
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_bg772")
+padding_container = NodePath("MarginContainer")
+inner_button = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=828522269]
+propagate_maximum_size = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1233601729]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1555916363]
+layout_mode = 2
+mouse_filter = 2
+text = "Test Textsadf"
+fit_content = true
+autowrap_mode = 0

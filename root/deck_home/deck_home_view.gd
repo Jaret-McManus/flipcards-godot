@@ -5,6 +5,8 @@ class_name DeckHomeView extends View
 
 @export_group("Internal Nodes")
 @export var top_section: Control
+@export var button: PaddedButton
+
 
 static func create() -> DeckHomeView:
 	var deck_home_view := DeckHomeView.new()

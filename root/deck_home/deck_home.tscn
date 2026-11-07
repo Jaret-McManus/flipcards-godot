@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_h3nt6"]
 [ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_2bvo1"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_6bg5l"]
 
 [sub_resource type="Resource" id="Resource_h3nt6"]
 script = ExtResource("2_2bvo1")
 top_screen_percentage = 30.0
 metadata/_custom_type_script = "uid://d163tgwkshqcy"
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("top_section")]
+[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("top_section", "button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +21,7 @@ size_flags_vertical = 3
 script = ExtResource("1_h3nt6")
 model = SubResource("Resource_h3nt6")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
+button = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/PaddedButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
 layout_mode = 1
@@ -48,10 +50,20 @@ text = "Deck Home"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Button" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=280973212]
-custom_minimum_size = Vector2(350, 0)
-custom_maximum_size = Vector2(350, -1)
+[node name="PaddedButton" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=1816726834 instance=ExtResource("3_6bg5l")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "Start Practice Set"
+theme_override_constants/margin_bottom = 22
+bottom_margin = 22
+top_padding = 8
+right_padding = 150
+bottom_padding = 8
+left_padding = 150
+all_padding = 8
+
+[node name="Control" type="Control" parent="PanelContainer/ContentVBox" unique_id=620016514]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DeckBottom" type="PanelContainer" parent="PanelContainer/ContentVBox" unique_id=1320962938]
+layout_mode = 2
