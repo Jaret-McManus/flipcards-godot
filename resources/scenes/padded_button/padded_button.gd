@@ -2,11 +2,20 @@
 class_name PaddedButton extends MarginContainer
 
 signal pressed
+
 @export var text: String:
 	set(s):
 		text = s
 		label.text = s
-		
+@export var shortcut: Shortcut:
+	set(s):
+		shortcut = s
+		inner_button.shortcut = s
+@export var disabled: bool:
+	set(b):
+		disabled = b
+		inner_button.disabled = b
+
 @export_group("Margin")
 @export var top_margin: int = 0:
 	set(i):
