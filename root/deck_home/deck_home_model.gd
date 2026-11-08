@@ -1,7 +1,9 @@
 @tool
 class_name DeckHomeModel extends Resource
 
-var view: DeckHomeView
+const CARD_SCENE := preload("uid://dg7cio7p6lin5")
+
+var _view: DeckHomeView
 
 @export_group("Control Parameters")
 signal top_screen_percentage_changed(new_float: float)
@@ -11,9 +13,11 @@ signal top_screen_percentage_changed(new_float: float)
 		top_screen_percentage_changed.emit(f)
 
 @export_group("Data")
+@export var add_card_popup_open: bool = false:
+	set(b):
+		add_card_popup_open = b
+		_view.set_add_card_visibility(b)
 
 
-static func create(p_view: DeckHomeView) -> DeckHomeModel:
-	var deck_home_model := DeckHomeModel.new()
-	deck_home_model.view = p_view
-	return deck_home_model
+func set_view(p_view: DeckHomeView) -> void:
+	_view = p_view

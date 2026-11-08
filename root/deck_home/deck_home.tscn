@@ -3,15 +3,25 @@
 [ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_h3nt6"]
 [ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_2bvo1"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_6bg5l"]
-[ext_resource type="PackedScene" uid="uid://dg7cio7p6lin5" path="res://root/deck_home/card/card.tscn" id="3_quxiq"]
 [ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_i8p5q"]
+[ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/add_card_popup/add_card_popup.tscn" id="6_sv4gc"]
+[ext_resource type="Script" uid="uid://dxiupaebv6xj" path="res://root/deck_home/deck_home_controller.gd" id="7_ysxhp"]
 
 [sub_resource type="Resource" id="Resource_h3nt6"]
 script = ExtResource("2_2bvo1")
 top_screen_percentage = 30.0
+add_card_popup_open = null
 metadata/_custom_type_script = "uid://d163tgwkshqcy"
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("top_section", "button", "centered_grid", "add_card")]
+[sub_resource type="InputEventKey" id="InputEventKey_sv4gc"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_sv4gc"]
+events = [SubResource("InputEventKey_sv4gc")]
+
+[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "centered_grid", "add_card_popup", "start_practice_btn", "add_card_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,11 +32,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_h3nt6")
 model = SubResource("Resource_h3nt6")
-card_scene = ExtResource("3_quxiq")
+controller = NodePath("DeckHomeController")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
-button = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/PaddedButton")
 centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
-add_card = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
+add_card_popup = NodePath("AddCardPopup")
+start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
+add_card_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
 layout_mode = 1
@@ -55,7 +66,7 @@ text = "Deck Home"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PaddedButton" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=1816726834 instance=ExtResource("3_6bg5l")]
+[node name="StartPracticeButton" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=1816726834 instance=ExtResource("3_6bg5l")]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 22
@@ -90,6 +101,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 10
 text = "[u]A[/u]dd Card"
+shortcut = SubResource("Shortcut_sv4gc")
 top_margin = 10
 right_margin = 30
 bottom_margin = 10
@@ -114,3 +126,11 @@ right_padding = 16
 bottom_padding = 5
 left_padding = 16
 all_padding = 5
+
+[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_sv4gc")]
+visible = false
+layout_mode = 1
+
+[node name="DeckHomeController" type="Node" parent="." unique_id=1454335755]
+script = ExtResource("7_ysxhp")
+metadata/_custom_type_script = "uid://dxiupaebv6xj"

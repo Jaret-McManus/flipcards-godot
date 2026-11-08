@@ -17,6 +17,9 @@ content_margin_right = 20.0
 content_margin_bottom = 10.0
 bg_color = Color(0.04950974, 0.046825655, 0.08550083, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtglo"]
+bg_color = Color(0, 0, 0, 0.40784314)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6rbi"]
 bg_color = Color(0.65, 0.556075, 0.31849998, 1)
 
@@ -29,6 +32,8 @@ Button/styles/normal = SubResource("StyleBoxFlat_o7xk2")
 Button/styles/pressed = ExtResource("2_p8hip")
 Card/base_type = &"PanelContainer"
 Card/styles/panel = SubResource("StyleBoxFlat_u0ya7")
+FullscreenPopupPanel/base_type = &"PanelContainer"
+FullscreenPopupPanel/styles/panel = SubResource("StyleBoxFlat_dtglo")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_r6rbi")
 SecondaryPanel/base_type = &"PanelContainer"
 SecondaryPanel/styles/panel = SubResource("StyleBoxFlat_2f428")

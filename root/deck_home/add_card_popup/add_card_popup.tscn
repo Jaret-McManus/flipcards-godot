@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c0xwhx82t4fjk"]
+
+[ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/add_card_popup/add_card_popup.gd" id="1_tpvna"]
+
+[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"FullscreenPopupPanel"
+script = ExtResource("1_tpvna")

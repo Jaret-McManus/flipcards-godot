@@ -3,30 +3,39 @@ class_name DeckHomeView extends View
 
 @export var model: DeckHomeModel
 
-@export var card_scene: PackedScene
 @export_group("Internal Nodes")
+@export var controller: DeckHomeController
+
 @export var top_section: Control
-@export var button: PaddedButton
 @export var centered_grid: CenteredGridContainer
-@export var add_card: PaddedButton
-
-
-static func create() -> DeckHomeView:
-	var deck_home_view := DeckHomeView.new()
-	return deck_home_view
+@export var add_card_popup: PanelContainer
+@export var start_practice_btn: PaddedButton
+@export var add_card_btn: PaddedButton
 
 
 func _ready() -> void:
-	_connect_model_signals()
-	add_card.pressed.connect(
-		func()->void:
-			print("pressed add card!")
-			centered_grid.add_node(card_scene.instantiate())
-	)
+	_setup_model()
+	_setup_controller()
 
 
-func _connect_model_signals() -> void:
+func set_add_card_visibility(p_is_visible: bool) -> void:
+	add_card_popup.visible = p_is_visible
+	_popup_toggle_buttons(p_is_visible)
+
+
+func _popup_toggle_buttons(p_is_visible: bool) -> void:
+	start_practice_btn.disabled = p_is_visible
+	add_card_btn.disabled = p_is_visible
+
+
+func _setup_model() -> void:
+	model.set_view(self)
 	model.top_screen_percentage_changed.connect(_on_top_screen_percentage_changed)
+
+
+func _setup_controller() -> void:
+	controller.model = model
+	add_card_btn.pressed.connect(controller.on_add_card_pressed)
 
 
 func _on_top_screen_percentage_changed(new_percentage: float) -> void:
