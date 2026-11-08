@@ -10,7 +10,6 @@
 [sub_resource type="Resource" id="Resource_h3nt6"]
 script = ExtResource("2_2bvo1")
 top_screen_percentage = 30.0
-add_card_popup_open = null
 metadata/_custom_type_script = "uid://d163tgwkshqcy"
 
 [sub_resource type="InputEventKey" id="InputEventKey_sv4gc"]
@@ -21,7 +20,7 @@ unicode = 97
 [sub_resource type="Shortcut" id="Shortcut_sv4gc"]
 events = [SubResource("InputEventKey_sv4gc")]
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "centered_grid", "add_card_popup", "start_practice_btn", "add_card_btn")]
+[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "centered_grid", "add_card_popup", "start_practice_btn", "add_card_btn", "back_deck_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +37,7 @@ centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/Centered
 add_card_popup = NodePath("AddCardPopup")
 start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
 add_card_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
+back_deck_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/BackDeckSelect")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
 layout_mode = 1

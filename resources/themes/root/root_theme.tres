@@ -20,6 +20,18 @@ bg_color = Color(0.04950974, 0.046825655, 0.08550083, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtglo"]
 bg_color = Color(0, 0, 0, 0.40784314)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8hip"]
+content_margin_left = 10.0
+bg_color = Color(0.83704835, 0.7917, 0.91, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1fri"]
+content_margin_left = 10.0
+bg_color = Color(0.7666196, 0.76661956, 0.76661944, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6rbi"]
 bg_color = Color(0.65, 0.556075, 0.31849998, 1)
 
@@ -34,6 +46,15 @@ Card/base_type = &"PanelContainer"
 Card/styles/panel = SubResource("StyleBoxFlat_u0ya7")
 FullscreenPopupPanel/base_type = &"PanelContainer"
 FullscreenPopupPanel/styles/panel = SubResource("StyleBoxFlat_dtglo")
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/styles/focus = SubResource("StyleBoxFlat_p8hip")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_q1fri")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_r6rbi")
+PopupMargin/base_type = &"MarginContainer"
+PopupMargin/constants/margin_bottom = 25
+PopupMargin/constants/margin_left = 20
+PopupMargin/constants/margin_right = 20
+PopupMargin/constants/margin_top = 15
 SecondaryPanel/base_type = &"PanelContainer"
 SecondaryPanel/styles/panel = SubResource("StyleBoxFlat_2f428")

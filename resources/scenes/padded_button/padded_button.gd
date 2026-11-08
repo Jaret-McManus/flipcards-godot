@@ -15,6 +15,16 @@ signal pressed
 	set(b):
 		disabled = b
 		inner_button.disabled = b
+@export var button_focus_mode: FocusMode:
+	set(fm):
+		button_focus_mode = fm
+		inner_button.focus_mode = fm
+
+@export_group("Text")
+@export var alignment: HorizontalAlignment:
+	set(ha):
+		alignment = ha
+		if label: label.horizontal_alignment = ha
 
 @export_group("Margin")
 @export var top_margin: int = 0:

@@ -9,8 +9,10 @@ class_name DeckHomeView extends View
 @export var top_section: Control
 @export var centered_grid: CenteredGridContainer
 @export var add_card_popup: PanelContainer
+
 @export var start_practice_btn: PaddedButton
 @export var add_card_btn: PaddedButton
+@export var back_deck_btn: PaddedButton
 
 
 func _ready() -> void:
@@ -24,8 +26,14 @@ func set_add_card_visibility(p_is_visible: bool) -> void:
 
 
 func _popup_toggle_buttons(p_is_visible: bool) -> void:
-	start_practice_btn.disabled = p_is_visible
-	add_card_btn.disabled = p_is_visible
+	_toggle_button(start_practice_btn, p_is_visible)
+	_toggle_button(add_card_btn, p_is_visible)
+	_toggle_button(back_deck_btn, p_is_visible)
+
+
+func _toggle_button(button: PaddedButton, popup_visible: bool) -> void:
+	button.disabled = popup_visible
+	button.button_focus_mode = Control.FOCUS_NONE if popup_visible else Control.FOCUS_ALL
 
 
 func _setup_model() -> void:

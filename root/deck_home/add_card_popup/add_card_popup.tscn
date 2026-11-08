@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0xwhx82t4fjk"]
 
 [ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/add_card_popup/add_card_popup.gd" id="1_tpvna"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_absbi"]
 
 [node name="AddCardPopup" type="PanelContainer" unique_id=1302212048]
 anchors_preset = 15
@@ -12,3 +13,65 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"FullscreenPopupPanel"
 script = ExtResource("1_tpvna")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1220382114]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1679900891]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1226147617]
+layout_mode = 2
+theme_type_variation = &"PopupMargin"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=222223544]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=779627807]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Add New Card"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1171820771]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=930813326]
+layout_mode = 2
+
+[node name="SideALabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2079960124]
+layout_mode = 2
+text = "Side A"
+
+[node name="SideAInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=68002128]
+layout_mode = 2
+focus_next = NodePath("../../VBoxContainer2/SideBInput")
+text = "hi there"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1258688232]
+layout_mode = 2
+
+[node name="SideBLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1292603579]
+layout_mode = 2
+text = "Side A"
+
+[node name="SideBInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1376100230]
+layout_mode = 2
+focus_next = NodePath("../../PaddedButton")
+focus_previous = NodePath("../../VBoxContainer/SideAInput")
+text = "hi there"
+
+[node name="PaddedButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_absbi")]
+layout_mode = 2
+focus_previous = NodePath("../VBoxContainer2/SideBInput")
+theme_override_constants/margin_top = 5
+text = "Add Card"
+alignment = 1
+top_margin = 5
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
