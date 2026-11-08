@@ -17,7 +17,6 @@ static func create(num_columns: int) -> CenteredGridContainer:
 
 
 func add_node(node: Node) -> void:
-	print("adding ch")
 	if total_elements % NUM_COLUMNS == 0:
 		_add_row()
 

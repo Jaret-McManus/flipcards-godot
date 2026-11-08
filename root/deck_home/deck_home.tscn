@@ -127,10 +127,10 @@ bottom_padding = 5
 left_padding = 16
 all_padding = 5
 
-[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_sv4gc")]
-visible = false
-layout_mode = 1
-
 [node name="DeckHomeController" type="Node" parent="." unique_id=1454335755]
 script = ExtResource("7_ysxhp")
 metadata/_custom_type_script = "uid://dxiupaebv6xj"
+
+[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_sv4gc")]
+visible = false
+layout_mode = 1

@@ -8,7 +8,7 @@ class_name DeckHomeView extends View
 
 @export var top_section: Control
 @export var centered_grid: CenteredGridContainer
-@export var add_card_popup: PanelContainer
+@export var add_card_popup: AddCardPopup
 
 @export var start_practice_btn: PaddedButton
 @export var add_card_btn: PaddedButton
@@ -23,6 +23,7 @@ func _ready() -> void:
 func set_add_card_visibility(p_is_visible: bool) -> void:
 	add_card_popup.visible = p_is_visible
 	_popup_toggle_buttons(p_is_visible)
+	if p_is_visible: _popup_wipe()
 
 
 func _popup_toggle_buttons(p_is_visible: bool) -> void:
@@ -34,6 +35,13 @@ func _popup_toggle_buttons(p_is_visible: bool) -> void:
 func _toggle_button(button: PaddedButton, popup_visible: bool) -> void:
 	button.disabled = popup_visible
 	button.button_focus_mode = Control.FOCUS_NONE if popup_visible else Control.FOCUS_ALL
+
+
+func _popup_wipe() -> void:
+	add_card_popup.side_a_input.text = ""
+	add_card_popup.side_a_error.text = ""
+	add_card_popup.side_b_input.text = ""
+	add_card_popup.side_b_error.text = ""
 
 
 func _setup_model() -> void:
