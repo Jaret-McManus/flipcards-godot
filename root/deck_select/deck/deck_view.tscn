@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://yiyx7x0jxk24"]
+
+[ext_resource type="Script" uid="uid://budjhwkepqeky" path="res://root/deck_select/deck/deck_view.gd" id="1_anuey"]
+
+[node name="DeckView" type="PanelContainer" unique_id=942054591 node_paths=PackedStringArray("name_label", "count_label")]
+custom_maximum_size = Vector2(500, -1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -34.0
+offset_right = 110.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Card"
+script = ExtResource("1_anuey")
+name_label = NodePath("VBoxContainer/NameLabel")
+count_label = NodePath("VBoxContainer/HBoxContainer/CardCountLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1180682888]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=94588823]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Deck Name"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=615688498]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1703602793]
+layout_mode = 2
+
+[node name="CardCountLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1051701698]
+layout_mode = 2
+theme_type_variation = &"InfoLabelSmall"
+text = "Number of Cards: 45"

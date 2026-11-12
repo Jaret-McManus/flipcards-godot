@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cor2feloiy1ih"]
+
+[ext_resource type="Script" uid="uid://86i862yx3jsb" path="res://root/deck_select/deck_select_view.gd" id="1_c34vx"]
+[ext_resource type="Script" uid="uid://bnrpsqfoklj8t" path="res://root/deck_select/deck_select_model.gd" id="2_y7s37"]
+[ext_resource type="Script" uid="uid://vn6k3pq2xc8q" path="res://scripts/data/margin.gd" id="3_tcvgs"]
+[ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_quc8y"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="4_vgcdl"]
+[ext_resource type="Script" uid="uid://c12fmwplogtqj" path="res://root/deck_select/deck_select_controller.gd" id="6_mmjid"]
+
+[sub_resource type="Resource" id="Resource_tcvgs"]
+script = ExtResource("3_tcvgs")
+top = 50
+bottom = 50
+left = 100
+metadata/_custom_type_script = "uid://vn6k3pq2xc8q"
+
+[sub_resource type="Resource" id="Resource_p8hip"]
+script = ExtResource("2_y7s37")
+top_bar_margin = SubResource("Resource_tcvgs")
+title_font_size = 30
+metadata/_custom_type_script = "uid://bnrpsqfoklj8t"
+
+[sub_resource type="InputEventKey" id="InputEventKey_quc8y"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_u0ya7"]
+events = [SubResource("InputEventKey_quc8y")]
+
+[node name="DeckSelect" type="PanelContainer" unique_id=378926495 node_paths=PackedStringArray("top_bar_margin", "title_label", "grid", "controller")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_c34vx")
+model = SubResource("Resource_p8hip")
+top_bar_margin = NodePath("MainVBox/TopBar/TopBarMargin")
+title_label = NodePath("MainVBox/TopBar/TopBarMargin/Title")
+grid = NodePath("MainVBox/TempMid/CenteredGrid")
+controller = NodePath("DeckSelectController")
+
+[node name="MainVBox" type="VBoxContainer" parent="." unique_id=470830319]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="PanelContainer" parent="MainVBox" unique_id=1331897559]
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="TopBarMargin" type="MarginContainer" parent="MainVBox/TopBar" unique_id=776983903]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="Title" type="RichTextLabel" parent="MainVBox/TopBar/TopBarMargin" unique_id=1492445517]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Select Deck"
+fit_content = true
+
+[node name="TempMid" type="ScrollContainer" parent="MainVBox" unique_id=1878848784]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenteredGrid" parent="MainVBox/TempMid" unique_id=1867737459 instance=ExtResource("4_quc8y")]
+layout_mode = 2
+
+[node name="BottomBar" type="PanelContainer" parent="MainVBox" unique_id=2113197236]
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="PaddedButton" parent="MainVBox/BottomBar" unique_id=1816726834 instance=ExtResource("4_vgcdl")]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+text = "[u]A[/u]dd Deck"
+shortcut = SubResource("Shortcut_u0ya7")
+top_margin = 8
+right_margin = 8
+bottom_margin = 8
+left_margin = 8
+all_margin = 8
+top_padding = 4
+right_padding = 20
+bottom_padding = 4
+left_padding = 20
+all_padding = 4
+
+[node name="DeckSelectController" type="Node" parent="." unique_id=2025875488]
+script = ExtResource("6_mmjid")
+
+[connection signal="pressed" from="MainVBox/BottomBar/PaddedButton" to="DeckSelectController" method="on_add_deck"]
