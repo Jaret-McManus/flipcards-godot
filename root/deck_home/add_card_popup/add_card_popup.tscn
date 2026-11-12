@@ -3,6 +3,17 @@
 [ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/add_card_popup/add_card_popup.gd" id="1_tpvna"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_absbi"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_absbi"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_rwnfw"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="Shortcut" id="Shortcut_fywr5"]
+events = [SubResource("InputEventKey_absbi"), SubResource("InputEventKey_rwnfw")]
+
 [node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("a_input", "a_error", "b_input", "b_error")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,12 +83,16 @@ theme_type_variation = &"ErrorLabel"
 [node name="PaddedButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_absbi")]
 layout_mode = 2
 text = "Add Card"
+shortcut = SubResource("Shortcut_fywr5")
 alignment = 1
 top_padding = 5
 right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+
+[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="0" unique_id=828522269]
+shortcut = SubResource("Shortcut_fywr5")
 
 [node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="1" unique_id=1233601729]
 theme_override_constants/margin_left = 5
