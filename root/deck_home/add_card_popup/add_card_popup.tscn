@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/add_card_popup/add_card_popup.gd" id="1_tpvna"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_absbi"]
 
-[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("side_a_input", "side_a_error", "side_b_input", "side_b_error")]
+[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("a_input", "a_error", "b_input", "b_error")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,10 +13,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"FullscreenPopupPanel"
 script = ExtResource("1_tpvna")
-side_a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput")
-side_a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAError")
-side_b_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput")
-side_b_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBError")
+a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput")
+a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAError")
+b_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput")
+b_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBError")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1220382114]
 layout_mode = 2

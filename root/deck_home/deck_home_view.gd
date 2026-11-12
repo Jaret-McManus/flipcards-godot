@@ -38,10 +38,10 @@ func _toggle_button(button: PaddedButton, popup_visible: bool) -> void:
 
 
 func _popup_wipe() -> void:
-	add_card_popup.side_a_input.text = ""
-	add_card_popup.side_a_error.text = ""
-	add_card_popup.side_b_input.text = ""
-	add_card_popup.side_b_error.text = ""
+	add_card_popup.a_input.text = ""
+	add_card_popup.a_error.text = ""
+	add_card_popup.b_input.text = ""
+	add_card_popup.b_error.text = ""
 
 
 func _setup_model() -> void:

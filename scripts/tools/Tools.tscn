@@ -5,3 +5,4 @@
 [node name="Tools" type="Node" unique_id=2022149253]
 script = ExtResource("1_punck")
 path = "res://root/deck_home"
+type = "String"
