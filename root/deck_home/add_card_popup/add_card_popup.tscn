@@ -63,6 +63,7 @@ text = "Side A"
 [node name="SideAInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=68002128]
 layout_mode = 2
 text = "hi there"
+keep_editing_on_text_submit = true
 
 [node name="SideAError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1282437258]
 layout_mode = 2
@@ -75,6 +76,7 @@ text = "Side B"
 [node name="SideBInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1376100230]
 layout_mode = 2
 text = "hi there"
+keep_editing_on_text_submit = true
 
 [node name="SideBError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=101937666]
 layout_mode = 2
@@ -104,6 +106,8 @@ theme_override_constants/margin_bottom = 5
 text = "Add Card"
 horizontal_alignment = 1
 
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput" to="." method="_on_submit" unbinds=1]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput" to="." method="_on_submit" unbinds=1]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" to="." method="_on_submit"]
 
 [editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton"]

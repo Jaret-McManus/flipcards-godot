@@ -53,4 +53,4 @@ func _set_error(error: Label, error_msg: String) -> void:
 func _set_error_from_result(error: Label, result: StringResult) -> void:
 	_set_error(error, result.error_msg)
 	error.visible = result.has_error
-	_g_any_error = result.has_error
+	_g_any_error = _g_any_error || result.has_error
