@@ -32,14 +32,9 @@ func add_card_view(card: Card) -> void:
 
 
 func _popup_toggle_buttons(p_is_visible: bool) -> void:
-	_toggle_button(start_practice_btn, p_is_visible)
-	_toggle_button(add_card_btn, p_is_visible)
-	_toggle_button(back_deck_btn, p_is_visible)
-
-
-func _toggle_button(button: PaddedButton, popup_visible: bool) -> void:
-	button.disabled = popup_visible
-	button.button_focus_mode = Control.FOCUS_NONE if popup_visible else Control.FOCUS_ALL
+	ControlUtils.set_button_disabled(start_practice_btn, p_is_visible)
+	ControlUtils.set_button_disabled(add_card_btn, p_is_visible)
+	ControlUtils.set_button_disabled(back_deck_btn, p_is_visible)
 
 
 func _setup_model() -> void:

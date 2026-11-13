@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://b3j15i8ht6x6r"]
+
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="1_d5we1"]
+[ext_resource type="Script" uid="uid://bxo3g55ehsmqr" path="res://root/deck_select/add_deck_popup/add_deck_popup.gd" id="1_i7ll5"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_absbi"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_rwnfw"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="Shortcut" id="Shortcut_vibry"]
+events = [SubResource("InputEventKey_absbi"), SubResource("InputEventKey_rwnfw")]
+
+[node name="AddDeckPopup" type="PanelContainer" unique_id=1087668677 node_paths=PackedStringArray("name_input", "name_error")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"FullscreenPopupPanel"
+script = ExtResource("1_i7ll5")
+name_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput")
+name_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameError")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1676400534]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1117270132]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=879312181]
+layout_mode = 2
+theme_type_variation = &"PopupMargin"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1538397168]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1427277066]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Create New Deck"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=77587073]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=900159010]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=480577224]
+layout_mode = 2
+text = "Deck Name"
+
+[node name="NameInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=630244071]
+layout_mode = 2
+text = "hi there"
+keep_editing_on_text_submit = true
+
+[node name="NameError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2090765610]
+layout_mode = 2
+theme_type_variation = &"ErrorLabel"
+
+[node name="PaddedButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("1_d5we1")]
+layout_mode = 2
+text = "[u]A[/u]dd Deck"
+shortcut = SubResource("Shortcut_vibry")
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="0" unique_id=828522269]
+shortcut = SubResource("Shortcut_vibry")
+
+[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="1" unique_id=1233601729]
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton/MarginContainer" index="0" unique_id=1555916363]
+text = "[u]A[/u]dd Deck"
+horizontal_alignment = 1
+
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_submit" unbinds=1]
+
+[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton"]

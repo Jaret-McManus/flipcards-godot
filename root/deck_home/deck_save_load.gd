@@ -17,3 +17,9 @@ static func save_deck(deck: Deck) -> void:
 
 static func load_deck(_name: String) -> void:
 	pass
+
+
+static func load_all_decks() -> Array[Deck]:
+	var global_path: String = ProjectSettings.globalize_path(save_path)
+	print(DirAccess.get_files_at(global_path))
+	return []
