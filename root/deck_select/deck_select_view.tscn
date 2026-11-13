@@ -43,7 +43,7 @@ script = ExtResource("1_c34vx")
 model = SubResource("Resource_p8hip")
 top_bar_margin = NodePath("MainVBox/TopBar/TopBarMargin")
 title_label = NodePath("MainVBox/TopBar/TopBarMargin/Title")
-grid = NodePath("MainVBox/TempMid/CenteredGrid")
+grid = NodePath("MainVBox/TempMid/Control/CenteredGrid")
 controller = NodePath("DeckSelectController")
 
 [node name="MainVBox" type="VBoxContainer" parent="." unique_id=470830319]
@@ -72,8 +72,25 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gm4dp")
 
-[node name="CenteredGrid" parent="MainVBox/TempMid" unique_id=1867737459 instance=ExtResource("4_quc8y")]
+[node name="Control" type="Control" parent="MainVBox/TempMid" unique_id=856011666]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenteredGrid" parent="MainVBox/TempMid/Control" unique_id=1867737459 instance=ExtResource("4_quc8y")]
+custom_maximum_size = Vector2(1500, -1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -334.0
+offset_right = 750.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BottomBar" type="PanelContainer" parent="MainVBox" unique_id=2113197236]
 layout_mode = 2

@@ -2,6 +2,8 @@
 
 [ext_resource type="StyleBox" uid="uid://g1ie5pq23l2j" path="res://resources/themes/root/button/hover.tres" id="1_q1fri"]
 [ext_resource type="StyleBox" uid="uid://cf6ddgnxyolay" path="res://resources/themes/root/button/pressed.tres" id="2_p8hip"]
+[ext_resource type="StyleBox" uid="uid://dwjwn3t8j1cfu" path="res://resources/themes/root/button/clear_hover.tres" id="3_o7xk2"]
+[ext_resource type="StyleBox" uid="uid://df760bkgs158a" path="res://resources/themes/root/button/clear_pressed.tres" id="4_5v24m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7xk2"]
 content_margin_left = 10.0
@@ -16,6 +18,8 @@ content_margin_top = 10.0
 content_margin_right = 20.0
 content_margin_bottom = 10.0
 bg_color = Color(0.04950974, 0.046825655, 0.08550083, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q2oh3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtglo"]
 bg_color = Color(0, 0, 0, 0.40784314)
@@ -44,6 +48,10 @@ Button/styles/normal = SubResource("StyleBoxFlat_o7xk2")
 Button/styles/pressed = ExtResource("2_p8hip")
 Card/base_type = &"PanelContainer"
 Card/styles/panel = SubResource("StyleBoxFlat_u0ya7")
+ClearButtonHighlight/base_type = &"Button"
+ClearButtonHighlight/styles/hover = ExtResource("3_o7xk2")
+ClearButtonHighlight/styles/normal = SubResource("StyleBoxEmpty_q2oh3")
+ClearButtonHighlight/styles/pressed = ExtResource("4_5v24m")
 ErrorLabel/base_type = &"Label"
 ErrorLabel/colors/font_color = Color(0.87445956, 0.026039435, 9.62615e-08, 1)
 ErrorLabel/font_sizes/font_size = 12
