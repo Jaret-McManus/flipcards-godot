@@ -33,3 +33,9 @@ func add_deck(deck: Deck) -> void:
 	decks.append(deck)
 	DeckSaveLoad.save_deck(deck)
 	view.add_deck(deck)
+
+
+func is_deck_name_collision(name: String) -> bool:
+	for deck: Deck in decks:
+		if deck.name == name: return true
+	return false
