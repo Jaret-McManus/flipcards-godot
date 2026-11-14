@@ -9,13 +9,27 @@ class _BaseResult:
 class StringResult extends _BaseResult:
 	var value: String
 	
+	
 	static func err(p_error_msg: String) -> StringResult:
 		var error_result: StringResult = StringResult.new()
 		error_result.has_error = true
 		error_result.error_msg = p_error_msg
 		return error_result
 	
+	
 	static func ok(p_string: String) -> StringResult:
 		var success_result: StringResult = StringResult.new()
 		success_result.value = p_string
 		return success_result
+	
+	
+	func then(callable: Callable) -> StringResult:
+		if self.has_error: return self
+		var result: StringResult = callable.call(self.value)
+		return result
+	
+	
+	func to_error_option() -> Option.StringOption:
+		if has_error: 
+			return Option.StringOption.some(self.error_msg)
+		return Option.StringOption.none()

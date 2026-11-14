@@ -4,16 +4,24 @@ const result_template: String = \
 "class {type_upper}Result extends _BaseResult:
 	var value: {type}
 	
+	
 	static func err(p_error_msg: String) -> {type_upper}Result:
 		var error_result: {type_upper}Result = {type_upper}Result.new()
 		error_result.has_error = true
 		error_result.error_msg = p_error_msg
 		return error_result
 	
+	
 	static func ok(p_{type_lower}: {type}) -> {type_upper}Result:
 		var success_result: {type_upper}Result = {type_upper}Result.new()
 		success_result.value = p_{type_lower}
-		return success_result"
+		return success_result
+	
+	
+	func then(callable: Callable) -> {type_upper}Result:
+		if self.has_error: return self
+		var result: {type_upper}Result = callable.call(self.value)
+		return result"
 
 
 static func generate_into_clipboard(type: String) -> void:

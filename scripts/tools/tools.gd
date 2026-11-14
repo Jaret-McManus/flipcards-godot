@@ -5,9 +5,10 @@
 @export var scene_name: String
 @export_tool_button("Create MVC files") var function: Callable = _create_mvc_files
 
-@export_group("Make Result Type")
+@export_group("Make Type")
 @export_dir var type: String
 @export_tool_button("Create Result Type") var function_result: Callable = _create_result_type
+@export_tool_button("Create Option Type") var function_option: Callable = _create_option_type
 
 @export_group("User files")
 @export_tool_button("Open decks folder") 
@@ -28,6 +29,14 @@ func _create_result_type() -> void:
 		push_error("Inner type needed to generate result type")
 	else:
 		CreateResultType.generate_into_clipboard(type)
+
+
+func _create_option_type() -> void:
+	const CreateOptionType = preload("uid://bksvda1n64dr5")
+	if not type:
+		push_error("Inner type needed to generate option type")
+	else:
+		CreateOptionType.generate_into_clipboard(type)
 
 
 func _open_decks_folder() -> void:
