@@ -28,9 +28,7 @@ static func create(deck: Deck) -> DeckHomeView:
 
 func bind_signals(root_view: RootView) -> void:
 	back_deck_btn.pressed.connect(
-		func()->void:
-			var deck_select_view: DeckSelectView = DeckSelectView.create()
-			root_view.set_subview(deck_select_view)
+		_transition_to_deck_home.bind(root_view)
 	)
 
 
@@ -58,8 +56,6 @@ func _setup_model(deck: Deck) -> void:
 
 func _setup_controller() -> void:
 	controller.model = model
-	add_card_btn.pressed.connect(controller.on_add_card_pressed)
-	add_card_popup.submitted_add_card.connect(controller.on_add_card_submit)
 
 
 func _setup_view(deck: Deck) -> void:
@@ -70,3 +66,8 @@ func _setup_view(deck: Deck) -> void:
 
 func _on_top_screen_percentage_changed(new_percentage: float) -> void:
 	top_section.custom_minimum_size.y = (new_percentage / 100.0) * self.size.y
+
+
+func _transition_to_deck_home(root_view: RootView) -> void:
+	var deck_select_view: DeckSelectView = DeckSelectView.create()
+	root_view.set_subview(deck_select_view)

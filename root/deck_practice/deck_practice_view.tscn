@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://rx0823junyny"]
+
+[ext_resource type="Script" uid="uid://hx5fn5w34xk3" path="res://root/deck_practice/deck_practice_view.gd" id="1_35a3i"]
+
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_35a3i")

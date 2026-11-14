@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xv2g")
-initial_subview = ExtResource("2_js5vo")
+initial_subview_scene = ExtResource("2_js5vo")
 subview_control = NodePath("SubView")
 controller = NodePath("RootController")
 

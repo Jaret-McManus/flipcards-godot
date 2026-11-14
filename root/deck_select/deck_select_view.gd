@@ -16,25 +16,20 @@ signal open_deck(deck: Deck)
 @export var add_deck_button: PaddedButton
 
 
-# special since it is the initial subcontent view
+# duplicate code, bc of way i set up root view 
 func _ready() -> void:
-	if Engine.is_editor_hint(): return
 	_setup_model()
 	_setup_controller(model)
 	_setup_view(model)
 
 
 static func create() -> DeckSelectView:
-	return DECK_SELECT_SCENE.instantiate()
+	var instance: DeckSelectView = DECK_SELECT_SCENE.instantiate()
+	return instance
 
 
 func bind_signals(root_view: RootView) -> void:
-	open_deck.connect(
-		func(deck:Deck)->void:
-			model.cleanup()
-			var deck_home_view: DeckHomeView = DeckHomeView.create(deck)
-			root_view.set_subview(deck_home_view)
-	)
+	open_deck.connect(_transition_to_deck_home.bind(root_view))
 
 
 func add_deck(deck: Deck) -> void:
@@ -44,7 +39,6 @@ func add_deck(deck: Deck) -> void:
 	deck_view.button.pressed.connect(
 		open_deck.emit.bind(deck)
 	)
-	
 
 
 func _on_top_bar_margin_changed(margin: Margin) -> void:
@@ -71,8 +65,6 @@ func _set_add_deck_visibility(p_is_visible: bool) -> void:
 func _setup_model() -> void:
 	var decks: Dictionary[StringName, Deck] = DeckSaveLoad.load_all_decks()
 	model.build(self, decks)
-	model.top_bar_margin_changed.connect(_on_top_bar_margin_changed)
-	model.title_font_size_changed.connect(_on_title_font_size_changed)
 	model.popup_visibility_changed.connect(_set_add_deck_visibility)
 
 
@@ -82,3 +74,8 @@ func _setup_controller(p_model: DeckSelectModel) -> void:
 
 func _setup_view(p_model: DeckSelectModel) -> void:
 	add_deck_popup.build(p_model)
+
+
+func _transition_to_deck_home(deck: Deck, root_view: RootView) -> void:
+	var deck_home_view: DeckHomeView = DeckHomeView.create(deck)
+	root_view.set_subview(deck_home_view)

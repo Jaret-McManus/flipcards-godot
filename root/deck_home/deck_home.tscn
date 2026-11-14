@@ -135,3 +135,6 @@ metadata/_custom_type_script = "uid://dxiupaebv6xj"
 [node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_sv4gc")]
 visible = false
 layout_mode = 1
+
+[connection signal="pressed" from="PanelContainer/ContentVBox/DeckBottom/AddCard" to="DeckHomeController" method="on_add_card_pressed"]
+[connection signal="submitted_add_card" from="AddCardPopup" to="DeckHomeController" method="on_add_card_submit"]

@@ -8,9 +8,8 @@ var current_subview: SubcontentView:
 		view.set_subview(v)
 
 
-static func create(p_view: ContentView, p_initial_subview_scene: PackedScene) -> RootModel:
+static func create(p_view: ContentView, p_subcontent_view_scene: PackedScene) -> RootModel:
 	var model := RootModel.new()
 	model.view = p_view
-	var subview: SubcontentView = p_initial_subview_scene.instantiate() as SubcontentView
-	model.current_subview = subview
+	model.current_subview = p_subcontent_view_scene.instantiate()
 	return model
