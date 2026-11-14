@@ -16,26 +16,25 @@ signal popup_visibility_changed
 	set(i): title_font_size = i; title_font_size_changed.emit(i)
 	
 var view: DeckSelectView
-var decks: Array[Deck]
+#var decks: Array[Deck]
+var decks: Dictionary[StringName, Deck]
 
 
-func build(p_view: DeckSelectView, p_decks: Array[Deck]) -> void:
+func build(p_view: DeckSelectView, p_decks: Dictionary[StringName, Deck]) -> void:
 	top_bar_margin.changed.connect(
 		top_bar_margin_changed.emit.bind(top_bar_margin)
 	)
 	view = p_view
 	decks = p_decks
-	for deck: Deck in decks:
+	for deck: Deck in decks.values():
 		view.add_deck(deck)
 
 
 func add_deck(deck: Deck) -> void:
-	decks.append(deck)
+	decks.set(deck.name, deck)
 	DeckSaveLoad.save_deck(deck)
 	view.add_deck(deck)
 
 
 func is_deck_name_collision(name: String) -> bool:
-	for deck: Deck in decks:
-		if deck.name == name: return true
-	return false
+	return name in decks

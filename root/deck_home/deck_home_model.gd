@@ -4,7 +4,7 @@ class_name DeckHomeModel extends Resource
 const CARD_SCENE := preload("uid://dg7cio7p6lin5")
 
 var _view: DeckHomeView
-var deck: Deck = Deck.new_deck("hardcoded")
+var deck: Deck
 
 @export_group("Control Parameters")
 signal top_screen_percentage_changed(new_float: float)
@@ -20,8 +20,9 @@ signal top_screen_percentage_changed(new_float: float)
 		_view.set_add_card_visibility(b)
 
 
-func set_view(p_view: DeckHomeView) -> void:
+func build(p_view: DeckHomeView, p_deck: Deck) -> void:
 	_view = p_view
+	deck = p_deck
 
 
 func add_card(card: Card) -> void:

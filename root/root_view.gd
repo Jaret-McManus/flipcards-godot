@@ -1,4 +1,4 @@
-class_name RootView extends View
+class_name RootView extends ContentView
 
 @export var initial_subview: PackedScene
 
@@ -9,10 +9,11 @@ class_name RootView extends View
 @onready var model := RootModel.create(self, initial_subview)
 
 
-func set_subview(view: View) -> void:
+func set_subview(view: SubcontentView) -> void:
 	var children := subview_control.get_children()
 	for child: Node in children:
 		subview_control.remove_child(child)
 		child.queue_free()
 	
+	view.bind_signals(self)
 	subview_control.add_child(view)

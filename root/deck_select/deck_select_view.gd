@@ -1,5 +1,9 @@
 @tool
-class_name DeckSelectView extends View
+class_name DeckSelectView extends SubcontentView
+
+const DECK_SELECT_SCENE = preload("uid://cor2feloiy1ih")
+
+signal open_deck(deck: Deck)
 
 @export var model: DeckSelectModel
 
@@ -12,14 +16,33 @@ class_name DeckSelectView extends View
 @export var add_deck_button: PaddedButton
 
 
+# special since it is the initial subcontent view
 func _ready() -> void:
 	_setup_model()
 	_setup_controller(model)
 	_setup_view(model)
 
 
+static func create() -> DeckSelectView:
+	return DECK_SELECT_SCENE.instantiate()
+
+
+func bind_signals(root_view: RootView) -> void:
+	open_deck.connect(
+		func(deck:Deck)->void:
+			var deck_home_view: DeckHomeView = DeckHomeView.create(deck)
+			root_view.set_subview(deck_home_view)
+	)
+
+
 func add_deck(deck: Deck) -> void:
-	grid.add_node(DeckView.create(deck.name, deck.cards.size()))
+	var deck_view: DeckView = DeckView.create(deck.name, deck.cards.size())
+	grid.add_node(deck_view)
+	
+	deck_view.button.pressed.connect(
+		open_deck.emit.bind(deck)
+	)
+	
 
 
 func _on_top_bar_margin_changed(margin: Margin) -> void:
@@ -44,7 +67,8 @@ func _set_add_deck_visibility(p_is_visible: bool) -> void:
 
 
 func _setup_model() -> void:
-	var decks: Array[Deck] = DeckSaveLoad.load_all_decks()
+	var decks: Dictionary[StringName, Deck] = DeckSaveLoad.load_all_decks()
+	print(decks)
 	model.build(self, decks)
 	model.top_bar_margin_changed.connect(_on_top_bar_margin_changed)
 	model.title_font_size_changed.connect(_on_title_font_size_changed)

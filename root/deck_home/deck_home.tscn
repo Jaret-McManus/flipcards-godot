@@ -20,7 +20,7 @@ unicode = 97
 [sub_resource type="Shortcut" id="Shortcut_sv4gc"]
 events = [SubResource("InputEventKey_sv4gc")]
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "centered_grid", "add_card_popup", "start_practice_btn", "add_card_btn", "back_deck_btn")]
+[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "deck_label", "centered_grid", "add_card_popup", "start_practice_btn", "add_card_btn", "back_deck_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,7 @@ script = ExtResource("1_h3nt6")
 model = SubResource("Resource_h3nt6")
 controller = NodePath("DeckHomeController")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
+deck_label = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/DeckLabel")
 centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
 add_card_popup = NodePath("AddCardPopup")
 start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
@@ -58,7 +59,7 @@ theme_type_variation = &"SecondaryPanel"
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ContentVBox/DeckTop" unique_id=1169003025]
 layout_mode = 2
 
-[node name="Spacer" type="Label" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=768659279]
+[node name="DeckLabel" type="Label" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=768659279]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"HeaderLarge"
