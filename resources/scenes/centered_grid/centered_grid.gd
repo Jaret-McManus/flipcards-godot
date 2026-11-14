@@ -40,6 +40,8 @@ func _add_node_with_spacers(node: Node) -> void:
 		var first_spacer: Control = last_row.get_child(0)
 		last_row.remove_child(first_spacer)
 		last_row.remove_child(last_spacer)
+		first_spacer.queue_free()
+		last_spacer.queue_free()
 	else:
 		last_row.move_child(last_spacer, -1)
 
