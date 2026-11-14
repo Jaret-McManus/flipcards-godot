@@ -20,6 +20,13 @@ static func load_deck(_name: String) -> void:
 
 
 static func load_all_decks() -> Array[Deck]:
-	var global_path: String = ProjectSettings.globalize_path(save_path)
-	print(DirAccess.get_files_at(global_path))
-	return []
+	var files: PackedStringArray = ResourceLoader.list_directory(save_path)
+	
+	var decks: Array[Deck] = []
+	for file: String in files:
+		print("file found: %s" % file)
+		var path: String = save_path + file
+		var deck: Deck = ResourceLoader.load(path) as Deck
+		decks.append(deck)
+	
+	return decks

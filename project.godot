@@ -30,6 +30,7 @@ gdscript/warnings/unsafe_method_access=2
 
 window/size/viewport_width=1536
 window/size/viewport_height=864
+window/size/initial_screen=2
 
 [editor_plugins]
 

@@ -9,6 +9,9 @@
 @export_dir var type: String
 @export_tool_button("Create Result Type") var function_result: Callable = _create_result_type
 
+@export_group("User files")
+@export_tool_button("Open decks folder") 
+var function_decks_folder: Callable = _open_decks_folder
 
 func _create_mvc_files() -> void:
 	const CreateMvcFiles = preload("uid://q1p50fobjv85")
@@ -25,3 +28,8 @@ func _create_result_type() -> void:
 		push_error("Inner type needed to generate result type")
 	else:
 		CreateResultType.generate_into_clipboard(type)
+
+
+func _open_decks_folder() -> void:
+	var user_dir: String = OS.get_user_data_dir()
+	OS.shell_open(user_dir + "/decks")

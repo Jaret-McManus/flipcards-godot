@@ -19,13 +19,17 @@ var view: DeckSelectView
 var decks: Array[Deck]
 
 
-func build(p_view: DeckSelectView) -> void:
+func build(p_view: DeckSelectView, p_decks: Array[Deck]) -> void:
 	top_bar_margin.changed.connect(
 		top_bar_margin_changed.emit.bind(top_bar_margin)
 	)
 	view = p_view
+	decks = p_decks
+	for deck: Deck in decks:
+		view.add_deck(deck)
 
 
 func add_deck(deck: Deck) -> void:
 	decks.append(deck)
+	DeckSaveLoad.save_deck(deck)
 	view.add_deck(deck)

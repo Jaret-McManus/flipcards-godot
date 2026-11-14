@@ -18,5 +18,6 @@ func on_add_deck() -> void:
 
 
 func _on_add_deck_submitted(deck_name: String) -> void:
-	print("Submitted name <%s>" % deck_name)
+	var deck: Deck = Deck.new_deck(deck_name)
+	model.add_deck(deck)
 	model.is_popup_visible = false

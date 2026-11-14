@@ -4,10 +4,12 @@ class_name Deck extends Resource
 @export var cards: Array[Card]
 
 
-func _init(p_name: String) -> void:
-	name = p_name
-	cards = []
+static func new_deck(p_name: String)-> Deck:
+	var deck := Deck.new()
+	deck.name = p_name
+	deck.cards = []
+	return deck
 
 
 func _to_string() -> String:
-	return "%s: %s" % [name, cards]
+	return "Deck<name: %s, cards: %s>" % [name, cards]

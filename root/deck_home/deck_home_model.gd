@@ -4,7 +4,7 @@ class_name DeckHomeModel extends Resource
 const CARD_SCENE := preload("uid://dg7cio7p6lin5")
 
 var _view: DeckHomeView
-var deck: Deck = Deck.new("hardcoded")
+var deck: Deck = Deck.new_deck("hardcoded")
 
 @export_group("Control Parameters")
 signal top_screen_percentage_changed(new_float: float)
