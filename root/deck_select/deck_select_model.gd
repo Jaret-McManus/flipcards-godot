@@ -16,7 +16,6 @@ signal popup_visibility_changed
 	set(i): title_font_size = i; title_font_size_changed.emit(i)
 	
 var view: DeckSelectView
-#var decks: Array[Deck]
 var decks: Dictionary[StringName, Deck]
 
 
@@ -28,6 +27,11 @@ func build(p_view: DeckSelectView, p_decks: Dictionary[StringName, Deck]) -> voi
 	decks = p_decks
 	for deck: Deck in decks.values():
 		view.add_deck(deck)
+
+
+func cleanup() -> void:
+	for dict: Dictionary in top_bar_margin.changed.get_connections():
+		top_bar_margin.changed.disconnect(dict["callable"])
 
 
 func add_deck(deck: Deck) -> void:

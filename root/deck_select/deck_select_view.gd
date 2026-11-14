@@ -18,6 +18,7 @@ signal open_deck(deck: Deck)
 
 # special since it is the initial subcontent view
 func _ready() -> void:
+	print_debug()
 	_setup_model()
 	_setup_controller(model)
 	_setup_view(model)
@@ -30,6 +31,7 @@ static func create() -> DeckSelectView:
 func bind_signals(root_view: RootView) -> void:
 	open_deck.connect(
 		func(deck:Deck)->void:
+			model.cleanup()
 			var deck_home_view: DeckHomeView = DeckHomeView.create(deck)
 			root_view.set_subview(deck_home_view)
 	)
@@ -68,7 +70,6 @@ func _set_add_deck_visibility(p_is_visible: bool) -> void:
 
 func _setup_model() -> void:
 	var decks: Dictionary[StringName, Deck] = DeckSaveLoad.load_all_decks()
-	print(decks)
 	model.build(self, decks)
 	model.top_bar_margin_changed.connect(_on_top_bar_margin_changed)
 	model.title_font_size_changed.connect(_on_title_font_size_changed)
