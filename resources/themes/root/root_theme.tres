@@ -13,10 +13,6 @@ content_margin_bottom = 5.0
 bg_color = Color(0.3932988, 0.5744671, 0.25886378, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0ya7"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
 bg_color = Color(0.04950974, 0.046825655, 0.08550083, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q2oh3"]
@@ -48,6 +44,11 @@ Button/styles/normal = SubResource("StyleBoxFlat_o7xk2")
 Button/styles/pressed = ExtResource("2_p8hip")
 Card/base_type = &"PanelContainer"
 Card/styles/panel = SubResource("StyleBoxFlat_u0ya7")
+CardMargin/base_type = &"MarginContainer"
+CardMargin/constants/margin_bottom = 10
+CardMargin/constants/margin_left = 20
+CardMargin/constants/margin_right = 20
+CardMargin/constants/margin_top = 10
 ClearButtonHighlight/base_type = &"Button"
 ClearButtonHighlight/styles/hover = ExtResource("3_o7xk2")
 ClearButtonHighlight/styles/normal = SubResource("StyleBoxEmpty_q2oh3")

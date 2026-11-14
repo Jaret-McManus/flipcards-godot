@@ -18,7 +18,7 @@ signal open_deck(deck: Deck)
 
 # special since it is the initial subcontent view
 func _ready() -> void:
-	print_debug()
+	if Engine.is_editor_hint(): return
 	_setup_model()
 	_setup_controller(model)
 	_setup_view(model)

@@ -17,42 +17,40 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme_type_variation = &"Card"
 script = ExtResource("1_anuey")
-name_label = NodePath("VBoxContainer/NameLabel")
-count_label = NodePath("VBoxContainer/HBoxContainer/CardCountLabel")
-button = NodePath("MarginContainer/Button")
+name_label = NodePath("MarginContainer2/VBoxContainer/NameLabel")
+count_label = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/CardCountLabel")
+button = NodePath("Button")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1180682888]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1231531831]
+layout_mode = 2
+theme_type_variation = &"CardMargin"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1180682888]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=94588823]
+[node name="NameLabel" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=94588823]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Deck Name"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=615688498]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer" unique_id=615688498]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InvisibleSeparator" type="Control" parent="VBoxContainer" unique_id=1980879347]
+[node name="InvisibleSeparator" type="Control" parent="MarginContainer2/VBoxContainer" unique_id=1980879347]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1703602793]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1703602793]
 layout_mode = 2
 
-[node name="CardCountLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1051701698]
+[node name="CardCountLabel" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1051701698]
 layout_mode = 2
 theme_type_variation = &"InfoLabelSmall"
 text = "Number of Cards: 45"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=651683865]
-layout_mode = 2
-theme_override_constants/margin_left = -20
-theme_override_constants/margin_top = -10
-theme_override_constants/margin_right = -20
-theme_override_constants/margin_bottom = -10
-
-[node name="Button" type="Button" parent="MarginContainer" unique_id=401222710]
+[node name="Button" type="Button" parent="." unique_id=401222710]
+propagate_maximum_size = true
 layout_mode = 2
 theme_type_variation = &"ClearButtonHighlight"
