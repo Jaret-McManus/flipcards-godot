@@ -14,7 +14,7 @@ keycode = 4194310
 [sub_resource type="Shortcut" id="Shortcut_fywr5"]
 events = [SubResource("InputEventKey_absbi"), SubResource("InputEventKey_rwnfw")]
 
-[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("a_input", "a_error", "b_input", "b_error")]
+[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("popup_title", "a_input", "a_error", "b_input", "b_error")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,6 +24,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"FullscreenPopupPanel"
 script = ExtResource("1_tpvna")
+popup_title = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PopupTitle")
 a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput")
 a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAError")
 b_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput")
@@ -45,7 +46,7 @@ theme_type_variation = &"PopupMargin"
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=779627807]
+[node name="PopupTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=779627807]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Add New Card"

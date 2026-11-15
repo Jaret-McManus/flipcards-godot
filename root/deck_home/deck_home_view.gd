@@ -11,7 +11,7 @@ const DECK_HOME_SCENE = preload("uid://c82giurngorkg")
 @export var top_section: Control
 @export var deck_label: Label
 @export var centered_grid: CenteredGridContainer
-@export var add_card_popup: AddCardPopup
+@export var card_popup: CardPopup
 
 @export var start_practice_btn: PaddedButton
 @export var add_card_btn: PaddedButton
@@ -21,21 +21,33 @@ const DECK_HOME_SCENE = preload("uid://c82giurngorkg")
 static func create(deck: Deck) -> DeckHomeView:
 	var instance: DeckHomeView = DECK_HOME_SCENE.instantiate()
 	instance._setup_model(deck)
-	instance._setup_controller()
-	instance._setup_view(deck)
+	instance._setup_controller(instance.model)
+	instance._setup_view(deck, instance.model)
+	ObjectUtils.check_signals(instance.model)
 	return instance
 
 
 func bind_signals(root_view: RootView) -> void:
 	back_deck_btn.pressed.connect(
-		_transition_to_deck_home.bind(root_view)
+		_transition_to_deck_select.bind(root_view)
 	)
 
 
-func set_add_card_visibility(p_is_visible: bool) -> void:
-	add_card_popup.visible = p_is_visible
-	_popup_toggle_buttons(p_is_visible)
-	if p_is_visible: add_card_popup.setup_open()
+func _on_open_add_card_popup() -> void:
+	_toggle_nonpopup_buttons(false)
+	card_popup.setup_add_card_popup()
+	card_popup.visible = true
+
+
+func _on_open_edit_card_popup(card: Card) -> void:
+	_toggle_nonpopup_buttons(false)
+	card_popup.setup_edit_card_popup(card)
+	card_popup.visible = true
+
+
+func _on_close_popup() -> void:
+	_toggle_nonpopup_buttons(true)
+	card_popup.visible = false
 
 
 func add_card_view(card: Card) -> void:
@@ -43,31 +55,40 @@ func add_card_view(card: Card) -> void:
 	centered_grid.add_node(card_view)
 
 
-func _popup_toggle_buttons(p_is_visible: bool) -> void:
-	ControlUtils.set_button_disabled(start_practice_btn, p_is_visible)
-	ControlUtils.set_button_disabled(add_card_btn, p_is_visible)
-	ControlUtils.set_button_disabled(back_deck_btn, p_is_visible)
+func _toggle_nonpopup_buttons(is_on: bool) -> void:
+	ControlUtils.set_button_disabled(start_practice_btn, not is_on)
+	ControlUtils.set_button_disabled(add_card_btn, not is_on)
+	ControlUtils.set_button_disabled(back_deck_btn, not is_on)
 
 
 func _setup_model(deck: Deck) -> void:
 	model.build(self, deck)
-	model.top_screen_percentage_changed.connect(_on_top_screen_percentage_changed)
 
 
-func _setup_controller() -> void:
-	controller.model = model
+func _setup_controller(p_model: DeckHomeModel) -> void:
+	controller.model = p_model
 
 
-func _setup_view(deck: Deck) -> void:
+func _setup_view(deck: Deck, p_model: DeckHomeModel) -> void:
 	deck_label.text = deck.name
+	
+	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
+	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
+	p_model.close_popup.connect(_on_close_popup)
+	
 	for card: Card in deck.cards:
-		centered_grid.add_node(CardView.create(card))
+		var card_view: CardView = CardView.create(card)
+		card_view.edit_card_pressed.connect(
+			_on_open_edit_card_popup.bind(self)
+		)
+		card_view.delete_card_pressed.connect(
+			print.bind("deleting %s" % self)
+		)
+		centered_grid.add_node(card_view)
+	
+	
 
 
-func _on_top_screen_percentage_changed(new_percentage: float) -> void:
-	top_section.custom_minimum_size.y = (new_percentage / 100.0) * self.size.y
-
-
-func _transition_to_deck_home(root_view: RootView) -> void:
+func _transition_to_deck_select(root_view: RootView) -> void:
 	var deck_select_view: DeckSelectView = DeckSelectView.create()
 	root_view.set_subview(deck_select_view)

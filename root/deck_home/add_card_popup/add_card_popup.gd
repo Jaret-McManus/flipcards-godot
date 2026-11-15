@@ -1,19 +1,32 @@
-class_name AddCardPopup extends PanelContainer
+class_name CardPopup extends PanelContainer
 
 signal submitted_add_card(side_a: String, side_b: String)
 
 const StringResult = Result.StringResult
 
 @export_group("Internal Nodes")
+@export var popup_title: Label
+
 @export var a_input: LineEdit
 @export var a_error: Label
+
 @export var b_input: LineEdit
 @export var b_error: Label
 
 var _g_any_error: bool = false
 
 
-func setup_open() -> void:
+func setup_edit_card_popup(card: Card) -> void:
+	popup_title.text = "Edit Card"
+	a_input.text = card.side_a_text
+	a_error.text = ""
+	b_input.text = card.side_b_text
+	b_error.text = ""
+	a_input.grab_focus()
+
+
+func setup_add_card_popup() -> void:
+	popup_title.text = "Add New Card"
 	a_input.text = ""
 	a_error.text = ""
 	b_input.text = ""

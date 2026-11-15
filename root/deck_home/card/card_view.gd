@@ -1,5 +1,8 @@
 class_name CardView extends PanelContainer
 
+signal edit_card_pressed()
+signal delete_card_pressed()
+
 const CARD_VIEW_SCENE = preload("uid://dg7cio7p6lin5")
 
 @export var side_a_label: RichTextLabel
