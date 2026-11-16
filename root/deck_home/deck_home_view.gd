@@ -20,17 +20,35 @@ const DECK_HOME_SCENE = preload("uid://c82giurngorkg")
 
 static func create(deck: Deck) -> DeckHomeView:
 	var instance: DeckHomeView = DECK_HOME_SCENE.instantiate()
-	instance._setup_model(deck)
-	instance._setup_controller(instance.model)
-	instance._setup_view(deck, instance.model)
+	instance.model.setup(instance, deck)
+	instance.controller.setup(instance.model)
+	instance.setup(deck, instance.model)
+	
 	ObjectUtils.check_signals(instance.model)
+	ObjectUtils.check_signals(instance.controller)
+	ObjectUtils.check_signals(instance)
+	
 	return instance
 
 
-func bind_signals(root_view: RootView) -> void:
+func bind_signals_to_root(root_view: RootView) -> void:
 	back_deck_btn.pressed.connect(
 		_transition_to_deck_select.bind(root_view)
 	)
+
+
+## Populates [DeckHomeView] object with data from [Deck].
+## Also connects view to mutation signals from [DeckHomeModel]
+func setup(deck: Deck, p_model: DeckHomeModel) -> void:
+	deck_label.text = deck.name
+	
+	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
+	p_model.new_card_added.connect(_add_card_view)
+	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
+	p_model.close_popup.connect(_on_close_popup)
+	
+	for card: Card in deck.cards:
+		_add_card_view(card)
 
 
 func _on_open_add_card_popup() -> void:
@@ -65,26 +83,6 @@ func _toggle_nonpopup_buttons(is_on: bool) -> void:
 	ControlUtils.set_button_disabled(start_practice_btn, not is_on)
 	ControlUtils.set_button_disabled(add_card_btn, not is_on)
 	ControlUtils.set_button_disabled(back_deck_btn, not is_on)
-
-
-func _setup_model(deck: Deck) -> void:
-	model.build(self, deck)
-
-
-func _setup_controller(p_model: DeckHomeModel) -> void:
-	controller.model = p_model
-
-
-func _setup_view(deck: Deck, p_model: DeckHomeModel) -> void:
-	deck_label.text = deck.name
-	
-	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
-	p_model.new_card_added.connect(_add_card_view)
-	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
-	p_model.close_popup.connect(_on_close_popup)
-		
-	for card: Card in deck.cards:
-		_add_card_view(card)
 
 
 func _transition_to_deck_select(root_view: RootView) -> void:

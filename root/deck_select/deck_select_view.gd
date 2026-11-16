@@ -28,7 +28,7 @@ static func create() -> DeckSelectView:
 	return instance
 
 
-func bind_signals(root_view: RootView) -> void:
+func bind_signals_to_root(root_view: RootView) -> void:
 	open_deck.connect(_transition_to_deck_home.bind(root_view))
 
 

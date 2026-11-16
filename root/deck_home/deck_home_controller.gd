@@ -12,8 +12,13 @@ func _input(event: InputEvent) -> void:
 		model.set_popup_mode(PopupMode.CLOSED)
 
 
+func setup(p_model: DeckHomeModel) -> void:
+	model = p_model
+
+
 func on_add_card_pressed() -> void:
 	model.set_popup_mode(PopupMode.ADD_CARD)
+
 
 ## intended to be injected into each card view
 func on_edit_card_pressed(card_view: CardView) -> void:

@@ -21,5 +21,5 @@ func set_subview(view: SubcontentView) -> void:
 		child.queue_free()
 	
 	#print_orphan_nodes()
-	view.bind_signals(self)
+	view.bind_signals_to_root(self)
 	subview_control.add_child(view)

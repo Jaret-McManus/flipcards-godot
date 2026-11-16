@@ -2,4 +2,4 @@
 class_name SubcontentView extends Control
 
 
-@abstract func bind_signals(parent: RootView) -> void
+@abstract func bind_signals_to_root(parent: RootView) -> void

@@ -17,7 +17,7 @@ var current_card_view: CardView
 var popup_mode: PopupMode
 
 
-func build(p_view: DeckHomeView, p_deck: Deck) -> void:
+func setup(p_view: DeckHomeView, p_deck: Deck) -> void:
 	_view = p_view
 	deck = p_deck
 

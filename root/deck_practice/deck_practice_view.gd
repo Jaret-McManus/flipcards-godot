@@ -9,4 +9,4 @@ static func create(deck: Deck) -> DeckPractiveView:
 	return view
 
 
-func bind_signals(_parent: RootView) -> void: pass
+func bind_signals_to_root(_parent: RootView) -> void: pass
