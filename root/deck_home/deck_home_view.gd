@@ -39,9 +39,9 @@ func _on_open_add_card_popup() -> void:
 	card_popup.visible = true
 
 
-func _on_open_edit_card_popup(card: Card) -> void:
+func _on_open_edit_card_popup(card_view: CardView) -> void:
 	_toggle_nonpopup_buttons(false)
-	card_popup.setup_edit_card_popup(card)
+	card_popup.setup_edit_card_popup(card_view)
 	card_popup.visible = true
 
 
@@ -78,9 +78,7 @@ func _setup_view(deck: Deck, p_model: DeckHomeModel) -> void:
 	
 	for card: Card in deck.cards:
 		var card_view: CardView = CardView.create(card)
-		card_view.edit_card_pressed.connect(
-			_on_open_edit_card_popup.bind(self)
-		)
+		card_view.edit_card_pressed.connect(_on_open_edit_card_popup)
 		card_view.delete_card_pressed.connect(
 			print.bind("deleting %s" % self)
 		)

@@ -1,8 +1,12 @@
 class_name CardPopup extends PanelContainer
 
 signal submitted_add_card(side_a: String, side_b: String)
+signal submitted_edit_card(card_view: CardView, side_a: String, side_b: String)
+
+enum PopupMode { ADD, EDIT }
 
 const StringResult = Result.StringResult
+const ObjectOption = Option.ObjectOption
 
 @export_group("Internal Nodes")
 @export var popup_title: Label
@@ -14,13 +18,16 @@ const StringResult = Result.StringResult
 @export var b_error: Label
 
 var _g_any_error: bool = false
+var _popup_mode: PopupMode
+var _current_editing_card_view: Option.ObjectOption
 
-
-func setup_edit_card_popup(card: Card) -> void:
+func setup_edit_card_popup(card_view: CardView) -> void:
+	_popup_mode = PopupMode.EDIT
+	_current_editing_card_view = ObjectOption.some(card_view)
 	popup_title.text = "Edit Card"
-	a_input.text = card.side_a_text
+	a_input.text = card_view.card.side_a_text
 	a_error.text = ""
-	b_input.text = card.side_b_text
+	b_input.text = card_view.card.side_b_text
 	b_error.text = ""
 	a_input.grab_focus()
 
@@ -43,8 +50,16 @@ func _on_submit() -> void:
 	var b_text_result := _clean_and_validate_input(b_input.text, "B")
 	_set_error_from_result(b_error, b_text_result)
 	
-	if not _g_any_error:
+	if not _g_any_error and _popup_mode == PopupMode.ADD:
 		submitted_add_card.emit(a_text_result.value, b_text_result.value)
+	elif not _g_any_error and _popup_mode == PopupMode.EDIT:
+		var card_view_to_edit: CardView = _current_editing_card_view.value as CardView
+		submitted_edit_card.emit(
+			card_view_to_edit,
+			a_text_result.value,
+			b_text_result.value
+		)
+		_current_editing_card_view = ObjectOption.none()
 
 
 func _clean_and_validate_input(string: String, side: String) -> StringResult:

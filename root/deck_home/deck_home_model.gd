@@ -43,3 +43,9 @@ func add_card(card: Card) -> void:
 	deck.cards.append(card)
 	DeckSaveLoad.save_deck(deck)
 	_view.add_card_view(card)
+
+
+func update_card(card: Card, side_a: String, side_b: String) -> void:
+	card.side_a_text = side_a
+	card.side_b_text = side_b
+	DeckSaveLoad.save_deck(deck)

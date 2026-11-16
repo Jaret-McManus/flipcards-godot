@@ -4,6 +4,9 @@
 [ext_resource type="StyleBox" uid="uid://cf6ddgnxyolay" path="res://resources/themes/root/button/pressed.tres" id="2_p8hip"]
 [ext_resource type="StyleBox" uid="uid://dwjwn3t8j1cfu" path="res://resources/themes/root/button/clear_hover.tres" id="3_o7xk2"]
 [ext_resource type="StyleBox" uid="uid://df760bkgs158a" path="res://resources/themes/root/button/clear_pressed.tres" id="4_5v24m"]
+[ext_resource type="StyleBox" uid="uid://cvdt7ghws0vng" path="res://resources/themes/root/button/negative_hover.tres" id="5_8si5e"]
+[ext_resource type="StyleBox" uid="uid://bv5i318emooe4" path="res://resources/themes/root/button/negative.tres" id="6_xfm52"]
+[ext_resource type="StyleBox" uid="uid://cx7xykcmwe0rk" path="res://resources/themes/root/button/negative_pressed.tres" id="7_n01wa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7xk2"]
 content_margin_left = 10.0
@@ -65,6 +68,10 @@ LineEdit/colors/caret_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/styles/focus = SubResource("StyleBoxFlat_p8hip")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_q1fri")
+NegativeButton/base_type = &"Button"
+NegativeButton/styles/hover = ExtResource("5_8si5e")
+NegativeButton/styles/normal = ExtResource("6_xfm52")
+NegativeButton/styles/pressed = ExtResource("7_n01wa")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_r6rbi")
 PopupMargin/base_type = &"MarginContainer"
 PopupMargin/constants/margin_bottom = 25

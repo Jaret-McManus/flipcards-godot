@@ -25,6 +25,10 @@ signal pressed
 	set(ha):
 		alignment = ha
 		label.horizontal_alignment = ha
+@export var font_size: int:
+	set(i):
+		font_size = i
+		label.add_theme_font_size_override("normal_font_size", font_size)
 
 @export_group("Margin")
 @export var top_margin: int = 0:

@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://c82giurngorkg"]
 
-[ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_h3nt6"]
-[ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_2bvo1"]
-[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_6bg5l"]
-[ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_i8p5q"]
-[ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/add_card_popup/add_card_popup.tscn" id="6_sv4gc"]
-[ext_resource type="Script" uid="uid://dxiupaebv6xj" path="res://root/deck_home/deck_home_controller.gd" id="7_ysxhp"]
+[ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_pnu37"]
+[ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_h4vgl"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_mtka4"]
+[ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_2rk0c"]
+[ext_resource type="Script" uid="uid://dxiupaebv6xj" path="res://root/deck_home/deck_home_controller.gd" id="5_gmyqj"]
+[ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/add_card_popup/add_card_popup.tscn" id="6_acb0u"]
 
 [sub_resource type="Resource" id="Resource_h3nt6"]
-script = ExtResource("2_2bvo1")
-popup_mode = null
-is_popup_open = null
+script = ExtResource("2_h4vgl")
 metadata/_custom_type_script = "uid://d163tgwkshqcy"
 
 [sub_resource type="InputEventKey" id="InputEventKey_sv4gc"]
@@ -21,7 +19,7 @@ unicode = 97
 [sub_resource type="Shortcut" id="Shortcut_sv4gc"]
 events = [SubResource("InputEventKey_sv4gc")]
 
-[node name="DeckHome" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "deck_label", "centered_grid", "card_popup", "start_practice_btn", "add_card_btn", "back_deck_btn")]
+[node name="DeckHomeView" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "deck_label", "centered_grid", "card_popup", "start_practice_btn", "add_card_btn", "back_deck_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_h3nt6")
+script = ExtResource("1_pnu37")
 model = SubResource("Resource_h3nt6")
 controller = NodePath("DeckHomeController")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
@@ -68,7 +66,7 @@ text = "Deck Home"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartPracticeButton" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=1816726834 instance=ExtResource("3_6bg5l")]
+[node name="StartPracticeButton" parent="PanelContainer/ContentVBox/DeckTop/VBoxContainer" unique_id=1816726834 instance=ExtResource("3_mtka4")]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 22
@@ -89,14 +87,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenteredGrid" parent="PanelContainer/ContentVBox/Control/GridMargin" unique_id=1867737459 instance=ExtResource("4_i8p5q")]
+[node name="CenteredGrid" parent="PanelContainer/ContentVBox/Control/GridMargin" unique_id=1867737459 instance=ExtResource("4_2rk0c")]
 layout_mode = 2
 
 [node name="DeckBottom" type="PanelContainer" parent="PanelContainer/ContentVBox" unique_id=1320962938]
 layout_mode = 2
 theme_type_variation = &"SecondaryPanel"
 
-[node name="AddCard" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=90549514 instance=ExtResource("3_6bg5l")]
+[node name="AddCard" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=90549514 instance=ExtResource("3_mtka4")]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_top = 10
@@ -113,7 +111,7 @@ bottom_padding = 5
 left_padding = 16
 all_padding = 5
 
-[node name="BackDeckSelect" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=333922747 instance=ExtResource("3_6bg5l")]
+[node name="BackDeckSelect" parent="PanelContainer/ContentVBox/DeckBottom" unique_id=333922747 instance=ExtResource("3_mtka4")]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
@@ -130,12 +128,13 @@ left_padding = 16
 all_padding = 5
 
 [node name="DeckHomeController" type="Node" parent="." unique_id=1454335755]
-script = ExtResource("7_ysxhp")
+script = ExtResource("5_gmyqj")
 metadata/_custom_type_script = "uid://dxiupaebv6xj"
 
-[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_sv4gc")]
+[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_acb0u")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/ContentVBox/DeckBottom/AddCard" to="DeckHomeController" method="on_add_card_pressed"]
 [connection signal="submitted_add_card" from="AddCardPopup" to="DeckHomeController" method="on_add_card_submit"]
+[connection signal="submitted_edit_card" from="AddCardPopup" to="DeckHomeController" method="on_edit_card_submit"]
