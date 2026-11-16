@@ -34,7 +34,7 @@ controller = NodePath("DeckHomeController")
 top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
 deck_label = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/DeckLabel")
 centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
-card_popup = NodePath("AddCardPopup")
+card_popup = NodePath("CardPopup")
 start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
 add_card_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
 back_deck_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/BackDeckSelect")
@@ -131,10 +131,10 @@ all_padding = 5
 script = ExtResource("5_gmyqj")
 metadata/_custom_type_script = "uid://dxiupaebv6xj"
 
-[node name="AddCardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_acb0u")]
+[node name="CardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_acb0u")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/ContentVBox/DeckBottom/AddCard" to="DeckHomeController" method="on_add_card_pressed"]
-[connection signal="submitted_add_card" from="AddCardPopup" to="DeckHomeController" method="on_add_card_submit"]
-[connection signal="submitted_edit_card" from="AddCardPopup" to="DeckHomeController" method="on_edit_card_submit"]
+[connection signal="submitted_add_card" from="CardPopup" to="DeckHomeController" method="on_add_card_submit"]
+[connection signal="submitted_edit_card" from="CardPopup" to="DeckHomeController" method="on_edit_card_submit"]

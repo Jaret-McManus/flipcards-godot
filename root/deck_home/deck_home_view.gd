@@ -50,8 +50,14 @@ func _on_close_popup() -> void:
 	card_popup.visible = false
 
 
-func add_card_view(card: Card) -> void:
+func _add_card_view(card: Card) -> void:
 	var card_view := CardView.create(card)
+	card_view.edit_card_pressed.connect(
+		controller.on_edit_card_pressed
+	)
+	card_view.delete_card_pressed.connect(
+		print.bind("Not implemeneted delete card view yet!")
+	)
 	centered_grid.add_node(card_view)
 
 
@@ -73,18 +79,12 @@ func _setup_view(deck: Deck, p_model: DeckHomeModel) -> void:
 	deck_label.text = deck.name
 	
 	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
+	p_model.new_card_added.connect(_add_card_view)
 	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
 	p_model.close_popup.connect(_on_close_popup)
-	
+		
 	for card: Card in deck.cards:
-		var card_view: CardView = CardView.create(card)
-		card_view.edit_card_pressed.connect(_on_open_edit_card_popup)
-		card_view.delete_card_pressed.connect(
-			print.bind("deleting %s" % self)
-		)
-		centered_grid.add_node(card_view)
-	
-	
+		_add_card_view(card)
 
 
 func _transition_to_deck_select(root_view: RootView) -> void:
