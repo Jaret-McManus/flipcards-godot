@@ -1,7 +1,7 @@
 class_name CardView extends PanelContainer
 
 signal edit_card_pressed(card_view: CardView)
-signal delete_card_pressed()
+signal delete_card_pressed(card_view: CardView)
 
 const CARD_VIEW_SCENE = preload("uid://dg7cio7p6lin5")
 
@@ -28,7 +28,7 @@ func update_from_card() -> void:
 func _emit_edit() -> void: edit_card_pressed.emit(self)
 
 
-func _emit_delete() -> void: delete_card_pressed.emit()
+func _emit_delete() -> void: delete_card_pressed.emit(self)
 
 
 func _on_mouse_entered() -> void: _set_button_visibility(true)

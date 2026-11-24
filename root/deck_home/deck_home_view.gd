@@ -48,9 +48,16 @@ func setup(deck: Deck, p_model: DeckHomeModel) -> void:
 	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
 	p_model.new_card_added.connect(_add_card_view)
 	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
+	p_model.open_delete_card_popup.connect(_on_open_delete_card_popup)
 	p_model.close_popup.connect(_on_close_popup)
 	
 	for card: Card in deck.cards:
+		_add_card_view(card)
+
+
+func reinstantiate_cards() -> void:
+	centered_grid.clear()
+	for card: Card in model.deck.cards:
 		_add_card_view(card)
 
 
@@ -66,6 +73,12 @@ func _on_open_edit_card_popup(card_view: CardView) -> void:
 	card_popup.visible = true
 
 
+func _on_open_delete_card_popup(card_view: CardView) -> void:
+	_toggle_nonpopup_buttons(false)
+	card_popup.setup_delete_card_popup(card_view)
+	card_popup.visible = true
+
+
 func _on_close_popup() -> void:
 	_toggle_nonpopup_buttons(true)
 	card_popup.visible = false
@@ -77,7 +90,7 @@ func _add_card_view(card: Card) -> void:
 		controller.on_edit_card_pressed
 	)
 	card_view.delete_card_pressed.connect(
-		print.bind("Not implemeneted delete card view yet!")
+		controller.on_delete_card_pressed
 	)
 	centered_grid.add_node(card_view)
 

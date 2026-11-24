@@ -26,6 +26,10 @@ func on_edit_card_pressed(card_view: CardView) -> void:
 	model.set_popup_mode(PopupMode.EDIT_CARD, ObjectOption.some(card_view))
 
 
+func on_delete_card_pressed(card_view: CardView) -> void:
+	model.set_popup_mode(PopupMode.DELETE_CARD, ObjectOption.some(card_view))
+
+
 func on_add_card_submit(a_text: String, b_text: String) -> void:
 	model.set_popup_mode(PopupMode.CLOSED)
 	
@@ -37,3 +41,8 @@ func on_edit_card_submit(card_view: CardView, side_a: String, side_b: String) ->
 	model.set_popup_mode(PopupMode.CLOSED)
 	model.update_card(card_view.card, side_a, side_b)
 	card_view.update_from_card()
+
+
+func on_delete_card_submit(card_view: CardView) -> void:
+	model.set_popup_mode(PopupMode.CLOSED)
+	model.delete_card(card_view.card)

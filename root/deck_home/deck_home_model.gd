@@ -3,13 +3,14 @@ class_name DeckHomeModel extends Resource
 
 signal open_add_card_popup()
 signal open_edit_card_popup(card_to_edit: Card)
+signal open_delete_card_popup(card_to_edit: Card)
 signal new_card_added(card: Card)
 signal close_popup()
 
 const CARD_SCENE := preload("uid://dg7cio7p6lin5")
 const ObjectOption = Option.ObjectOption
 
-enum PopupMode { CLOSED, ADD_CARD, EDIT_CARD }
+enum PopupMode { CLOSED, ADD_CARD, EDIT_CARD, DELETE_CARD }
 
 var _view: DeckHomeView
 var deck: Deck
@@ -39,6 +40,11 @@ func set_popup_mode(
 		var card_view: CardView = card_view_option.value as CardView
 		current_card_view = card_view
 		open_edit_card_popup.emit(card_view)
+	elif popup_mode == PopupMode.DELETE_CARD:
+		assert(card_view_option.has_value)
+		var card_view: CardView = card_view_option.value as CardView
+		current_card_view = card_view
+		open_delete_card_popup.emit(card_view)
 	else: 
 		assert(false, "Popup mode (%s) not supported" % popup_mode)
 
@@ -53,3 +59,9 @@ func update_card(card: Card, side_a: String, side_b: String) -> void:
 	card.side_a_text = side_a
 	card.side_b_text = side_b
 	DeckSaveLoad.save_deck(deck)
+
+
+func delete_card(card: Card) -> void:
+	deck.cards.erase(card)
+	DeckSaveLoad.save_deck(deck)
+	_view.reinstantiate_cards()

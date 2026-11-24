@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0xwhx82t4fjk"]
 
-[ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/card_popup/card_popup.gd" id="1_73epx"]
-[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_l0gng"]
+[ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/card_popup/card_popup.gd" id="1_x1shx"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_xnd66"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_absbi"]
 device = -1
@@ -14,7 +14,7 @@ keycode = 4194310
 [sub_resource type="Shortcut" id="Shortcut_fywr5"]
 events = [SubResource("InputEventKey_absbi"), SubResource("InputEventKey_rwnfw")]
 
-[node name="AddCardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("popup_title", "a_input", "a_error", "b_input", "b_error", "submit_button")]
+[node name="CardPopup" type="PanelContainer" unique_id=1302212048 node_paths=PackedStringArray("popup_title", "card_modify_section", "a_input", "a_error", "b_input", "b_error", "delete_display_section", "delete_a_label", "delete_b_label", "cancel_button", "submit_button", "delete_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,13 +23,19 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"FullscreenPopupPanel"
-script = ExtResource("1_73epx")
+script = ExtResource("1_x1shx")
 popup_title = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PopupTitle")
-a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput")
-a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAError")
-b_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput")
-b_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBError")
+card_modify_section = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput")
+a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideAInput")
+a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideAError")
+b_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideBInput")
+b_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideBError")
+delete_display_section = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin")
+delete_a_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin/VBoxContainer2/DeleteSideA")
+delete_b_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin/VBoxContainer2/DeleteSideB")
+cancel_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton")
 submit_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton")
+delete_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1220382114]
 layout_mode = 2
@@ -55,36 +61,62 @@ text = "Add New Card"
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1171820771]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=930813326]
+[node name="CardModifyInput" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=930813326]
 layout_mode = 2
 
-[node name="SideALabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2079960124]
+[node name="SideALabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=2079960124]
 layout_mode = 2
 text = "Side A"
 
-[node name="SideAInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=68002128]
+[node name="SideAInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=68002128]
 layout_mode = 2
 text = "hi there"
 keep_editing_on_text_submit = true
 
-[node name="SideAError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1282437258]
+[node name="SideAError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=1282437258]
 layout_mode = 2
 theme_type_variation = &"ErrorLabel"
 
-[node name="SideBLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1292603579]
+[node name="SideBLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=1292603579]
 layout_mode = 2
 text = "Side B"
 
-[node name="SideBInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1376100230]
+[node name="SideBInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=1376100230]
 layout_mode = 2
 text = "hi there"
 keep_editing_on_text_submit = true
 
-[node name="SideBError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=101937666]
+[node name="SideBError" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput" unique_id=101937666]
 layout_mode = 2
 theme_type_variation = &"ErrorLabel"
 
-[node name="SubmitButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_l0gng")]
+[node name="DeleteDisplayMargin" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1680748800]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin" unique_id=1429341970]
+layout_mode = 2
+
+[node name="DeleteSideA" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin/VBoxContainer2" unique_id=1115570112]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+text = "Side A"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin/VBoxContainer2" unique_id=452481675]
+layout_mode = 2
+
+[node name="DeleteSideB" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteDisplayMargin/VBoxContainer2" unique_id=2089935056]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+text = "Side B"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="SubmitButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_xnd66")]
 layout_mode = 2
 text = "Add Card"
 shortcut = SubResource("Shortcut_fywr5")
@@ -108,7 +140,7 @@ theme_override_constants/margin_bottom = 5
 text = "Add Card"
 horizontal_alignment = 1
 
-[node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=524433527 instance=ExtResource("2_l0gng")]
+[node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=524433527 instance=ExtResource("2_xnd66")]
 layout_mode = 2
 text = "Cancel"
 alignment = 1
@@ -132,7 +164,7 @@ theme_override_font_sizes/normal_font_size = 0
 text = "Cancel"
 horizontal_alignment = 1
 
-[node name="DeleteButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854729175 instance=ExtResource("2_l0gng")]
+[node name="DeleteButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854729175 instance=ExtResource("2_xnd66")]
 visible = false
 layout_mode = 2
 text = "Delete Card"
@@ -156,10 +188,11 @@ theme_override_constants/margin_bottom = 5
 text = "Delete Card"
 horizontal_alignment = 1
 
-[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput" to="." method="_on_submit" unbinds=1]
-[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideBInput" to="." method="_on_submit" unbinds=1]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideAInput" to="." method="_on_submit" unbinds=1]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideBInput" to="." method="_on_submit" unbinds=1]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton" to="." method="_on_submit"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_cancel"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton" to="." method="_on_delete"]
 
 [editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton"]
 [editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton"]
