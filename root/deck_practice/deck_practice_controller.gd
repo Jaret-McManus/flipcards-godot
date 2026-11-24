@@ -1,6 +1,6 @@
 class_name DeckPracticeController extends Node
 
-const SubmissionType = DeckPracticeModel.SubmissionType
+const SubmissionType = Card.SubmissionType
 
 var _model: DeckPracticeModel
 

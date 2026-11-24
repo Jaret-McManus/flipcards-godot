@@ -4,8 +4,7 @@ signal time_updated(time_string: String)
 signal card_updated(card: Card, index: int, total_cards: int)
 signal practice_finished()
 
-enum SubmissionType { EASY, MEDIUM, HARD, DONT_KNOW }
-
+const SubmissionType = Card.SubmissionType
 
 var deck: Deck
 
@@ -13,6 +12,7 @@ var _elapsed_time: float = 0.0
 var _num_cards_to_practice: int = 10
 var _cards: Array[Card] = []
 var _index: int = 0
+
 
 var _time_string: String:
 	set(s): _time_string = s; time_updated.emit(s)
@@ -35,13 +35,19 @@ func init_card() -> void:
 	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
 
 
-func next_card(_type: SubmissionType) -> void:
-	_index += 1
-	if _index < _num_cards_to_practice:
-		card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
-	else:
+func next_card(type: SubmissionType) -> void:
+	if _index + 1 >= _num_cards_to_practice:
 		print("Emitting `practice_finished`")
 		practice_finished.emit()
+		return
+	
+	var current_card: Card = _cards[_index]
+	current_card.update_score(type)
+	print(current_card.score.dont_know_count)
+	
+	_index += 1
+	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
+
 
 
 func _collect_cards(all_cards: Array[Card], number_cards: int) -> Array[Card]:

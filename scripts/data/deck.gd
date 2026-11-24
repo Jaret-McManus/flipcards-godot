@@ -12,4 +12,4 @@ static func new_deck(p_name: String)-> Deck:
 
 
 func _to_string() -> String:
-	return "Deck<name: %s, cards: %s>" % [name, cards]
+	return "Deck<name: %s, number of card: %s>" % [name, cards.size()]
