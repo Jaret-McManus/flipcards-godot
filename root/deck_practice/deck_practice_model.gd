@@ -1,11 +1,14 @@
 class_name DeckPracticeModel extends Node
 
 signal time_updated(time_string: String)
+signal card_updated(card: Card, index: int, total_cards: int)
 
 var deck: Deck
 
 var _elapsed_time: float = 0.0
-var _num_cards_to_practice: int
+var _num_cards_to_practice: int = 10
+var _cards: Array[Card] = []
+var _index: int = 0
 
 var _time_string: String:
 	set(s): _time_string = s; time_updated.emit(s)
@@ -18,8 +21,39 @@ func _process(delta: float) -> void:
 		_time_string = formatted_time
 
 
+func setup(p_deck: Deck) -> void: 
+	deck = p_deck
+	_cards = _collect_cards(deck.cards, _num_cards_to_practice)
+	init_card()
 
-func setup(p_deck: Deck) -> void: deck = p_deck
+
+func init_card() -> void:
+	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
+
+
+func next_card() -> void:
+	_index += 1
+	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
+
+
+func _collect_cards(all_cards: Array[Card], number_cards: int) -> Array[Card]:
+	var cards: Array[Card] = all_cards.duplicate()
+	cards.shuffle()
+	
+	var cards_to_study: Array[Card]
+	cards_to_study.assign(ArrayUtil.first(cards, number_cards))
+	
+	var cards_taken: int = cards_to_study.size()
+	while cards_taken < number_cards:
+		cards.shuffle()
+		
+		var next_card_batch: Array[Card]
+		next_card_batch.assign(ArrayUtil.first(cards, number_cards - cards_taken))
+		
+		cards_to_study.append_array(next_card_batch)
+		cards_taken = cards_to_study.size()
+	
+	return cards_to_study
 
 
 func _format_time(time_seconds: float) -> String:

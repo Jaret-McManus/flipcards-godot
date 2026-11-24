@@ -5,6 +5,8 @@ const DECK_PRACTICE_SCENE = preload("uid://rx0823junyny")
 @export_group("Internal Nodes")
 @export var model: DeckPracticeModel
 @export var timer_label: Label
+@export var progress_label: Label
+@export var card_view: CardView
 @export var back_to_deck_home: PaddedButton
 
 
@@ -28,3 +30,9 @@ func _transition_to_deck_home(root: RootView) -> void:
 	root.set_subview(
 		DeckHomeView.create(model.deck)
 	)
+
+
+func _on_card_updated(card: Card, index: int, total_cards: int) -> void:
+	card_view.card = card
+	card_view.update_from_card()
+	progress_label.text = "%s / %s" % [index + 1, total_cards]

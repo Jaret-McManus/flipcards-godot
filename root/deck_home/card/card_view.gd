@@ -5,6 +5,9 @@ signal delete_card_pressed(card_view: CardView)
 
 const CARD_VIEW_SCENE = preload("uid://dg7cio7p6lin5")
 
+@export var display_only: bool = false
+
+@export_group("Internal Nodes")
 @export var side_a_label: RichTextLabel
 @export var side_b_label: RichTextLabel
 @export var delete_button: PaddedButton
@@ -12,12 +15,21 @@ const CARD_VIEW_SCENE = preload("uid://dg7cio7p6lin5")
 
 var card: Card
 
+
 static func create(p_card: Card) -> CardView:
 	var instance: CardView = CARD_VIEW_SCENE.instantiate()
 	instance.card = p_card
 	instance.side_a_label.text = p_card.side_a_text
 	instance.side_b_label.text = p_card.side_b_text
 	return instance
+
+
+func _ready() -> void:
+	if display_only:
+		delete_button.queue_free()
+		edit_button.queue_free()
+		mouse_entered.disconnect(_on_mouse_entered)
+		mouse_exited.disconnect(_on_mouse_exited)
 
 
 func update_from_card() -> void:

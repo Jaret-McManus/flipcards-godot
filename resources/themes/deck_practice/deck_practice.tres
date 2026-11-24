@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://ux56pj7xv5sm"]
+
+[resource]
+ButtonRow/base_type = &"HBoxContainer"
+ButtonRow/constants/separation = 12
+MainContentVBox/base_type = &"VBoxContainer"
+MainContentVBox/constants/separation = 15

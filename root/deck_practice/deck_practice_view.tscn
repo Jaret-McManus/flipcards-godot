@@ -1,19 +1,32 @@
 [gd_scene format=3 uid="uid://rx0823junyny"]
 
 [ext_resource type="Script" uid="uid://hx5fn5w34xk3" path="res://root/deck_practice/deck_practice_view.gd" id="1_35a3i"]
+[ext_resource type="Theme" uid="uid://ux56pj7xv5sm" path="res://resources/themes/deck_practice/deck_practice.tres" id="1_m72db"]
+[ext_resource type="PackedScene" uid="uid://dg7cio7p6lin5" path="res://root/deck_home/card/card_view.tscn" id="2_ghxlw"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_jqk35"]
 [ext_resource type="Script" uid="uid://d0f31teguvu6q" path="res://root/deck_practice/deck_practice_controller.gd" id="2_ypxxv"]
 [ext_resource type="Script" uid="uid://cldfwvqh3hife" path="res://root/deck_practice/deck_practice_model.gd" id="3_amxph"]
 
-[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "timer_label", "back_to_deck_home")]
+[sub_resource type="InputEventKey" id="InputEventKey_m72db"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_m72db"]
+events = [SubResource("InputEventKey_m72db")]
+
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "timer_label", "progress_label", "card_view", "back_to_deck_home")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_m72db")
 script = ExtResource("1_35a3i")
 model = NodePath("DeckPracticeModel")
-timer_label = NodePath("ContentVBox/DeckTop/VBoxContainer/Timerlabel")
+timer_label = NodePath("ContentVBox/DeckTop/VBoxContainer/TimerLabel")
+progress_label = NodePath("ContentVBox/DeckTop/VBoxContainer/ProgressLabel")
+card_view = NodePath("ContentVBox/MainContent/CardView")
 back_to_deck_home = NodePath("ContentVBox/DeckBottom/BackDeckHome")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1784139517]
@@ -28,7 +41,7 @@ theme_type_variation = &"SecondaryPanel"
 layout_mode = 2
 alignment = 1
 
-[node name="Timerlabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=426322965]
+[node name="TimerLabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=426322965]
 layout_mode = 2
 text = "0:00"
 horizontal_alignment = 1
@@ -41,22 +54,84 @@ text = "Practice"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="ContentVBox" unique_id=1353239013]
+[node name="ProgressLabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=113825547]
 layout_mode = 2
-size_flags_vertical = 6
-text = "deck practice"
+text = " 0 / 20"
+horizontal_alignment = 1
+
+[node name="MainContent" type="VBoxContainer" parent="ContentVBox" unique_id=1371216248]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"MainContentVBox"
+alignment = 1
+
+[node name="CardView" parent="ContentVBox/MainContent" unique_id=672696610 instance=ExtResource("2_ghxlw")]
+custom_minimum_size = Vector2(500, 300)
+custom_maximum_size = Vector2(700, 400)
+layout_mode = 2
+display_only = true
+
+[node name="ButtonRow" type="HBoxContainer" parent="ContentVBox/MainContent" unique_id=349999730]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"ButtonRow"
+
+[node name="HardButton4" parent="ContentVBox/MainContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Don't Know"
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="HardButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=179436815 instance=ExtResource("2_jqk35")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Hard"
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="HardButton2" parent="ContentVBox/MainContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Medium"
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="HardButton3" parent="ContentVBox/MainContent/ButtonRow" unique_id=2080679656 instance=ExtResource("2_jqk35")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Easy"
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
 
 [node name="DeckBottom" type="PanelContainer" parent="ContentVBox" unique_id=1199795944]
 layout_mode = 2
 theme_type_variation = &"SecondaryPanel"
 
-[node name="BackDeckHome" parent="ContentVBox/DeckBottom" unique_id=1816726834 instance=ExtResource("2_jqk35")]
+[node name="BackDeckHome" parent="ContentVBox/DeckBottom" unique_id=829248166 instance=ExtResource("2_jqk35")]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 text = "[u]B[/u]ack to Deck Home"
+shortcut = SubResource("Shortcut_m72db")
 top_margin = 10
 bottom_margin = 10
 left_margin = 30
@@ -72,4 +147,5 @@ script = ExtResource("2_ypxxv")
 [node name="DeckPracticeModel" type="Node" parent="." unique_id=322934773]
 script = ExtResource("3_amxph")
 
+[connection signal="card_updated" from="DeckPracticeModel" to="." method="_on_card_updated"]
 [connection signal="time_updated" from="DeckPracticeModel" to="." method="_on_time_updated"]
