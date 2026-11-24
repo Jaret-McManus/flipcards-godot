@@ -1,20 +1,20 @@
 # flipcards
 
-# Todo:
-## Project
+## Todo:
+### Project
 - Theme update
 
-## DeckSelect
+### DeckSelect
 - Default No decks added yet panel
 
-## DeckHome
+### DeckHome
 - Default No cards added yet panel
 
-## DeckPractice
+### DeckPractice
 - Implement Practice
 	- Implement Card scores
 
-## Other
+### Other
 - some sort of app section for making connections such as:
 	- plural/singular
 	- verb conjugations
