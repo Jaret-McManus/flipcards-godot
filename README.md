@@ -5,12 +5,14 @@
 - Theme update
 
 ### DeckSelect
+- Remove Deck
 - Default No decks added yet panel
 
 ### DeckHome
 - Default No cards added yet panel
 
 ### DeckPractice
+- fix: No cards = infinite recursion collecting nothing
 - Implement shortcuts for submission buttons
 - Implement End Practice (new screen as well)
 - Implement Card scores
