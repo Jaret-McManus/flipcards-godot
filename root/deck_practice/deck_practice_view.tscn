@@ -15,7 +15,7 @@ unicode = 98
 [sub_resource type="Shortcut" id="Shortcut_m72db"]
 events = [SubResource("InputEventKey_m72db")]
 
-[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "controller", "timer_label", "progress_label", "card_view", "easy_button", "medium_button", "hard_button", "dont_know_button", "back_to_deck_home")]
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "controller", "timer_label", "progress_label", "in_progress_section", "card_view", "easy_button", "medium_button", "hard_button", "dont_know_button", "finished_section", "back_to_deck_home")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,11 +27,13 @@ model = NodePath("DeckPracticeModel")
 controller = NodePath("DeckPracticeController")
 timer_label = NodePath("ContentVBox/DeckTop/VBoxContainer/TimerLabel")
 progress_label = NodePath("ContentVBox/DeckTop/VBoxContainer/ProgressLabel")
-card_view = NodePath("ContentVBox/MainContent/CardView")
-easy_button = NodePath("ContentVBox/MainContent/ButtonRow/EasyButton")
-medium_button = NodePath("ContentVBox/MainContent/ButtonRow/MediumButton")
-hard_button = NodePath("ContentVBox/MainContent/ButtonRow/HardButton")
-dont_know_button = NodePath("ContentVBox/MainContent/ButtonRow/DontKnowButton")
+in_progress_section = NodePath("ContentVBox/InProgressContent")
+card_view = NodePath("ContentVBox/InProgressContent/CardView")
+easy_button = NodePath("ContentVBox/InProgressContent/ButtonRow/EasyButton")
+medium_button = NodePath("ContentVBox/InProgressContent/ButtonRow/MediumButton")
+hard_button = NodePath("ContentVBox/InProgressContent/ButtonRow/HardButton")
+dont_know_button = NodePath("ContentVBox/InProgressContent/ButtonRow/DontKnowButton")
+finished_section = NodePath("ContentVBox/FinishedContent")
 back_to_deck_home = NodePath("ContentVBox/DeckBottom/BackDeckHome")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1784139517]
@@ -64,24 +66,24 @@ layout_mode = 2
 text = " 0 / 20"
 horizontal_alignment = 1
 
-[node name="MainContent" type="VBoxContainer" parent="ContentVBox" unique_id=1371216248]
+[node name="InProgressContent" type="VBoxContainer" parent="ContentVBox" unique_id=1371216248]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"MainContentVBox"
 alignment = 1
 
-[node name="CardView" parent="ContentVBox/MainContent" unique_id=672696610 instance=ExtResource("2_ghxlw")]
+[node name="CardView" parent="ContentVBox/InProgressContent" unique_id=672696610 instance=ExtResource("2_ghxlw")]
 custom_minimum_size = Vector2(500, 300)
 custom_maximum_size = Vector2(700, 400)
 layout_mode = 2
 display_only = true
 
-[node name="ButtonRow" type="HBoxContainer" parent="ContentVBox/MainContent" unique_id=349999730]
+[node name="ButtonRow" type="HBoxContainer" parent="ContentVBox/InProgressContent" unique_id=349999730]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"ButtonRow"
 
-[node name="EasyButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=2080679656 instance=ExtResource("2_jqk35")]
+[node name="EasyButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=2080679656 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Easy"
@@ -92,7 +94,7 @@ bottom_padding = 5
 left_padding = 5
 all_padding = 5
 
-[node name="MediumButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
+[node name="MediumButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Medium"
@@ -103,7 +105,7 @@ bottom_padding = 5
 left_padding = 5
 all_padding = 5
 
-[node name="HardButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=179436815 instance=ExtResource("2_jqk35")]
+[node name="HardButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=179436815 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Hard"
@@ -114,7 +116,7 @@ bottom_padding = 5
 left_padding = 5
 all_padding = 5
 
-[node name="DontKnowButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
+[node name="DontKnowButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Don't Know"
@@ -124,6 +126,9 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+
+[node name="FinishedContent" type="VBoxContainer" parent="ContentVBox" unique_id=1195708209]
+layout_mode = 2
 
 [node name="DeckBottom" type="PanelContainer" parent="ContentVBox" unique_id=1199795944]
 layout_mode = 2

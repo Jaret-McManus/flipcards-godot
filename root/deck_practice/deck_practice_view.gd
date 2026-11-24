@@ -3,10 +3,16 @@ class_name DeckPractiveView extends SubcontentView
 const DECK_PRACTICE_SCENE = preload("uid://rx0823junyny")
 
 @export_group("Internal Nodes")
+@export_subgroup("MVC")
 @export var model: DeckPracticeModel
 @export var controller: DeckPracticeController
+
+@export_subgroup("Header")
 @export var timer_label: Label
 @export var progress_label: Label
+
+@export_subgroup("In Progress Section")
+@export var in_progress_section: VBoxContainer
 @export var card_view: CardView
 
 @export var easy_button: PaddedButton
@@ -14,6 +20,10 @@ const DECK_PRACTICE_SCENE = preload("uid://rx0823junyny")
 @export var hard_button: PaddedButton
 @export var dont_know_button: PaddedButton
 
+@export_subgroup("Finished Section")
+@export var finished_section: VBoxContainer
+
+@export_subgroup("Footer")
 @export var back_to_deck_home: PaddedButton
 
 
@@ -24,6 +34,9 @@ static func create(deck: Deck) -> DeckPractiveView:
 	view._setup_controller(view.model)
 	
 	return view
+
+
+func _ready() -> void: Assert.exports_nonnull(self)
 
 
 func bind_signals_to_root(root: RootView) -> void: 
