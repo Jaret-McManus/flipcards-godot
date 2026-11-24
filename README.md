@@ -11,8 +11,9 @@
 - Default No cards added yet panel
 
 ### DeckPractice
-- Implement Practice
-	- Implement Card scores
+- Implement shortcuts for submission buttons
+- Implement End Practice (new screen as well)
+- Implement Card scores
 
 ### Other
 - some sort of app section for making connections such as:
