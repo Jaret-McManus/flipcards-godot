@@ -1,12 +1,24 @@
 class_name DeckPractiveView extends SubcontentView
 
-var model: DeckPracticeModel
+const DECK_PRACTICE_SCENE = preload("uid://rx0823junyny")
 
+@export_group("Internal Nodes")
+@export var model: DeckPracticeModel
+@export var back_to_deck_home: PaddedButton
 
 static func create(deck: Deck) -> DeckPractiveView:
-	var view := DeckPractiveView.new()
-	view.model = DeckPracticeModel.new_model(deck.cards)
+	var view: DeckPractiveView = DECK_PRACTICE_SCENE.instantiate()
+	view.model.setup(deck)
 	return view
 
 
-func bind_signals_to_root(_parent: RootView) -> void: pass
+func bind_signals_to_root(root: RootView) -> void: 
+	back_to_deck_home.pressed.connect(
+		_transition_to_deck_home.bind(root)
+	)
+
+
+func _transition_to_deck_home(root: RootView) -> void:
+	root.set_subview(
+		DeckHomeView.create(model.deck)
+	)

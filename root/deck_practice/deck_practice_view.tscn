@@ -1,11 +1,66 @@
 [gd_scene format=3 uid="uid://rx0823junyny"]
 
 [ext_resource type="Script" uid="uid://hx5fn5w34xk3" path="res://root/deck_practice/deck_practice_view.gd" id="1_35a3i"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_jqk35"]
+[ext_resource type="Script" uid="uid://d0f31teguvu6q" path="res://root/deck_practice/deck_practice_controller.gd" id="2_ypxxv"]
+[ext_resource type="Script" uid="uid://cldfwvqh3hife" path="res://root/deck_practice/deck_practice_model.gd" id="3_amxph"]
 
-[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418]
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "back_to_deck_home")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_35a3i")
+model = NodePath("DeckPracticeModel")
+back_to_deck_home = NodePath("ContentVBox/DeckBottom/BackDeckHome")
+
+[node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1784139517]
+layout_mode = 2
+
+[node name="DeckTop" type="PanelContainer" parent="ContentVBox" unique_id=332536690]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentVBox/DeckTop" unique_id=794051563]
+layout_mode = 2
+
+[node name="DeckLabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=971406912]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"HeaderLarge"
+text = "Practice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ContentVBox" unique_id=1353239013]
+layout_mode = 2
+size_flags_vertical = 6
+text = "deck practice"
+
+[node name="DeckBottom" type="PanelContainer" parent="ContentVBox" unique_id=1199795944]
+layout_mode = 2
+theme_type_variation = &"SecondaryPanel"
+
+[node name="BackDeckHome" parent="ContentVBox/DeckBottom" unique_id=1816726834 instance=ExtResource("2_jqk35")]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+text = "[u]B[/u]ack to Deck Home"
+top_margin = 10
+bottom_margin = 10
+left_margin = 30
+top_padding = 5
+right_padding = 16
+bottom_padding = 5
+left_padding = 16
+all_padding = 5
+
+[node name="DeckPracticeController" type="Node" parent="." unique_id=1383138569]
+script = ExtResource("2_ypxxv")
+
+[node name="DeckPracticeModel" type="Node" parent="." unique_id=322934773]
+script = ExtResource("3_amxph")

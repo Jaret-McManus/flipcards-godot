@@ -1,9 +1,6 @@
-class_name DeckPracticeModel
+class_name DeckPracticeModel extends Node
 
-var cards: Array[Card]
+var deck: Deck
 
 
-static func new_model(p_cards: Array[Card]) -> DeckPracticeModel:
-	var model := DeckPracticeModel.new()
-	model.cards = p_cards
-	return model
+func setup(p_deck: Deck) -> void: deck = p_deck
