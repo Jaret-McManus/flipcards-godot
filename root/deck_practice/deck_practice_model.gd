@@ -2,6 +2,10 @@ class_name DeckPracticeModel extends Node
 
 signal time_updated(time_string: String)
 signal card_updated(card: Card, index: int, total_cards: int)
+signal practice_finished()
+
+enum SubmissionType { EASY, MEDIUM, HARD, DONT_KNOW }
+
 
 var deck: Deck
 
@@ -31,9 +35,13 @@ func init_card() -> void:
 	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
 
 
-func next_card() -> void:
+func next_card(_type: SubmissionType) -> void:
 	_index += 1
-	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
+	if _index < _num_cards_to_practice:
+		card_updated.emit(_cards[_index], _index, _num_cards_to_practice)
+	else:
+		print("Emitting `practice_finished`")
+		practice_finished.emit()
 
 
 func _collect_cards(all_cards: Array[Card], number_cards: int) -> Array[Card]:

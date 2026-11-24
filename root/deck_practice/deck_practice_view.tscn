@@ -15,7 +15,7 @@ unicode = 98
 [sub_resource type="Shortcut" id="Shortcut_m72db"]
 events = [SubResource("InputEventKey_m72db")]
 
-[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "timer_label", "progress_label", "card_view", "back_to_deck_home")]
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "controller", "timer_label", "progress_label", "card_view", "easy_button", "medium_button", "hard_button", "dont_know_button", "back_to_deck_home")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,9 +24,14 @@ grow_vertical = 2
 theme = ExtResource("1_m72db")
 script = ExtResource("1_35a3i")
 model = NodePath("DeckPracticeModel")
+controller = NodePath("DeckPracticeController")
 timer_label = NodePath("ContentVBox/DeckTop/VBoxContainer/TimerLabel")
 progress_label = NodePath("ContentVBox/DeckTop/VBoxContainer/ProgressLabel")
 card_view = NodePath("ContentVBox/MainContent/CardView")
+easy_button = NodePath("ContentVBox/MainContent/ButtonRow/EasyButton")
+medium_button = NodePath("ContentVBox/MainContent/ButtonRow/MediumButton")
+hard_button = NodePath("ContentVBox/MainContent/ButtonRow/HardButton")
+dont_know_button = NodePath("ContentVBox/MainContent/ButtonRow/DontKnowButton")
 back_to_deck_home = NodePath("ContentVBox/DeckBottom/BackDeckHome")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1784139517]
@@ -76,10 +81,21 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"ButtonRow"
 
-[node name="HardButton4" parent="ContentVBox/MainContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
+[node name="EasyButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=2080679656 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Don't Know"
+text = "Easy"
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="MediumButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Medium"
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -98,21 +114,10 @@ bottom_padding = 5
 left_padding = 5
 all_padding = 5
 
-[node name="HardButton2" parent="ContentVBox/MainContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
+[node name="DontKnowButton" parent="ContentVBox/MainContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Medium"
-alignment = 1
-top_padding = 5
-right_padding = 5
-bottom_padding = 5
-left_padding = 5
-all_padding = 5
-
-[node name="HardButton3" parent="ContentVBox/MainContent/ButtonRow" unique_id=2080679656 instance=ExtResource("2_jqk35")]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-text = "Easy"
+text = "Don't Know"
 alignment = 1
 top_padding = 5
 right_padding = 5
