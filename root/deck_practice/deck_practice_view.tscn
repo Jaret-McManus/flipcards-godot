@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d0f31teguvu6q" path="res://root/deck_practice/deck_practice_controller.gd" id="2_ypxxv"]
 [ext_resource type="Script" uid="uid://cldfwvqh3hife" path="res://root/deck_practice/deck_practice_model.gd" id="3_amxph"]
 
-[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "back_to_deck_home")]
+[node name="DeckPracticeView" type="PanelContainer" unique_id=886262418 node_paths=PackedStringArray("model", "timer_label", "back_to_deck_home")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_35a3i")
 model = NodePath("DeckPracticeModel")
+timer_label = NodePath("ContentVBox/DeckTop/VBoxContainer/Timerlabel")
 back_to_deck_home = NodePath("ContentVBox/DeckBottom/BackDeckHome")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1784139517]
@@ -25,10 +26,16 @@ theme_type_variation = &"SecondaryPanel"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentVBox/DeckTop" unique_id=794051563]
 layout_mode = 2
+alignment = 1
+
+[node name="Timerlabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=426322965]
+layout_mode = 2
+text = "0:00"
+horizontal_alignment = 1
 
 [node name="DeckLabel" type="Label" parent="ContentVBox/DeckTop/VBoxContainer" unique_id=971406912]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme_type_variation = &"HeaderLarge"
 text = "Practice"
 horizontal_alignment = 1
@@ -64,3 +71,5 @@ script = ExtResource("2_ypxxv")
 
 [node name="DeckPracticeModel" type="Node" parent="." unique_id=322934773]
 script = ExtResource("3_amxph")
+
+[connection signal="time_updated" from="DeckPracticeModel" to="." method="_on_time_updated"]
