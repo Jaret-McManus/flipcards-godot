@@ -9,15 +9,16 @@ var model: DeckHomeModel
 
 func _input(event: InputEvent) -> void:
 	if event.is_action(&"ui_cancel") and model.is_popup_open():
-		model.set_popup_mode(PopupMode.CLOSED)
+		_on_cancel_pressed()
 
 
-func setup(p_model: DeckHomeModel) -> void:
-	model = p_model
+func setup(p_model: DeckHomeModel) -> void: model = p_model
 
 
-func on_add_card_pressed() -> void:
-	model.set_popup_mode(PopupMode.ADD_CARD)
+func _on_cancel_pressed() -> void: model.set_popup_mode(PopupMode.CLOSED)
+
+
+func on_add_card_pressed() -> void: model.set_popup_mode(PopupMode.ADD_CARD)
 
 
 ## intended to be injected into each card view

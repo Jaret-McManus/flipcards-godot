@@ -2,6 +2,8 @@ class_name CardPopup extends PanelContainer
 
 signal submitted_add_card(side_a: String, side_b: String)
 signal submitted_edit_card(card_view: CardView, side_a: String, side_b: String)
+signal submitted_delete_card()
+signal close_popup()
 
 const StringResult = Result.StringResult
 const ObjectOption = Option.ObjectOption
@@ -52,6 +54,10 @@ func setup_add_card_popup() -> void:
 	a_input.grab_focus()
 
 
+func setup_delete_card_popup() -> void:
+	print("delete")
+
+
 func _on_submit() -> void:
 	_g_any_error = false
 	
@@ -71,6 +77,9 @@ func _on_submit() -> void:
 			b_text_result.value
 		)
 		_current_editing_card_view = ObjectOption.none()
+
+
+func _on_cancel() -> void: close_popup.emit()
 
 
 func _clean_and_validate_input(string: String, side: String) -> StringResult:

@@ -35,6 +35,9 @@ func bind_signals_to_root(root_view: RootView) -> void:
 	back_deck_btn.pressed.connect(
 		_transition_to_deck_select.bind(root_view)
 	)
+	start_practice_btn.pressed.connect(
+		_transition_to_practice_deck.bind(root_view)
+	)
 
 
 ## Populates [DeckHomeView] object with data from [Deck].
@@ -88,3 +91,8 @@ func _toggle_nonpopup_buttons(is_on: bool) -> void:
 func _transition_to_deck_select(root_view: RootView) -> void:
 	var deck_select_view: DeckSelectView = DeckSelectView.create()
 	root_view.set_subview(deck_select_view)
+
+
+func _transition_to_practice_deck(root_view: RootView) -> void:
+	var deck_practice_view: DeckPractiveView = DeckPractiveView.create(model.deck)
+	root_view.set_subview(deck_practice_view)

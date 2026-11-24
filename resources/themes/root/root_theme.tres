@@ -5,7 +5,10 @@
 [ext_resource type="StyleBox" uid="uid://dwjwn3t8j1cfu" path="res://resources/themes/root/button/clear_hover.tres" id="3_o7xk2"]
 [ext_resource type="StyleBox" uid="uid://df760bkgs158a" path="res://resources/themes/root/button/clear_pressed.tres" id="4_5v24m"]
 [ext_resource type="StyleBox" uid="uid://cvdt7ghws0vng" path="res://resources/themes/root/button/negative_hover.tres" id="5_8si5e"]
+[ext_resource type="StyleBox" uid="uid://jm8tjn0ua4f2" path="res://resources/themes/root/button/gray_hover.tres" id="5_n01wa"]
+[ext_resource type="StyleBox" uid="uid://cxnw2qty3lghn" path="res://resources/themes/root/button/gray.tres" id="6_f5m8r"]
 [ext_resource type="StyleBox" uid="uid://bv5i318emooe4" path="res://resources/themes/root/button/negative.tres" id="6_xfm52"]
+[ext_resource type="StyleBox" uid="uid://cuyvn1iv4i20r" path="res://resources/themes/root/button/gray_pressed.tres" id="7_f5m8r"]
 [ext_resource type="StyleBox" uid="uid://cx7xykcmwe0rk" path="res://resources/themes/root/button/negative_pressed.tres" id="7_n01wa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7xk2"]
@@ -39,7 +42,7 @@ bg_color = Color(0.7666196, 0.76661956, 0.76661944, 1)
 bg_color = Color(0.65, 0.556075, 0.31849998, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f428"]
-bg_color = Color(0, 0, 0.007843138, 0.3882353)
+bg_color = Color(0.10980392, 0.10980392, 0.11764706, 1)
 
 [resource]
 Button/styles/hover = ExtResource("1_q1fri")
@@ -61,6 +64,10 @@ ErrorLabel/colors/font_color = Color(0.87445956, 0.026039435, 9.62615e-08, 1)
 ErrorLabel/font_sizes/font_size = 12
 FullscreenPopupPanel/base_type = &"PanelContainer"
 FullscreenPopupPanel/styles/panel = SubResource("StyleBoxFlat_dtglo")
+GrayButton/base_type = &"Button"
+GrayButton/styles/hover = ExtResource("5_n01wa")
+GrayButton/styles/normal = ExtResource("6_f5m8r")
+GrayButton/styles/pressed = ExtResource("7_f5m8r")
 InfoLabelSmall/base_type = &"Label"
 InfoLabelSmall/colors/font_color = Color(0.6378435, 0.6378431, 0.6378431, 1)
 InfoLabelSmall/font_sizes/font_size = 12
