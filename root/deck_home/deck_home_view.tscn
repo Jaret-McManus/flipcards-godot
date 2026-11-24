@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_mtka4"]
 [ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_2rk0c"]
 [ext_resource type="Script" uid="uid://dxiupaebv6xj" path="res://root/deck_home/deck_home_controller.gd" id="5_gmyqj"]
-[ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/add_card_popup/add_card_popup.tscn" id="6_acb0u"]
+[ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/card_popup/card_popup.tscn" id="6_acb0u"]
 
 [sub_resource type="Resource" id="Resource_h3nt6"]
 script = ExtResource("2_h4vgl")

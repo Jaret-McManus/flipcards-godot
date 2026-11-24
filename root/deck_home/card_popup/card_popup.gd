@@ -54,8 +54,8 @@ func setup_add_card_popup() -> void:
 	a_input.grab_focus()
 
 
-func setup_delete_card_popup() -> void:
-	print("delete")
+func setup_delete_card_popup(card_view: CardView) -> void:
+	
 
 
 func _on_submit() -> void:

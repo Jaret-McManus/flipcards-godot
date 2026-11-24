@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0xwhx82t4fjk"]
 
-[ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/add_card_popup/add_card_popup.gd" id="1_tpvna"]
-[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_absbi"]
+[ext_resource type="Script" uid="uid://blhkfy0jyu3ic" path="res://root/deck_home/card_popup/card_popup.gd" id="1_73epx"]
+[ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="2_l0gng"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_absbi"]
 device = -1
@@ -23,7 +23,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"FullscreenPopupPanel"
-script = ExtResource("1_tpvna")
+script = ExtResource("1_73epx")
 popup_title = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PopupTitle")
 a_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAInput")
 a_error = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SideAError")
@@ -84,7 +84,7 @@ keep_editing_on_text_submit = true
 layout_mode = 2
 theme_type_variation = &"ErrorLabel"
 
-[node name="SubmitButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_absbi")]
+[node name="SubmitButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("2_l0gng")]
 layout_mode = 2
 text = "Add Card"
 shortcut = SubResource("Shortcut_fywr5")
@@ -108,7 +108,7 @@ theme_override_constants/margin_bottom = 5
 text = "Add Card"
 horizontal_alignment = 1
 
-[node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=524433527 instance=ExtResource("2_absbi")]
+[node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=524433527 instance=ExtResource("2_l0gng")]
 layout_mode = 2
 text = "Cancel"
 alignment = 1
@@ -132,7 +132,7 @@ theme_override_font_sizes/normal_font_size = 0
 text = "Cancel"
 horizontal_alignment = 1
 
-[node name="DeleteButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854729175 instance=ExtResource("2_absbi")]
+[node name="DeleteButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854729175 instance=ExtResource("2_l0gng")]
 visible = false
 layout_mode = 2
 text = "Delete Card"
