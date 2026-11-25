@@ -2,14 +2,17 @@ class_name DeckPracticeModel extends Node
 
 signal time_updated(time_string: String)
 signal card_updated(card: Card, index: int, total_cards: int)
-signal practice_finished()
+signal practice_finished(time_elapsed: String, cards_practiced: int, score: Score)
 
 const SubmissionType = Card.SubmissionType
 
 var deck: Deck
 
+var _is_practicing: bool = true
 var _elapsed_time: float = 0.0
+
 var _num_cards_to_practice: int = 10
+var _score: Score = Score.new_score()
 var _cards: Array[Card] = []
 var _index: int = 0
 
@@ -19,6 +22,8 @@ var _time_string: String:
 
 
 func _process(delta: float) -> void: 
+	if not _is_practicing: process_mode = Node.PROCESS_MODE_DISABLED
+	
 	_elapsed_time += delta
 	var formatted_time: String = _format_time(_elapsed_time)
 	if _time_string != formatted_time:
@@ -36,14 +41,17 @@ func init_card() -> void:
 
 
 func next_card(type: SubmissionType) -> void:
-	if _index + 1 >= _num_cards_to_practice:
-		print("Emitting `practice_finished`")
-		practice_finished.emit()
-		return
-	
 	var current_card: Card = _cards[_index]
 	current_card.update_score(type)
-	print(current_card.score.dont_know_count)
+	_score.add_submission(type)
+	
+	if _index + 1 >= _num_cards_to_practice:
+		_is_practicing = false
+		practice_finished.emit(
+			_time_string, _num_cards_to_practice, _score
+		)
+		DeckSaveLoad.save_deck(deck)
+		return
 	
 	_index += 1
 	card_updated.emit(_cards[_index], _index, _num_cards_to_practice)

@@ -29,3 +29,9 @@ func add_submission(type: SubmissionType) -> void:
 	# match statement may possibly fail
 	# so update total count afterwards
 	practice_count += 1
+
+
+func _to_string() -> String:
+	return "<Score#{rid}: %d|%d|%d|%d>".format({
+		"rid": get_rid()
+	}) % [easy_count, medium_count, hard_count, dont_know_count]

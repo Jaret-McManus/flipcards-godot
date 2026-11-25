@@ -128,7 +128,9 @@ left_padding = 5
 all_padding = 5
 
 [node name="FinishedContent" type="VBoxContainer" parent="ContentVBox" unique_id=1195708209]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="DeckBottom" type="PanelContainer" parent="ContentVBox" unique_id=1199795944]
 layout_mode = 2
@@ -158,4 +160,5 @@ script = ExtResource("2_ypxxv")
 script = ExtResource("3_amxph")
 
 [connection signal="card_updated" from="DeckPracticeModel" to="." method="_on_card_updated"]
+[connection signal="practice_finished" from="DeckPracticeModel" to="." method="_on_practice_finished"]
 [connection signal="time_updated" from="DeckPracticeModel" to="." method="_on_time_updated"]

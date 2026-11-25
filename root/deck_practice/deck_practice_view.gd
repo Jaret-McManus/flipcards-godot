@@ -45,14 +45,17 @@ func bind_signals_to_root(root: RootView) -> void:
 	)
 
 
+func _populate_finished_section(
+	time_elapsed: String, cards_practiced: int, score: Score
+) -> void:
+	timer_label.text = "Finished in %s" % time_elapsed
+	progress_label.text = "Studied %s cards" % cards_practiced
+	print(score)
+
+
+#region Signal Handlers
 func _on_time_updated(time_string: String) -> void:
 	timer_label.text = time_string
-
-
-func _transition_to_deck_home(root: RootView) -> void:
-	root.set_subview(
-		DeckHomeView.create(model.deck)
-	)
 
 
 func _on_card_updated(card: Card, index: int, total_cards: int) -> void:
@@ -61,8 +64,25 @@ func _on_card_updated(card: Card, index: int, total_cards: int) -> void:
 	progress_label.text = "%s / %s" % [index + 1, total_cards]
 
 
+func _on_practice_finished(
+	time_elapsed: String, cards_practiced: int, score: Score
+) -> void: 
+	# switch to finished ui
+	in_progress_section.visible = false
+	
+	_populate_finished_section(time_elapsed, cards_practiced, score)
+	finished_section.visible = true
+#endregion
+
+
 func _setup_controller(p_model: DeckPracticeModel) -> void:
 	controller._model = p_model
 	controller.bind_submission_buttons(
 		easy_button, medium_button, hard_button, dont_know_button
+	)
+
+
+func _transition_to_deck_home(root: RootView) -> void:
+	root.set_subview(
+		DeckHomeView.create(model.deck)
 	)

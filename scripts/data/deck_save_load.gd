@@ -5,6 +5,7 @@ const file_type: String = "tres"
 static var save_file_path_template: String = \
 	save_path + "%s.{file_type}".format({"file_type": file_type})
 
+
 static func save_deck(deck: Deck) -> void:
 	var global_path: String = ProjectSettings.globalize_path(save_path)
 	if not DirAccess.dir_exists_absolute(global_path):
