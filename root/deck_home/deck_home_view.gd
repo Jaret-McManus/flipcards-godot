@@ -3,17 +3,27 @@ class_name DeckHomeView extends SubcontentView
 
 const DECK_HOME_SCENE = preload("uid://c82giurngorkg")
 
+var empty_section: EmptySection
+
 @export var model: DeckHomeModel
 
 @export_group("Internal Nodes")
+@export_subgroup("MVC")
 @export var controller: DeckHomeController
 
+@export_subgroup("Header")
 @export var top_section: Control
 @export var deck_label: Label
+@export var start_practice_btn: PaddedButton
+
+@export_subgroup("Middle Section")
+@export var main_section: ScrollContainer
 @export var centered_grid: CenteredGridContainer
+
+@export_subgroup("Popup")
 @export var card_popup: CardPopup
 
-@export var start_practice_btn: PaddedButton
+@export_subgroup("Footer")
 @export var add_card_btn: PaddedButton
 @export var back_deck_btn: PaddedButton
 
@@ -31,6 +41,9 @@ static func create(deck: Deck) -> DeckHomeView:
 	return instance
 
 
+func _ready() -> void: Assert.exports_nonnull(self)
+
+
 func bind_signals_to_root(root_view: RootView) -> void:
 	back_deck_btn.pressed.connect(
 		_transition_to_deck_select.bind(root_view)
@@ -44,6 +57,10 @@ func bind_signals_to_root(root_view: RootView) -> void:
 ## Also connects view to mutation signals from [DeckHomeModel]
 func setup(deck: Deck, p_model: DeckHomeModel) -> void:
 	deck_label.text = deck.name
+	
+	if p_model.deck.cards.size() == 0:
+		empty_section = EmptySection.create("cards")
+		main_section.add_child(empty_section)
 	
 	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
 	p_model.new_card_added.connect(_add_card_view)
@@ -85,6 +102,8 @@ func _on_close_popup() -> void:
 
 
 func _add_card_view(card: Card) -> void:
+	if empty_section: main_section.remove_child(empty_section)
+	
 	var card_view := CardView.create(card)
 	card_view.edit_card_pressed.connect(
 		controller.on_edit_card_pressed

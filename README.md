@@ -5,9 +5,11 @@
 - Theme update
 
 ### DeckSelect
+- Refactor with Nodes for Model/Controller, connect with signals
 - Remove Deck
 
 ### DeckHome
+- Refactor with Nodes for Model/Controller, connect with signals
 - Default No cards added yet panel
 - Show some deck stats
 
