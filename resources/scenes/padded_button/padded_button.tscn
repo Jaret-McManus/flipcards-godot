@@ -11,6 +11,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_bg772")
+shortcut_in_tooltip = null
 inner_button = NodePath("Button")
 padding_container = NodePath("MarginContainer")
 label = NodePath("MarginContainer/RichTextLabel")

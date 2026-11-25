@@ -4,27 +4,23 @@ class_name PaddedButton extends MarginContainer
 signal pressed
 
 @export var text: String:
-	set(s):
-		text = s
-		label.text = s
-@export var shortcut: Shortcut:
-	set(s):
-		shortcut = s
-		inner_button.shortcut = s
+	set(s): text = s; label.text = s
 @export var disabled: bool:
-	set(b):
-		disabled = b
-		inner_button.disabled = b
+	set(b): disabled = b; inner_button.disabled = b
 @export var button_focus_mode: FocusMode = Control.FOCUS_ALL:
-	set(fm):
+	set(fm): 
 		button_focus_mode = fm
 		if inner_button: inner_button.focus_mode = fm
 
+@export_subgroup("Shortcut")
+@export var shortcut: Shortcut:
+	set(s): shortcut = s; inner_button.shortcut = s
+@export var shortcut_in_tooltip: bool:
+	set(b): shortcut_in_tooltip = b; inner_button.shortcut_in_tooltip = b
+
 @export_group("Text")
 @export var alignment: HorizontalAlignment:
-	set(ha):
-		alignment = ha
-		label.horizontal_alignment = ha
+	set(ha): alignment = ha; label.horizontal_alignment = ha
 @export var font_size: int:
 	set(i):
 		font_size = i

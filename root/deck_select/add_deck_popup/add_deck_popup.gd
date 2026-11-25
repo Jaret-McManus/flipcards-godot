@@ -1,6 +1,7 @@
 class_name AddDeckPopup extends PanelContainer
 
 signal submitted_add_deck(deck_name: String)
+signal close_popup()
 
 const StringResult = Result.StringResult
 const StringOption = Option.StringOption
@@ -23,6 +24,9 @@ func setup_open() -> void:
 	name_input.grab_focus()
 
 
+func _on_cancel() -> void: close_popup.emit()
+
+
 func _on_submit() -> void:
 	_g_any_error = false
 	
@@ -35,6 +39,8 @@ func _on_submit() -> void:
 	
 	if not _g_any_error:
 		submitted_add_deck.emit(name_result.value)
+	else:
+		name_input.grab_focus()
 
 
 func _clean_and_validate_input(string: String) -> StringResult:

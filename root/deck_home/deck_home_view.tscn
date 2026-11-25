@@ -19,6 +19,22 @@ unicode = 97
 [sub_resource type="Shortcut" id="Shortcut_sv4gc"]
 events = [SubResource("InputEventKey_sv4gc")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_pnu37"]
+device = -1
+keycode = 4194308
+
+[sub_resource type="InputEventKey" id="InputEventKey_h4vgl"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="InputEventKey" id="InputEventKey_mtka4"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_pnu37"]
+events = [SubResource("InputEventKey_pnu37"), SubResource("InputEventKey_h4vgl"), SubResource("InputEventKey_mtka4")]
+
 [node name="DeckHomeView" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "deck_label", "start_practice_btn", "main_section", "centered_grid", "card_popup", "add_card_btn", "back_deck_btn")]
 layout_mode = 3
 anchors_preset = 15
@@ -72,6 +88,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 22
 text = "Start a Practice Session"
+shortcut_in_tooltip = false
 bottom_margin = 22
 top_padding = 8
 right_padding = 150
@@ -103,6 +120,7 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 10
 text = "[u]A[/u]dd Card"
 shortcut = SubResource("Shortcut_sv4gc")
+shortcut_in_tooltip = false
 top_margin = 10
 right_margin = 30
 bottom_margin = 10
@@ -119,6 +137,8 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 text = "[u]B[/u]ack to Deck Select"
+shortcut = SubResource("Shortcut_pnu37")
+shortcut_in_tooltip = false
 top_margin = 10
 bottom_margin = 10
 left_margin = 30

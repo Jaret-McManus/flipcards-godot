@@ -14,6 +14,13 @@ keycode = 4194310
 [sub_resource type="Shortcut" id="Shortcut_vibry"]
 events = [SubResource("InputEventKey_absbi"), SubResource("InputEventKey_rwnfw")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_i7ll5"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_i7ll5"]
+events = [SubResource("InputEventKey_i7ll5")]
+
 [node name="AddDeckPopup" type="PanelContainer" unique_id=1087668677 node_paths=PackedStringArray("name_input", "name_error")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,10 +74,11 @@ keep_editing_on_text_submit = true
 layout_mode = 2
 theme_type_variation = &"ErrorLabel"
 
-[node name="PaddedButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("1_d5we1")]
+[node name="AddDeckButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1816726834 instance=ExtResource("1_d5we1")]
 layout_mode = 2
-text = "[u]A[/u]dd Deck"
+text = "Add Deck"
 shortcut = SubResource("Shortcut_vibry")
+shortcut_in_tooltip = false
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -78,19 +86,50 @@ bottom_padding = 5
 left_padding = 5
 all_padding = 5
 
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="0" unique_id=828522269]
+[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" index="0" unique_id=828522269]
 shortcut = SubResource("Shortcut_vibry")
+shortcut_in_tooltip = false
 
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton" index="1" unique_id=1233601729]
+[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" index="1" unique_id=1233601729]
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton/MarginContainer" index="0" unique_id=1555916363]
-text = "[u]A[/u]dd Deck"
+[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton/MarginContainer" index="0" unique_id=1555916363]
+text = "Add Deck"
+horizontal_alignment = 1
+
+[node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=916460696 instance=ExtResource("1_d5we1")]
+layout_mode = 2
+text = "Cancel"
+shortcut = SubResource("Shortcut_i7ll5")
+shortcut_in_tooltip = false
+alignment = 1
+top_padding = 5
+right_padding = 5
+bottom_padding = 5
+left_padding = 5
+all_padding = 5
+
+[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="0" unique_id=828522269]
+theme_type_variation = &"GrayButton"
+shortcut = SubResource("Shortcut_i7ll5")
+
+[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="1" unique_id=1233601729]
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton/MarginContainer" index="0" unique_id=1555916363]
+theme_override_font_sizes/normal_font_size = 0
+text = "Cancel"
 horizontal_alignment = 1
 
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_submit" unbinds=1]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" to="." method="_on_submit"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_cancel"]
 
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PaddedButton"]
+[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton"]
+[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton"]
