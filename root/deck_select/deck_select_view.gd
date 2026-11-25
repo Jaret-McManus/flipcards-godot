@@ -5,14 +5,26 @@ const DECK_SELECT_SCENE = preload("uid://cor2feloiy1ih")
 
 signal open_deck(deck: Deck)
 
+var empty_section: EmptySection
+
 @export var model: DeckSelectModel
 
 @export_group("Internal Nodes")
+@export_subgroup("MVC")
+@export var controller: DeckSelectController
+
+@export_subgroup("Header")
 @export var top_bar_margin: MarginContainer
 @export var title_label: RichTextLabel
+
+@export_subgroup("Middle Content")
+@export var main_section: ScrollContainer
 @export var grid: CenteredGridContainer
-@export var controller: DeckSelectController
+
+@export_subgroup("Popup")
 @export var add_deck_popup: AddDeckPopup
+
+@export_subgroup("Footer")
 @export var add_deck_button: PaddedButton
 
 
@@ -21,6 +33,7 @@ func _ready() -> void:
 	_setup_model()
 	_setup_controller(model)
 	_setup_view(model)
+	Assert.exports_nonnull(self)
 
 
 static func create() -> DeckSelectView:
@@ -33,6 +46,9 @@ func bind_signals_to_root(root_view: RootView) -> void:
 
 
 func add_deck(deck: Deck) -> void:
+	# remove no decks section
+	if empty_section: main_section.remove_child(empty_section)
+		
 	var deck_view: DeckView = DeckView.create(deck.name, deck.cards.size())
 	grid.add_node(deck_view)
 	
@@ -74,6 +90,9 @@ func _setup_controller(p_model: DeckSelectModel) -> void:
 
 func _setup_view(p_model: DeckSelectModel) -> void:
 	add_deck_popup.build(p_model)
+	if p_model.decks.size() == 0:
+		empty_section = EmptySection.create("decks")
+		main_section.add_child(empty_section)
 
 
 func _transition_to_deck_home(deck: Deck, root_view: RootView) -> void:
