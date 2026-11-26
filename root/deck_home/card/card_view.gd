@@ -16,11 +16,19 @@ const CARD_VIEW_SCENE = preload("uid://dg7cio7p6lin5")
 var card: Card
 
 
-static func create(p_card: Card) -> CardView:
+static func create(p_card: Card, p_deck_home_controller: DeckHomeController) -> CardView:
 	var instance: CardView = CARD_VIEW_SCENE.instantiate()
 	instance.card = p_card
 	instance.side_a_label.text = p_card.side_a_text
 	instance.side_b_label.text = p_card.side_b_text
+	
+	instance.edit_card_pressed.connect(
+		p_deck_home_controller.on_edit_card_pressed
+	)
+	instance.delete_card_pressed.connect(
+		p_deck_home_controller.on_delete_card_pressed
+	)
+	
 	return instance
 
 

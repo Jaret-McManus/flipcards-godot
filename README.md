@@ -3,16 +3,16 @@
 ## Todo:
 
 ### Project
+- Make cross node signal handles public convention with no underscore
+- Make exports and member vars private convnetion unless used externally
 - Theme update
 
 ### DeckSelect
 - Sort decks by date created
-- Refactor with Nodes for Model/Controller, connect with signals
 - Remove Deck
 
 ### DeckHome
 - Sort cards by date created
-- Refactor with Nodes for Model/Controller, connect with signals
 - Default No cards added yet panel
 - Show some deck stats
 
@@ -20,6 +20,7 @@
 - fix: No cards = infinite recursion collecting nothing
 - Implement shortcuts for submission buttons
 - Implement End Practice
+	- Show Practice stats
 	- Change footer to have "Proceed to Home" button
 
 ## Deck/Card

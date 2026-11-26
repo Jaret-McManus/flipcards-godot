@@ -1,123 +1,114 @@
-@tool
 class_name DeckHomeView extends SubcontentView
 
 const DECK_HOME_SCENE = preload("uid://c82giurngorkg")
 
-var empty_section: EmptySection
-
-@export var model: DeckHomeModel
+var _empty_section: EmptySection
 
 @export_group("Internal Nodes")
 @export_subgroup("MVC")
-@export var controller: DeckHomeController
+@export var _controller: DeckHomeController
+@export var _model: DeckHomeModel
 
 @export_subgroup("Header")
-@export var top_section: Control
-@export var deck_label: Label
-@export var start_practice_btn: PaddedButton
+@export var _deck_label: Label
+@export var _start_practice_btn: PaddedButton
 
 @export_subgroup("Middle Section")
-@export var main_section: ScrollContainer
-@export var centered_grid: CenteredGridContainer
+@export var _main_section: ScrollContainer
+@export var _centered_grid: CenteredGridContainer
 
 @export_subgroup("Popup")
-@export var card_popup: CardPopup
+@export var _card_popup: CardPopup
 
 @export_subgroup("Footer")
-@export var add_card_btn: PaddedButton
-@export var back_deck_btn: PaddedButton
+@export var _add_card_btn: PaddedButton
+@export var _back_deck_btn: PaddedButton
 
 
 static func create(deck: Deck) -> DeckHomeView:
 	var instance: DeckHomeView = DECK_HOME_SCENE.instantiate()
-	instance.model.setup(instance, deck)
-	instance.controller.setup(instance.model)
-	instance.setup(deck, instance.model)
+	Assert.exports_nonnull(instance)
 	
-	ObjectUtils.check_signals(instance.model)
-	ObjectUtils.check_signals(instance.controller)
+	instance._model.setup(deck)
+	instance._controller.setup(instance._model)
+	instance.setup(deck, instance._model)
+	
+	ObjectUtils.check_signals(instance._model)
+	ObjectUtils.check_signals(instance._controller)
 	ObjectUtils.check_signals(instance)
 	
 	return instance
 
 
-func _ready() -> void: Assert.exports_nonnull(self)
-
-
 func bind_signals_to_root(root_model: RootModel) -> void:
-	back_deck_btn.pressed.connect(
+	_back_deck_btn.pressed.connect(
 		_transition_to_deck_select.bind(root_model)
 	)
-	start_practice_btn.pressed.connect(
+	_start_practice_btn.pressed.connect(
 		_transition_to_practice_deck.bind(root_model)
 	)
 
 
-## Populates [DeckHomeView] object with data from [Deck].
-## Also connects view to mutation signals from [DeckHomeModel]
-func setup(deck: Deck, p_model: DeckHomeModel) -> void:
-	deck_label.text = deck.name
-	
-	if p_model.deck.cards.size() == 0:
-		empty_section = EmptySection.create("cards")
-		main_section.add_child(empty_section)
-	
-	p_model.open_add_card_popup.connect(_on_open_add_card_popup)
-	p_model.new_card_added.connect(_add_card_view)
-	p_model.open_edit_card_popup.connect(_on_open_edit_card_popup)
-	p_model.open_delete_card_popup.connect(_on_open_delete_card_popup)
-	p_model.close_popup.connect(_on_close_popup)
-	
-	for card: Card in deck.cards:
-		_add_card_view(card)
+func setup(deck: Deck, model: DeckHomeModel) -> void:
+	_deck_label.text = deck.name
+	_fetch_cards(model, _centered_grid)
 
 
-func reinstantiate_cards() -> void:
-	centered_grid.clear()
+#region model connections
+func on_open_add_card_popup() -> void:
+	_card_popup.setup_add_card_popup()
+	_open_popup()
+
+
+func on_card_added(card: Card) -> void: _add_card_view(card)
+
+
+func on_open_edit_card_popup(card_view: CardView) -> void:
+	_card_popup.setup_edit_card_popup(card_view)
+	_open_popup()
+
+
+func on_open_delete_card_popup(card_view: CardView) -> void:
+	_card_popup.setup_delete_card_popup(card_view)
+	_open_popup()
+
+
+func on_close_popup() -> void:
+	_toggle_nonpopup_buttons(true)
+	_card_popup.visible = false
+
+
+func on_card_deleted() -> void:
+	_fetch_cards(_model, _centered_grid)
+#endregion
+
+
+func _open_popup() -> void:
+	_toggle_nonpopup_buttons(false)
+	_card_popup.visible = true
+
+
+func _add_card_view(card: Card) -> void:
+	if _empty_section: _main_section.remove_child(_empty_section)
+	
+	var card_view := CardView.create(card, _controller)
+	_centered_grid.add_node(card_view)
+
+
+func _fetch_cards(model: DeckHomeModel, grid: CenteredGridContainer) -> void:
+	grid.clear()
+	
+	if model.deck.cards.size() == 0:
+		_empty_section = EmptySection.create_populate(_main_section, "cards")
+	
 	for card: Card in model.deck.cards:
 		_add_card_view(card)
 
 
-func _on_open_add_card_popup() -> void:
-	_toggle_nonpopup_buttons(false)
-	card_popup.setup_add_card_popup()
-	card_popup.visible = true
-
-
-func _on_open_edit_card_popup(card_view: CardView) -> void:
-	_toggle_nonpopup_buttons(false)
-	card_popup.setup_edit_card_popup(card_view)
-	card_popup.visible = true
-
-
-func _on_open_delete_card_popup(card_view: CardView) -> void:
-	_toggle_nonpopup_buttons(false)
-	card_popup.setup_delete_card_popup(card_view)
-	card_popup.visible = true
-
-
-func _on_close_popup() -> void:
-	_toggle_nonpopup_buttons(true)
-	card_popup.visible = false
-
-
-func _add_card_view(card: Card) -> void:
-	if empty_section: main_section.remove_child(empty_section)
-	
-	var card_view := CardView.create(card)
-	card_view.edit_card_pressed.connect(
-		controller.on_edit_card_pressed
-	)
-	card_view.delete_card_pressed.connect(
-		controller.on_delete_card_pressed
-	)
-	centered_grid.add_node(card_view)
-
-
 func _toggle_nonpopup_buttons(is_on: bool) -> void:
-	ControlUtils.set_button_disabled(start_practice_btn, not is_on)
-	ControlUtils.set_button_disabled(add_card_btn, not is_on)
-	ControlUtils.set_button_disabled(back_deck_btn, not is_on)
+	ControlUtils.set_button_disabled(_start_practice_btn, not is_on)
+	ControlUtils.set_button_disabled(_add_card_btn, not is_on)
+	ControlUtils.set_button_disabled(_back_deck_btn, not is_on)
 
 
 func _transition_to_deck_select(root_model: RootModel) -> void:
@@ -126,5 +117,5 @@ func _transition_to_deck_select(root_model: RootModel) -> void:
 
 
 func _transition_to_practice_deck(root_model: RootModel) -> void:
-	var deck_practice_view: DeckPractiveView = DeckPractiveView.create(model.deck)
+	var deck_practice_view: DeckPractiveView = DeckPractiveView.create(_model.deck)
 	root_model.set_subview(deck_practice_view)

@@ -1,4 +1,3 @@
-@tool
 class_name DeckHomeController extends Node
 
 const PopupMode = DeckHomeModel.PopupMode

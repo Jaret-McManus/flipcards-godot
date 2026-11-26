@@ -1,15 +1,11 @@
 [gd_scene format=3 uid="uid://c82giurngorkg"]
 
 [ext_resource type="Script" uid="uid://db1542kvslawt" path="res://root/deck_home/deck_home_view.gd" id="1_pnu37"]
-[ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="2_h4vgl"]
 [ext_resource type="PackedScene" uid="uid://cm1i3cl5ydhe8" path="res://resources/scenes/padded_button/padded_button.tscn" id="3_mtka4"]
 [ext_resource type="PackedScene" uid="uid://cyi07c5bg2ccs" path="res://resources/scenes/centered_grid/centered_grid.tscn" id="4_2rk0c"]
 [ext_resource type="Script" uid="uid://dxiupaebv6xj" path="res://root/deck_home/deck_home_controller.gd" id="5_gmyqj"]
 [ext_resource type="PackedScene" uid="uid://c0xwhx82t4fjk" path="res://root/deck_home/card_popup/card_popup.tscn" id="6_acb0u"]
-
-[sub_resource type="Resource" id="Resource_h3nt6"]
-script = ExtResource("2_h4vgl")
-metadata/_custom_type_script = "uid://d163tgwkshqcy"
+[ext_resource type="Script" uid="uid://d163tgwkshqcy" path="res://root/deck_home/deck_home_model.gd" id="6_pnu37"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_sv4gc"]
 device = -1
@@ -35,7 +31,7 @@ keycode = 4194319
 [sub_resource type="Shortcut" id="Shortcut_pnu37"]
 events = [SubResource("InputEventKey_pnu37"), SubResource("InputEventKey_h4vgl"), SubResource("InputEventKey_mtka4")]
 
-[node name="DeckHomeView" type="Control" unique_id=900742187 node_paths=PackedStringArray("controller", "top_section", "deck_label", "start_practice_btn", "main_section", "centered_grid", "card_popup", "add_card_btn", "back_deck_btn")]
+[node name="DeckHomeView" type="Control" unique_id=900742187 node_paths=PackedStringArray("_controller", "_model", "_deck_label", "_start_practice_btn", "_main_section", "_centered_grid", "_card_popup", "_add_card_btn", "_back_deck_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,16 +41,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_pnu37")
-model = SubResource("Resource_h3nt6")
-controller = NodePath("DeckHomeController")
-top_section = NodePath("PanelContainer/ContentVBox/DeckTop")
-deck_label = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/DeckLabel")
-start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
-main_section = NodePath("PanelContainer/ContentVBox/Control")
-centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
-card_popup = NodePath("CardPopup")
-add_card_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
-back_deck_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/BackDeckSelect")
+_controller = NodePath("DeckHomeController")
+_model = NodePath("DeckHomeModel")
+_deck_label = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/DeckLabel")
+_start_practice_btn = NodePath("PanelContainer/ContentVBox/DeckTop/VBoxContainer/StartPracticeButton")
+_main_section = NodePath("PanelContainer/ContentVBox/Control")
+_centered_grid = NodePath("PanelContainer/ContentVBox/Control/GridMargin/CenteredGrid")
+_card_popup = NodePath("CardPopup")
+_add_card_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/AddCard")
+_back_deck_btn = NodePath("PanelContainer/ContentVBox/DeckBottom/BackDeckSelect")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1741907402]
 layout_mode = 1
@@ -148,16 +143,25 @@ bottom_padding = 5
 left_padding = 16
 all_padding = 5
 
+[node name="CardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_acb0u")]
+visible = false
+layout_mode = 1
+
 [node name="DeckHomeController" type="Node" parent="." unique_id=1454335755]
 script = ExtResource("5_gmyqj")
 metadata/_custom_type_script = "uid://dxiupaebv6xj"
 
-[node name="CardPopup" parent="." unique_id=1302212048 instance=ExtResource("6_acb0u")]
-visible = false
-layout_mode = 1
+[node name="DeckHomeModel" type="Node" parent="." unique_id=1337953758]
+script = ExtResource("6_pnu37")
 
 [connection signal="pressed" from="PanelContainer/ContentVBox/DeckBottom/AddCard" to="DeckHomeController" method="on_add_card_pressed"]
 [connection signal="close_popup" from="CardPopup" to="DeckHomeController" method="_on_cancel_pressed"]
 [connection signal="submitted_add_card" from="CardPopup" to="DeckHomeController" method="on_add_card_submit"]
 [connection signal="submitted_delete_card" from="CardPopup" to="DeckHomeController" method="on_delete_card_submit"]
 [connection signal="submitted_edit_card" from="CardPopup" to="DeckHomeController" method="on_edit_card_submit"]
+[connection signal="card_added" from="DeckHomeModel" to="." method="on_card_added"]
+[connection signal="card_deleted" from="DeckHomeModel" to="." method="on_card_deleted"]
+[connection signal="close_popup" from="DeckHomeModel" to="." method="on_close_popup"]
+[connection signal="open_add_card_popup" from="DeckHomeModel" to="." method="on_open_add_card_popup"]
+[connection signal="open_delete_card_popup" from="DeckHomeModel" to="." method="on_open_delete_card_popup"]
+[connection signal="open_edit_card_popup" from="DeckHomeModel" to="." method="on_open_edit_card_popup"]

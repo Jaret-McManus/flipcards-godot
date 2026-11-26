@@ -4,7 +4,7 @@ const DECK_SELECT_SCENE = preload("uid://cor2feloiy1ih")
 
 signal open_deck(deck: Deck)
 
-var empty_section: EmptySection
+var _empty_section: EmptySection
 
 
 @export_group("Internal Nodes")
@@ -39,7 +39,7 @@ func bind_signals_to_root(root_model: RootModel) -> void:
 
 func _add_deck(deck: Deck) -> void:
 	# remove no decks section
-	if empty_section: main_section.remove_child(empty_section)
+	if _empty_section: main_section.remove_child(_empty_section)
 		
 	var deck_view: DeckView = DeckView.create(deck.name, deck.cards.size())
 	grid.add_node(deck_view)
@@ -55,8 +55,7 @@ func _popup_toggle_buttons(p_is_visible: bool) -> void:
 #region signals from DeckSelectModel
 func _on_decks_populated(decks: Dictionary[StringName, Deck]) -> void:
 	if decks.size() == 0:
-		empty_section = EmptySection.create("decks")
-		main_section.add_child(empty_section)
+		_empty_section = EmptySection.create_populate(main_section, "decks")
 	else:
 		for deck: Deck in decks.values():
 			_add_deck(deck)

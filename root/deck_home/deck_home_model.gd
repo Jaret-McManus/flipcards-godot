@@ -1,26 +1,24 @@
-@tool
-class_name DeckHomeModel extends Resource
+class_name DeckHomeModel extends Node
 
 signal open_add_card_popup()
-signal open_edit_card_popup(card_to_edit: Card)
-signal open_delete_card_popup(card_to_edit: Card)
-signal new_card_added(card: Card)
+signal open_edit_card_popup(card_view_to_edit: CardView)
+signal open_delete_card_popup(card_view_to_delete: CardView)
 signal close_popup()
+
+signal card_added(card: Card)
+signal card_deleted()
 
 const CARD_SCENE := preload("uid://dg7cio7p6lin5")
 const ObjectOption = Option.ObjectOption
 
 enum PopupMode { CLOSED, ADD_CARD, EDIT_CARD, DELETE_CARD }
 
-var _view: DeckHomeView
 var deck: Deck
 var current_card_view: CardView
 var popup_mode: PopupMode
 
 
-func setup(p_view: DeckHomeView, p_deck: Deck) -> void:
-	_view = p_view
-	deck = p_deck
+func setup(p_deck: Deck) -> void: deck = p_deck
 
 
 func is_popup_open() -> bool: return popup_mode != PopupMode.CLOSED
@@ -52,7 +50,7 @@ func set_popup_mode(
 func add_card(card: Card) -> void:
 	deck.cards.append(card)
 	DeckSaveLoad.save_deck(deck)
-	new_card_added.emit(card)
+	card_added.emit(card)
 
 
 func update_card(card: Card, side_a: String, side_b: String) -> void:
@@ -64,4 +62,4 @@ func update_card(card: Card, side_a: String, side_b: String) -> void:
 func delete_card(card: Card) -> void:
 	deck.cards.erase(card)
 	DeckSaveLoad.save_deck(deck)
-	_view.reinstantiate_cards()
+	card_deleted.emit()
