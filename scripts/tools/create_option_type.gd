@@ -7,13 +7,13 @@ const option_template: String = \
 	
 	static func none() -> {type_upper}Option:
 		var none_option: {type_upper}Option = {type_upper}Option.new()
-		none_option.has_value = false
+		none_option._has_value = false
 		return none_option
 	
 	
 	static func some(p_{type_lower}: {type}) -> {type_upper}Option:
 		var some_option: {type_upper}Option = {type_upper}Option.new()
-		some_option.has_value = true
+		some_option._has_value = true
 		some_option.value = p_{type_lower}
 		return some_option"
 

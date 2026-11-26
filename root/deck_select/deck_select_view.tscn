@@ -7,10 +7,6 @@
 [ext_resource type="Script" uid="uid://c12fmwplogtqj" path="res://root/deck_select/deck_select_controller.gd" id="6_mmjid"]
 [ext_resource type="PackedScene" uid="uid://b3j15i8ht6x6r" path="res://root/deck_select/add_deck_popup/add_deck_popup.tscn" id="7_mr0i5"]
 
-[sub_resource type="Resource" id="Resource_p8hip"]
-script = ExtResource("2_y7s37")
-metadata/_custom_type_script = "uid://bnrpsqfoklj8t"
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm4dp"]
 content_margin_top = 10.0
 
@@ -22,7 +18,7 @@ unicode = 97
 [sub_resource type="Shortcut" id="Shortcut_u0ya7"]
 events = [SubResource("InputEventKey_quc8y")]
 
-[node name="DeckSelect" type="PanelContainer" unique_id=378926495 node_paths=PackedStringArray("controller", "top_bar_margin", "title_label", "main_section", "grid", "add_deck_popup", "add_deck_button")]
+[node name="DeckSelect" type="PanelContainer" unique_id=378926495 node_paths=PackedStringArray("controller", "model", "main_section", "grid", "add_deck_popup", "add_deck_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,10 +27,8 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_c34vx")
-model = SubResource("Resource_p8hip")
 controller = NodePath("DeckSelectController")
-top_bar_margin = NodePath("MainVBox/TopBar/TopBarMargin")
-title_label = NodePath("MainVBox/TopBar/TopBarMargin/Title")
+model = NodePath("DeckSelectModel")
 main_section = NodePath("MainVBox/CardsSection")
 grid = NodePath("MainVBox/CardsSection/CenterContainer/CenteredGrid")
 add_deck_popup = NodePath("AddDeckPopup")
@@ -102,13 +96,20 @@ bottom_padding = 4
 left_padding = 20
 all_padding = 4
 
-[node name="DeckSelectController" type="Node" parent="." unique_id=2025875488]
-script = ExtResource("6_mmjid")
-
 [node name="AddDeckPopup" parent="." unique_id=1087668677 instance=ExtResource("7_mr0i5")]
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="MainVBox/BottomBar/AddDeckButton" to="DeckSelectController" method="on_add_deck"]
-[connection signal="close_popup" from="AddDeckPopup" to="." method="_set_add_deck_visibility" binds= [false]]
-[connection signal="submitted_add_deck" from="AddDeckPopup" to="DeckSelectController" method="_on_add_deck_submitted"]
+[node name="DeckSelectController" type="Node" parent="." unique_id=2025875488]
+script = ExtResource("6_mmjid")
+
+[node name="DeckSelectModel" type="Node" parent="." unique_id=431071304]
+script = ExtResource("2_y7s37")
+
+[connection signal="pressed" from="MainVBox/BottomBar/AddDeckButton" to="DeckSelectController" method="_on_add_deck_pressed"]
+[connection signal="add_deck_submitted" from="AddDeckPopup" to="DeckSelectController" method="_on_add_deck_submitted"]
+[connection signal="close_popup" from="AddDeckPopup" to="DeckSelectController" method="_on_close_popup"]
+[connection signal="add_deck_error_updated" from="DeckSelectModel" to="." method="_on_add_deck_error_message_updated"]
+[connection signal="deck_added" from="DeckSelectModel" to="." method="_on_deck_added"]
+[connection signal="decks_populated" from="DeckSelectModel" to="." method="_on_decks_populated"]
+[connection signal="popup_visibility_changed" from="DeckSelectModel" to="." method="_on_popup_visibility_changed"]

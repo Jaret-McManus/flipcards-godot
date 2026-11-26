@@ -1,4 +1,3 @@
-@tool
 class_name DeckSelectView extends SubcontentView
 
 const DECK_SELECT_SCENE = preload("uid://cor2feloiy1ih")
@@ -7,15 +6,11 @@ signal open_deck(deck: Deck)
 
 var empty_section: EmptySection
 
-@export var model: DeckSelectModel
 
 @export_group("Internal Nodes")
 @export_subgroup("MVC")
 @export var controller: DeckSelectController
-
-@export_subgroup("Header")
-@export var top_bar_margin: MarginContainer
-@export var title_label: RichTextLabel
+@export var model: DeckSelectModel
 
 @export_subgroup("Middle Content")
 @export var main_section: ScrollContainer
@@ -28,11 +23,8 @@ var empty_section: EmptySection
 @export var add_deck_button: PaddedButton
 
 
-# duplicate code, bc of way i set up root view 
 func _ready() -> void:
-	_setup_model()
-	_setup_controller(model)
-	_setup_view(model)
+	controller.setup(model)
 	Assert.exports_nonnull(self)
 
 
@@ -41,11 +33,11 @@ static func create() -> DeckSelectView:
 	return instance
 
 
-func bind_signals_to_root(root_view: RootView) -> void:
-	open_deck.connect(_transition_to_deck_home.bind(root_view))
+func bind_signals_to_root(root_model: RootModel) -> void:
+	open_deck.connect(_transition_to_deck_home.bind(root_model))
 
 
-func add_deck(deck: Deck) -> void:
+func _add_deck(deck: Deck) -> void:
 	# remove no decks section
 	if empty_section: main_section.remove_child(empty_section)
 		
@@ -56,45 +48,35 @@ func add_deck(deck: Deck) -> void:
 		open_deck.emit.bind(deck)
 	)
 
-
-func _on_top_bar_margin_changed(margin: Margin) -> void:
-	top_bar_margin["theme_override_constants/margin_top"] = margin.top
-	top_bar_margin["theme_override_constants/margin_right"] = margin.right
-	top_bar_margin["theme_override_constants/margin_bottom"] = margin.bottom
-	top_bar_margin["theme_override_constants/margin_left"] = margin.left
-
-
-func _on_title_font_size_changed(p_size: int) -> void:
-	title_label["theme_override_font_sizes/normal_font_size"] = p_size
-
-
 func _popup_toggle_buttons(p_is_visible: bool) -> void:
 	ControlUtils.set_button_disabled(add_deck_button, p_is_visible)
 
 
-func _set_add_deck_visibility(p_is_visible: bool) -> void:
+#region signals from DeckSelectModel
+func _on_decks_populated(decks: Dictionary[StringName, Deck]) -> void:
+	if decks.size() == 0:
+		empty_section = EmptySection.create("decks")
+		main_section.add_child(empty_section)
+	else:
+		for deck: Deck in decks.values():
+			_add_deck(deck)
+
+
+func _on_popup_visibility_changed(p_is_visible: bool) -> void:
 	add_deck_popup.visible = p_is_visible
 	_popup_toggle_buttons(p_is_visible)
 	if p_is_visible: add_deck_popup.setup_open()
 
 
-func _setup_model() -> void:
-	var decks: Dictionary[StringName, Deck] = DeckSaveLoad.load_all_decks()
-	model.build(self, decks)
-	model.popup_visibility_changed.connect(_set_add_deck_visibility)
+func _on_add_deck_error_message_updated(error_message: String) -> void:
+	add_deck_popup.name_error.text = error_message
 
 
-func _setup_controller(p_model: DeckSelectModel) -> void:
-	controller.build(p_model)
+func _on_deck_added(deck: Deck) -> void:
+	_add_deck(deck)
+#endregion
 
 
-func _setup_view(p_model: DeckSelectModel) -> void:
-	add_deck_popup.build(p_model)
-	if p_model.decks.size() == 0:
-		empty_section = EmptySection.create("decks")
-		main_section.add_child(empty_section)
-
-
-func _transition_to_deck_home(deck: Deck, root_view: RootView) -> void:
+func _transition_to_deck_home(deck: Deck, root_model: RootModel) -> void:
 	var deck_home_view: DeckHomeView = DeckHomeView.create(deck)
-	root_view.set_subview(deck_home_view)
+	root_model.set_subview(deck_home_view)

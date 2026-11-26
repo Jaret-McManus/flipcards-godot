@@ -36,12 +36,12 @@ func set_popup_mode(
 	elif popup_mode == PopupMode.ADD_CARD:
 		open_add_card_popup.emit()
 	elif popup_mode == PopupMode.EDIT_CARD:
-		assert(card_view_option.has_value)
+		assert(card_view_option.is_some())
 		var card_view: CardView = card_view_option.value as CardView
 		current_card_view = card_view
 		open_edit_card_popup.emit(card_view)
 	elif popup_mode == PopupMode.DELETE_CARD:
-		assert(card_view_option.has_value)
+		assert(card_view_option.is_some())
 		var card_view: CardView = card_view_option.value as CardView
 		current_card_view = card_view
 		open_delete_card_popup.emit(card_view)

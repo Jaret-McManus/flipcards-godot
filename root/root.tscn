@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://411mif5t8adc" path="res://root/root_view.gd" id="1_1xv2g"]
 [ext_resource type="Script" uid="uid://cocbhdq6ijae6" path="res://root/root_controller.gd" id="2_j4b2l"]
-[ext_resource type="PackedScene" uid="uid://cor2feloiy1ih" path="res://root/deck_select/deck_select_view.tscn" id="2_js5vo"]
+[ext_resource type="PackedScene" uid="uid://cor2feloiy1ih" path="res://root/deck_select/deck_select_view.tscn" id="4_b33ej"]
+[ext_resource type="Script" uid="uid://dh4bsx22qn12m" path="res://root/root_model.gd" id="4_ovlcs"]
 
-[node name="RootView" type="Control" unique_id=1615447250 node_paths=PackedStringArray("subview_control", "controller")]
+[node name="RootView" type="Control" unique_id=1615447250 node_paths=PackedStringArray("subview_control", "controller", "model")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,9 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xv2g")
-initial_subview_scene = ExtResource("2_js5vo")
 subview_control = NodePath("SubView")
 controller = NodePath("RootController")
+model = NodePath("RootModel")
 
 [node name="SubView" type="Control" parent="." unique_id=1416269713]
 layout_mode = 1
@@ -26,3 +27,9 @@ grow_vertical = 2
 
 [node name="RootController" type="Node" parent="." unique_id=500928488]
 script = ExtResource("2_j4b2l")
+
+[node name="RootModel" type="Node" parent="." unique_id=563194318]
+script = ExtResource("4_ovlcs")
+initial_subview_scene = ExtResource("4_b33ej")
+
+[connection signal="subview_changed" from="RootModel" to="." method="_on_subview_changed"]

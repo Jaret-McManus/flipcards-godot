@@ -1,15 +1,18 @@
-class_name RootModel extends RefCounted
+class_name RootModel extends Node
 
-var view: RootView
+signal subview_changed(subview: SubcontentView)
 
-var current_subview: SubcontentView:
-	set(v):
-		current_subview = v
-		view.set_subview(v)
+@export var initial_subview_scene: PackedScene
+
+var _current_subview: SubcontentView:
+	set(sv): _current_subview = sv; subview_changed.emit(sv)
 
 
-static func create(p_view: ContentView, p_subcontent_view_scene: PackedScene) -> RootModel:
-	var model := RootModel.new()
-	model.view = p_view
-	model.current_subview = p_subcontent_view_scene.instantiate()
-	return model
+# check if `initial_subview_script` is valid then send data to view
+func _ready() -> void: 
+	var inital_instance: SubcontentView = initial_subview_scene.instantiate()
+	_current_subview = inital_instance
+
+
+func set_subview(new_subview: SubcontentView) -> void:
+	_current_subview = new_subview

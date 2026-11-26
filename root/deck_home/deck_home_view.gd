@@ -44,12 +44,12 @@ static func create(deck: Deck) -> DeckHomeView:
 func _ready() -> void: Assert.exports_nonnull(self)
 
 
-func bind_signals_to_root(root_view: RootView) -> void:
+func bind_signals_to_root(root_model: RootModel) -> void:
 	back_deck_btn.pressed.connect(
-		_transition_to_deck_select.bind(root_view)
+		_transition_to_deck_select.bind(root_model)
 	)
 	start_practice_btn.pressed.connect(
-		_transition_to_practice_deck.bind(root_view)
+		_transition_to_practice_deck.bind(root_model)
 	)
 
 
@@ -120,11 +120,11 @@ func _toggle_nonpopup_buttons(is_on: bool) -> void:
 	ControlUtils.set_button_disabled(back_deck_btn, not is_on)
 
 
-func _transition_to_deck_select(root_view: RootView) -> void:
+func _transition_to_deck_select(root_model: RootModel) -> void:
 	var deck_select_view: DeckSelectView = DeckSelectView.create()
-	root_view.set_subview(deck_select_view)
+	root_model.set_subview(deck_select_view)
 
 
-func _transition_to_practice_deck(root_view: RootView) -> void:
+func _transition_to_practice_deck(root_model: RootModel) -> void:
 	var deck_practice_view: DeckPractiveView = DeckPractiveView.create(model.deck)
-	root_view.set_subview(deck_practice_view)
+	root_model.set_subview(deck_practice_view)

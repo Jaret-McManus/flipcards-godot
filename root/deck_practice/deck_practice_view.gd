@@ -39,9 +39,9 @@ static func create(deck: Deck) -> DeckPractiveView:
 func _ready() -> void: Assert.exports_nonnull(self)
 
 
-func bind_signals_to_root(root: RootView) -> void: 
+func bind_signals_to_root(root_model: RootModel) -> void: 
 	back_to_deck_home.pressed.connect(
-		_transition_to_deck_home.bind(root)
+		_transition_to_deck_home.bind(root_model)
 	)
 
 
@@ -82,7 +82,6 @@ func _setup_controller(p_model: DeckPracticeModel) -> void:
 	)
 
 
-func _transition_to_deck_home(root: RootView) -> void:
-	root.set_subview(
-		DeckHomeView.create(model.deck)
-	)
+func _transition_to_deck_home(root_model: RootModel) -> void:
+	var deck_home_view := DeckHomeView.create(model.deck)
+	root_model.set_subview(deck_home_view)

@@ -115,6 +115,7 @@ all_padding = 5
 [node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="0" unique_id=828522269]
 theme_type_variation = &"GrayButton"
 shortcut = SubResource("Shortcut_i7ll5")
+shortcut_in_tooltip = false
 
 [node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="1" unique_id=1233601729]
 theme_override_constants/margin_left = 5
@@ -127,6 +128,7 @@ theme_override_font_sizes/normal_font_size = 0
 text = "Cancel"
 horizontal_alignment = 1
 
+[connection signal="gui_input" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_submit" unbinds=1]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" to="." method="_on_submit"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_cancel"]

@@ -6,10 +6,12 @@
 - Theme update
 
 ### DeckSelect
+- Sort decks by date created
 - Refactor with Nodes for Model/Controller, connect with signals
 - Remove Deck
 
 ### DeckHome
+- Sort cards by date created
 - Refactor with Nodes for Model/Controller, connect with signals
 - Default No cards added yet panel
 - Show some deck stats
@@ -21,6 +23,7 @@
 	- Change footer to have "Proceed to Home" button
 
 ## Deck/Card
+- Add created date
 - Add a form of moving average, possibly only remembering past n submissions
 
 ### Other
