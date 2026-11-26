@@ -7,6 +7,38 @@
 [ext_resource type="Script" uid="uid://d0f31teguvu6q" path="res://root/deck_practice/deck_practice_controller.gd" id="2_ypxxv"]
 [ext_resource type="Script" uid="uid://cldfwvqh3hife" path="res://root/deck_practice/deck_practice_model.gd" id="3_amxph"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_khvyy"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_gotoy"]
+events = [SubResource("InputEventKey_khvyy")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_83dyv"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_f5m8r"]
+events = [SubResource("InputEventKey_83dyv")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_iwcsu"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_khvyy"]
+events = [SubResource("InputEventKey_iwcsu")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hsjc7"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_hsjc7"]
+events = [SubResource("InputEventKey_hsjc7")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_m72db"]
 device = -1
 keycode = 66
@@ -87,6 +119,8 @@ theme_type_variation = &"ButtonRow"
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Easy"
+shortcut = SubResource("Shortcut_gotoy")
+shortcut_in_tooltip = false
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -98,6 +132,8 @@ all_padding = 5
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Medium"
+shortcut = SubResource("Shortcut_f5m8r")
+shortcut_in_tooltip = false
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -109,6 +145,8 @@ all_padding = 5
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Hard"
+shortcut = SubResource("Shortcut_khvyy")
+shortcut_in_tooltip = false
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -120,6 +158,8 @@ all_padding = 5
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Don't Know"
+shortcut = SubResource("Shortcut_hsjc7")
+shortcut_in_tooltip = false
 alignment = 1
 top_padding = 5
 right_padding = 5
@@ -144,6 +184,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 text = "[u]B[/u]ack to Deck Home"
 shortcut = SubResource("Shortcut_m72db")
+shortcut_in_tooltip = false
 top_margin = 10
 bottom_margin = 10
 left_margin = 30
