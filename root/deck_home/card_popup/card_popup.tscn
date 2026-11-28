@@ -127,20 +127,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
-
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton" index="0" unique_id=828522269]
-shortcut = SubResource("Shortcut_fywr5")
-shortcut_in_tooltip = false
-
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton" index="1" unique_id=1233601729]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton/MarginContainer" index="0" unique_id=1555916363]
-text = "Add Card"
-horizontal_alignment = 1
+theme_variation = &""
 
 [node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=524433527 instance=ExtResource("2_xnd66")]
 layout_mode = 2
@@ -152,21 +139,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
-
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="0" unique_id=828522269]
-theme_type_variation = &"GrayButton"
-shortcut_in_tooltip = false
-
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="1" unique_id=1233601729]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton/MarginContainer" index="0" unique_id=1555916363]
-theme_override_font_sizes/normal_font_size = 0
-text = "Cancel"
-horizontal_alignment = 1
+theme_variation = &"GrayButton"
 
 [node name="DeleteButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854729175 instance=ExtResource("2_xnd66")]
 visible = false
@@ -179,27 +152,10 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
-
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton" index="0" unique_id=828522269]
-theme_type_variation = &"NegativeButton"
-shortcut_in_tooltip = false
-
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton" index="1" unique_id=1233601729]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton/MarginContainer" index="0" unique_id=1555916363]
-text = "Delete Card"
-horizontal_alignment = 1
+theme_variation = &"NegativeButton"
 
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideAInput" to="." method="_on_submit" unbinds=1]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CardModifyInput/SideBInput" to="." method="_on_submit" unbinds=1]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton" to="." method="_on_submit"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_cancel"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton" to="." method="_on_delete"]
-
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SubmitButton"]
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton"]
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DeleteButton"]

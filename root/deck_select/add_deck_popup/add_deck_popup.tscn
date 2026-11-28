@@ -85,20 +85,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
-
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" index="0" unique_id=828522269]
-shortcut = SubResource("Shortcut_vibry")
-shortcut_in_tooltip = false
-
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" index="1" unique_id=1233601729]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton/MarginContainer" index="0" unique_id=1555916363]
-text = "Add Deck"
-horizontal_alignment = 1
+theme_variation = &""
 
 [node name="CancelButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=916460696 instance=ExtResource("1_d5we1")]
 layout_mode = 2
@@ -111,27 +98,9 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
-
-[node name="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="0" unique_id=828522269]
-theme_type_variation = &"GrayButton"
-shortcut = SubResource("Shortcut_i7ll5")
-shortcut_in_tooltip = false
-
-[node name="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" index="1" unique_id=1233601729]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton/MarginContainer" index="0" unique_id=1555916363]
-theme_override_font_sizes/normal_font_size = 0
-text = "Cancel"
-horizontal_alignment = 1
+theme_variation = &"GrayButton"
 
 [connection signal="gui_input" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NameInput" to="." method="_on_submit" unbinds=1]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton" to="." method="_on_submit"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_cancel"]
-
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDeckButton"]
-[editable path="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CancelButton"]

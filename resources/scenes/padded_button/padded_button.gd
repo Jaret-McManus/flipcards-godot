@@ -125,6 +125,15 @@ func _get_button_variations() -> PackedStringArray:
 	return names
 
 
+func _property_can_revert(property: StringName) -> bool:
+	return property == &"theme_variation" and theme_variation != &""
+
+
+func _property_get_revert(property: StringName) -> Variant:
+	if property == &"theme_variation": return &""
+	return null
+
+
 func _apply_variation() -> void:
 	if is_instance_valid(inner_button):
 		inner_button.theme_type_variation = theme_variation
