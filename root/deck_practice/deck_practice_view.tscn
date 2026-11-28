@@ -127,6 +127,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+theme_variation = &""
 
 [node name="MediumButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=1589917007 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
@@ -140,6 +141,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+theme_variation = &"MediumButton"
 
 [node name="HardButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=179436815 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
@@ -153,6 +155,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+theme_variation = &"NegativeButton"
 
 [node name="DontKnowButton" parent="ContentVBox/InProgressContent/ButtonRow" unique_id=1816726834 instance=ExtResource("2_jqk35")]
 custom_minimum_size = Vector2(160, 0)
@@ -166,6 +169,7 @@ right_padding = 5
 bottom_padding = 5
 left_padding = 5
 all_padding = 5
+theme_variation = &"GrayButton"
 
 [node name="FinishedContent" type="VBoxContainer" parent="ContentVBox" unique_id=1195708209]
 visible = false
@@ -193,6 +197,7 @@ right_padding = 16
 bottom_padding = 5
 left_padding = 16
 all_padding = 5
+theme_variation = &""
 
 [node name="DeckPracticeController" type="Node" parent="." unique_id=1383138569]
 script = ExtResource("2_ypxxv")

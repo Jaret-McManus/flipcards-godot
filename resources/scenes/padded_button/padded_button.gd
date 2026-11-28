@@ -68,6 +68,10 @@ signal pressed
 @export_tool_button("Set all padding") var set_all_padding: Callable = _set_all_padding
 @export var all_padding: int = 0
 
+@export_group("Theme")
+var theme_variation: StringName = &"":
+	set(sn): theme_variation = sn; _apply_variation()
+
 @export_group("Internal Nodes")
 @export var inner_button: Button
 @export var padding_container: MarginContainer
@@ -77,6 +81,54 @@ signal pressed
 func _ready() -> void:
 	inner_button.pressed.connect(pressed.emit)
 	inner_button.focus_mode = button_focus_mode
+	_apply_variation()
+
+
+#region Populate Button Themes
+func _get_property_list() -> Array[Dictionary]:
+	var variations: PackedStringArray = _get_button_variations()
+	# Add a leading comma so selecting the empty option resets it to default
+	var hint_str: String = "," + ",".join(variations)
+	
+	return [
+		{
+			"name": "Theme", 
+			"type": TYPE_NIL,
+			"usage": PROPERTY_USAGE_GROUP
+		},
+		{
+			"name": "theme_variation",
+			"type": TYPE_STRING_NAME,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_ENUM,
+			"hint_string": hint_str
+		}
+	]
+
+
+func _get_button_variations() -> PackedStringArray:
+	var names: PackedStringArray = []
+	
+	# 1. Check for a Theme assigned to this node or an ancestor in the scene tree
+	var active_theme_option := ControlUtils.find_inherited_theme(self)
+	if active_theme_option.is_some():
+		var active_theme: Theme = active_theme_option.value as Theme
+		names.append_array(active_theme.get_type_variation_list(&"Button"))
+	
+	# 2. Check the global Project Settings theme
+	var project_theme: Theme = ThemeDB.get_project_theme()
+	if project_theme:
+		for v in project_theme.get_type_variation_list(&"Button"):
+			if not names.has(v): names.append(v)
+	
+	names.sort()
+	return names
+
+
+func _apply_variation() -> void:
+	if is_instance_valid(inner_button):
+		inner_button.theme_type_variation = theme_variation
+#endregion
 
 
 func _set_all_padding() -> void:
